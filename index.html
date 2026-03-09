@@ -1,0 +1,617 @@
+<html lang="en" style="overscroll-behavior-x: none;"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Grid Submit - G98, G99, G100 Submissions for Solar Installers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>
+      /* Ensuring Iconify icons respect stroke width */
+      iconify-icon {
+          --icon-stroke-width: 1.5px;
+      }
+      iconify-icon svg path,
+      iconify-icon svg circle,
+      iconify-icon svg rect,
+      iconify-icon svg polyline,
+      iconify-icon svg line {
+          stroke-width: var(--icon-stroke-width, 1.5) !important;
+      }
+    </style>
+  </head>
+  <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+    <div class="min-h-screen flex flex-col">
+      <!-- Navigation -->
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <a class="flex items-center gap-2 group" href="/">
+            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+            </div>
+            <span class="text-xl font-semibold tracking-tighter">
+              GridSubmit
+            </span>
+          </a>
+
+          <div class="hidden md:flex items-center gap-8">
+            <a href="#services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+              Services
+            </a>
+            <a href="#process" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+              How it Works
+            </a>
+            <a href="#dnos" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">
+              Supported DNOs
+            </a>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <a class="text-sm font-medium text-gray-600 hover:text-black transition-colors hidden sm:block" href="#">
+              Sign In
+            </a>
+            <a class="hover:bg-lime-400 transition-transform active:translate-y-0 active:translate-x-0 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" href="#">Submit Application</a>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="sm:px-6 lg:px-8 md:py-24 max-w-7xl mr-auto ml-auto pt-16 pr-4 pb-16 pl-4">
+          <div class="grid lg:grid-cols-2 gap-x-12 gap-y-12 items-center">
+            <div class="">
+              <h1 class="md:text-7xl leading-[1.1] text-5xl font-semibold tracking-tight mb-6">
+                DNO Submissions
+                <span class="block text-[#84CC16]">Sorted in Minutes</span>
+              </h1>
+              <p class="text-xl text-gray-700 mb-8 leading-relaxed max-w-lg">
+                The essential service for solar &amp; battery installers. We
+                handle your G98, G99, and G100 forms so you can stay compliant
+                and leave the admin with us.
+              </p>
+              <div class="flex gap-4 flex-wrap">
+                <a class="hover:bg-gray-800 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] text-base font-semibold text-[#84CC16] bg-black border-black border-2 rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" href="#">Submit Application</a>
+                <a class="hover:bg-gray-50 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] text-base font-semibold bg-white border-black border-2 rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" href="#">How it works</a>
+              </div>
+              <div class="flex gap-6 text-sm text-gray-600 mt-8 gap-x-6 gap-y-6 items-center">
+                <div class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-[20px] h-[20px]" data-lucide="badge-check" data-icon-set="lucide" data-icon-replaced="true" style="color: rgb(132, 204, 22); width: 20px; height: 20px;"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                  <span class="">All DNO's</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-xl"></iconify-icon>
+                  <span class="">Less than 2 mins</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Diagram mimicking the reference's workflow graphic -->
+            <div class="w-full min-h-[550px] bg-white rounded-3xl overflow-hidden border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] relative flex flex-col items-center justify-center py-10 px-4">
+              <div class="opacity-[0.15] absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(#000 2px, transparent 2px); background-size: 24px 24px"></div>
+
+              <div class="z-10 flex flex-col w-full relative items-center">
+  <!-- Node 1: Project Details -->
+  <div class="px-4 py-3 border-2 border-black rounded-xl bg-gray-800 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center gap-4 w-64 relative z-10">
+    <div class="w-10 h-10 rounded-lg bg-gray-700 border-2 border-black flex items-center justify-center shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white w-5 h-5">
+        <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+        <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+        <path d="M10 9H8"></path>
+        <path d="M16 13H8"></path>
+        <path d="M16 17H8"></path>
+      </svg>
+    </div>
+    <div class="">
+      <div class="font-semibold text-sm tracking-tight text-white">
+        Project Details
+      </div>
+      <div class="text-[11px] text-gray-400 font-medium leading-tight">
+        Form input
+      </div>
+    </div>
+    <!-- Line Down -->
+    <div class="absolute w-1 h-6 bg-black left-1/2 -bottom-6 -translate-x-1/2 z-0"></div>
+  </div>
+
+  <!-- Node 2: GridSubmit -->
+  <div class="flex gap-4 z-10 bg-gray-800 w-64 border-black border-2 rounded-xl mt-6 pt-3 pr-4 pb-3 pl-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] items-center">
+    <div class="flex shrink-0 bg-gray-700 w-10 h-10 border-black border-2 rounded-lg items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white w-5 h-5">
+        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14H4z" class=""></path>
+      </svg>
+    </div>
+    <div class="">
+      <div class="font-semibold text-sm tracking-tight text-white">
+        GridSubmit
+      </div>
+      <div class="text-[11px] text-gray-400 font-medium leading-tight">
+        GridSubmit processes application
+      </div>
+    </div>
+    <!-- Line Down -->
+    <div class="absolute w-1 h-3 bg-black left-1/2 -bottom-3 -translate-x-1/2 z-0"></div>
+  </div>
+
+  <!-- Node 3: 5 DNOs (Expanded Width) -->
+  <div class="flex items-center justify-center gap-4 w-full relative z-10 mt-6">
+    <!-- Connectors visually hinting expansion -->
+    <div class="absolute w-[288px] h-1 bg-black left-1/2 -translate-x-1/2 z-0 -top-3"></div>
+    <div class="absolute w-[288px] flex justify-between left-1/2 -translate-x-1/2 z-0 -top-3">
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+    </div>
+
+    <div class="w-14 h-14 rounded-xl border-2 border-black bg-gray-800 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-[11px] text-white font-bold z-10 relative">
+      UKPN
+    </div>
+    <div class="w-14 h-14 rounded-xl border-2 border-black bg-gray-800 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-[11px] text-white font-bold z-10 relative">
+      NG
+    </div>
+    <div class="w-14 h-14 rounded-xl border-2 border-black bg-gray-800 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-[11px] text-white font-bold z-10 relative">
+      SSEN
+    </div>
+    <div class="w-14 h-14 rounded-xl border-2 border-black bg-gray-800 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-[11px] text-white font-bold z-10 relative">
+      NPG
+    </div>
+    <div class="w-14 h-14 rounded-xl border-2 border-black bg-gray-800 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center text-[11px] text-white font-bold z-10 relative">
+      SPEN
+    </div>
+
+    <!-- Connectors visually hinting convergence -->
+    <div class="absolute w-[288px] flex justify-between items-end left-1/2 -translate-x-1/2 z-0 -bottom-3 h-3">
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+      <div class="w-1 h-3 bg-black"></div>
+    </div>
+    <div class="absolute w-[288px] h-1 bg-black left-1/2 -translate-x-1/2 z-0 -bottom-3"></div>
+
+    <!-- Central Line Down (Direct to Success) -->
+    <div class="absolute w-1 h-6 bg-black left-1/2 -bottom-6 -translate-x-1/2 z-0"></div>
+  </div>
+
+  <!-- Node 4: Success Message (Only element with color) -->
+  <div class="px-4 py-3 border-2 border-black rounded-xl bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center gap-4 w-64 relative z-10 mt-6">
+    <div class="w-10 h-10 rounded-lg bg-white border-2 border-black flex items-center justify-center shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-black w-5 h-5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <path d="m9 11 3 3L22 4"></path>
+      </svg>
+    </div>
+    <div class="">
+      <div class="font-semibold text-sm tracking-tight text-black">
+        Success!
+      </div>
+      <div class="text-[11px] text-black/80 font-medium leading-tight">
+        Application has been approved
+      </div>
+    </div>
+  </div>
+</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="services" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+              Everything You Need
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              Powerful features designed specifically to streamline solar and
+              battery network compliance.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Feature 1 -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-[#84CC16]/10 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div class="w-14 h-14 bg-[#84CC16] rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
+                <iconify-icon icon="solar:document-add-linear" class="text-black text-3xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-semibold tracking-tight mb-3">
+                All Forms Handled
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                From simple G98 notifications to complex G99 and G100 fast-track
+                applications.
+              </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-blue-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div class="w-14 h-14 bg-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
+                <iconify-icon icon="solar:shield-check-linear" class="text-black text-3xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-semibold tracking-tight mb-3">
+                Expert Review
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                We check your schematics and datasheets before submission to
+                prevent DNO rejections.
+              </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-purple-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div class="w-14 h-14 bg-purple-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
+                <iconify-icon icon="solar:radar-linear" class="text-black text-3xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-semibold tracking-tight mb-3">
+                Live Tracking
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                View the exact status of every submission in your dashboard. No
+                more chasing emails.
+              </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-orange-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div class="w-14 h-14 bg-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
+                <iconify-icon icon="solar:dialog-linear" class="text-black text-3xl"></iconify-icon>
+              </div>
+              <h3 class="text-2xl font-semibold tracking-tight mb-3">
+                DNO Management
+              </h3>
+              <p class="text-gray-600 leading-relaxed text-sm mb-4">
+                We handle the back-and-forth communication with network
+                operators on your behalf.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Process Section (Replacing Workflows) -->
+        <section id="process" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-16 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+              Leave the admin to us
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              A seamless process designed to keep your installation teams
+              moving.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 relative">
+            <!-- Step 1 -->
+            <div class="p-6 rounded-xl border-2 border-black bg-blue-50 relative z-10">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center border-2 border-black">
+                  <span class="font-semibold text-lg text-black">1</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold tracking-tight text-lg">
+                    Upload Details
+                  </h4>
+                </div>
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Simply drop your site plans, inverter datasheets, and basic
+                customer details into our secure portal. It takes less than 2
+                minutes.
+              </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="p-6 rounded-xl border-2 border-black bg-[#fefce8] relative z-10">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-[#84CC16] rounded-lg flex items-center justify-center border-2 border-black">
+                  <span class="font-semibold text-lg text-black">2</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold tracking-tight text-lg">
+                    We Build &amp; Submit
+                  </h4>
+                </div>
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Our experts compile the exact forms required (G98, G99, etc.),
+                ensure all technical data matches, and submit to the correct
+                regional DNO.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="p-6 rounded-xl border-2 border-black bg-purple-50 relative z-10">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-purple-400 rounded-lg flex items-center justify-center border-2 border-black">
+                  <span class="font-semibold text-lg text-black">3</span>
+                </div>
+                <div>
+                  <h4 class="font-semibold tracking-tight text-lg">
+                    Get Approved
+                  </h4>
+                </div>
+              </div>
+              <p class="text-sm text-gray-700 leading-relaxed">
+                Track progress in real-time. We handle any queries from the
+                network engineers until your connection offer is secured.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dashboard Visual Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+              Total Visibility
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              Manage all your sites from a single, clean interface.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border-2 border-black bg-white p-4 md:p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <!-- Browser Window Mockup -->
+            <div class="flex items-center gap-3 mb-6 border-b-2 border-gray-100 pb-4">
+              <div class="flex gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-400 border border-black"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400 border border-black"></div>
+                <div class="w-3 h-3 rounded-full bg-[#84CC16] border border-black"></div>
+              </div>
+              <span class="ml-4 text-sm font-medium text-gray-500">
+                app.gridsubmit.com
+              </span>
+            </div>
+
+            <!-- Dashboard Mockup Content -->
+            <div class="bg-gray-50 rounded-xl border-2 border-black p-4 md:p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="text-lg font-semibold tracking-tight">
+                  Recent Applications
+                </h3>
+                <button class="px-4 py-2 bg-black text-white text-xs font-medium rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(132,204,22,1)]">
+                  New Submission
+                </button>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                  <thead class="border-b-2 border-gray-200">
+                    <tr class="">
+                      <th class="pb-3 font-medium text-gray-600">Reference</th>
+                      <th class="pb-3 font-medium text-gray-600">Type</th>
+                      <th class="pb-3 font-medium text-gray-600">DNO</th>
+                      <th class="pb-3 font-medium text-gray-600">Date</th>
+                      <th class="pb-3 font-medium text-gray-600">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-100">
+                    <tr>
+                      <td class="py-4 font-medium">GS-10492</td>
+                      <td class="py-4">
+                        <span class="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium border border-blue-200">
+                          G99
+                        </span>
+                      </td>
+                      <td class="py-4">UK Power Networks</td>
+                      <td class="py-4 text-gray-500">Oct 24, 2023</td>
+                      <td class="py-4">
+                        <span class="inline-flex items-center gap-1.5 px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium border border-yellow-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                          In Review
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="py-4 font-medium">GS-10491</td>
+                      <td class="py-4">
+                        <span class="px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium border border-green-200">
+                          G98
+                        </span>
+                      </td>
+                      <td class="py-4">National Grid</td>
+                      <td class="py-4 text-gray-500">Oct 22, 2023</td>
+                      <td class="py-4">
+                        <span class="inline-flex items-center gap-1.5 px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium border border-green-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                          Approved
+                        </span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="py-4 font-medium">GS-10488</td>
+                      <td class="py-4">
+                        <span class="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium border border-purple-200">
+                          G100
+                        </span>
+                      </td>
+                      <td class="py-4">SSEN</td>
+                      <td class="py-4 text-gray-500">Oct 18, 2023</td>
+                      <td class="py-4">
+                        <span class="inline-flex items-center gap-1.5 px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium border border-blue-200">
+                          <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                          Building Forms
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Supported DNOs Section -->
+        <section id="dnos" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">
+              We Work With Every DNO
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              No matter where your installation is in the UK, we've got you
+              covered.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+            <!-- DNO Cards -->
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:transmission-circle-linear" class="text-4xl mb-3 text-blue-600"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">
+                UK Power Networks
+              </span>
+            </div>
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:electric-plug-linear" class="text-4xl mb-3 text-green-600"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">
+                National Grid
+              </span>
+            </div>
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:bolt-circle-linear" class="text-4xl mb-3 text-red-600"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">SSEN</span>
+            </div>
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:lightbulb-bolt-linear" class="text-4xl mb-3 text-purple-600"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">
+                Northern Powergrid
+              </span>
+            </div>
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:energy-fall-square-linear" class="text-4xl mb-3 text-orange-500"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">
+                SP Energy Networks
+              </span>
+            </div>
+            <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center hover:bg-gray-50 transition-transform shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] p-4 text-center">
+              <iconify-icon icon="solar:settings-minimalistic-linear" class="text-4xl mb-3 text-teal-600"></iconify-icon>
+              <span class="font-semibold text-sm leading-tight">
+                Electricity North West
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="sm:px-6 lg:px-8 md:py-24 max-w-7xl mr-auto ml-auto pt-16 pr-4 pb-16 pl-4">
+          <div class="bg-[#84CC16] rounded-3xl p-12 md:p-16 text-center border-2 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] relative overflow-hidden">
+            <div class="relative z-10">
+              <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
+                Ready to scale your installs?
+              </h2>
+              <p class="text-xl mb-8 max-w-2xl mx-auto text-black/80 font-medium">
+                Stop wasting hours on paperwork. Join the installers who trust
+                Grid Submit to keep their projects moving.
+              </p>
+              <div class="flex gap-4 justify-center flex-wrap">
+                <a class="px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" href="#">
+                  Get Started Today
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="md:col-span-1">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center">
+                  <iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon>
+                </div>
+                <span class="font-semibold text-lg tracking-tighter">
+                  GridSubmit
+                </span>
+              </div>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                The compliance infrastructure for modern solar and battery
+                installers.
+              </p>
+            </div>
+            <div class="">
+              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    G98 Notifications
+                  </a>
+                </li>
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    G99 Applications
+                  </a>
+                </li>
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    G100 Export Limitation
+                  </a>
+                </li>
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    DNO Interfacing
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="">
+              <h4 class="font-semibold mb-4 tracking-tight">Resources</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    Help Center
+                  </a>
+                </li>
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    DNO Requirements Guide
+                  </a>
+                </li>
+                <li class="">
+                  <a class="hover:text-black transition-colors" href="#">
+                    Pricing
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li>
+                  <a class="hover:text-black transition-colors" href="#">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a class="hover:text-black transition-colors" href="#">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a class="hover:text-black transition-colors" href="#">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a class="hover:text-black transition-colors" href="#">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="pt-8 border-t-2 border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-medium text-gray-500">© 2026 Grid Submit. All rights reserved.</p>
+            <div class="flex gap-4">
+              <a href="#" class="text-gray-400 hover:text-black transition-colors">
+                <iconify-icon icon="solar:map-arrow-up-linear" class="text-xl"></iconify-icon>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-black transition-colors">
+                <iconify-icon icon="solar:letter-linear" class="text-xl"></iconify-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  
+</body></html>
