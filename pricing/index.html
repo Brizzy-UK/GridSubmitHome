@@ -106,84 +106,104 @@
 
         <!-- Pricing Cards -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div class="grid md:grid-cols-3 gap-8 items-start">
+          <div class="text-center mb-4">
+            <p class="text-sm font-medium text-gray-500">All prices exclude VAT. Export number retrieval included with every submission.</p>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mt-8">
 
-            <!-- Pay As You Go -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              <h3 class="text-xl font-semibold tracking-tight mb-2">Pay As You Go</h3>
-              <p class="text-sm text-gray-600 mb-8">Best for installers with occasional jobs.</p>
-              <div class="space-y-4 mb-8">
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">G98 Notification</span>
-                  <span class="font-semibold text-lg">Contact us</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">G99 Application</span>
-                  <span class="font-semibold text-lg">Contact us</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">Export number retrieval</span>
-                  <span class="font-semibold text-[#84CC16]">Included</span>
-                </div>
-                <div class="flex justify-between items-center py-3">
-                  <span class="text-sm font-medium">Contract</span>
-                  <span class="font-semibold">None</span>
-                </div>
+            <!-- Tier 1: Up to 3.68kW -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <div class="mb-6">
+                <span class="inline-block px-3 py-1 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold mb-4">G98 Notification</span>
+                <h3 class="text-xl font-semibold tracking-tight mb-1">Up to 3.68kW</h3>
+                <p class="text-sm text-gray-500">Single-phase domestic installs</p>
               </div>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Get a Quote</a>
+              <div class="mb-8">
+                <div class="flex items-end gap-1 mb-1">
+                  <span class="text-5xl font-semibold tracking-tight">£50</span>
+                  <span class="text-gray-500 text-sm mb-2">+ VAT</span>
+                </div>
+                <p class="text-xs text-gray-500">per submission</p>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-700 mb-8 flex-1">
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>G98 notification submitted</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO chasing included</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Typical 24–48hr turnaround</li>
+              </ul>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
             </div>
 
-            <!-- Monthly Plan - Most Popular -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-black shadow-[6px_6px_0px_0px_rgba(132,204,22,1)] relative">
+            <!-- Tier 2: 4–15kW -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-black shadow-[6px_6px_0px_0px_rgba(132,204,22,1)] flex flex-col relative">
               <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span class="px-4 py-1.5 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold whitespace-nowrap">Most Popular</span>
+                <span class="px-4 py-1.5 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold whitespace-nowrap">Most Common</span>
               </div>
-              <h3 class="text-xl font-semibold tracking-tight mb-2 text-white">Monthly Plan</h3>
-              <p class="text-sm text-gray-400 mb-8">Best for regular installers (5–15 jobs/month).</p>
-              <div class="space-y-4 mb-8">
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-700">
-                  <span class="text-sm font-medium text-gray-300">Fixed monthly fee</span>
-                  <span class="font-semibold text-lg text-[#84CC16]">Contact us</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-700">
-                  <span class="text-sm font-medium text-gray-300">Submissions included</span>
-                  <span class="font-semibold text-white">Bundle pricing</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-700">
-                  <span class="text-sm font-medium text-gray-300">Turnaround</span>
-                  <span class="font-semibold text-[#84CC16]">Priority</span>
-                </div>
-                <div class="flex justify-between items-center py-3">
-                  <span class="text-sm font-medium text-gray-300">Dedicated contact</span>
-                  <span class="font-semibold text-[#84CC16]">Included</span>
-                </div>
+              <div class="mb-6">
+                <span class="inline-block px-3 py-1 bg-gray-700 border-2 border-gray-600 rounded-full text-xs font-semibold mb-4 text-[#84CC16]">G99 Application</span>
+                <h3 class="text-xl font-semibold tracking-tight mb-1 text-white">4kW – 15kW</h3>
+                <p class="text-sm text-gray-400">Larger domestic & small commercial</p>
               </div>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-[#84CC16] border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(132,204,22,0.5)] hover:bg-lime-400 hover:shadow-[2px_2px_0px_0px_rgba(132,204,22,0.5)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Get Started</a>
+              <div class="mb-8">
+                <div class="flex items-end gap-1 mb-1">
+                  <span class="text-5xl font-semibold tracking-tight text-[#84CC16]">£99</span>
+                  <span class="text-gray-400 text-sm mb-2">+ VAT</span>
+                </div>
+                <p class="text-xs text-gray-500">per submission</p>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-300 mb-8 flex-1">
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Full G99 application prepared</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Technical documentation included</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO chasing included</li>
+              </ul>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-[#84CC16] border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(132,204,22,0.4)] hover:bg-lime-400 hover:shadow-[2px_2px_0px_0px_rgba(132,204,22,0.4)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
             </div>
 
-            <!-- High Volume -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-              <h3 class="text-xl font-semibold tracking-tight mb-2">High Volume</h3>
-              <p class="text-sm text-gray-600 mb-8">Best for larger installers (15+ jobs/month).</p>
-              <div class="space-y-4 mb-8">
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">Pricing</span>
-                  <span class="font-semibold text-lg">Custom</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">Account manager</span>
-                  <span class="font-semibold text-[#84CC16]">Dedicated</span>
-                </div>
-                <div class="flex justify-between items-center py-3 border-b-2 border-gray-100">
-                  <span class="text-sm font-medium">Bulk discounts</span>
-                  <span class="font-semibold text-[#84CC16]">Included</span>
-                </div>
-                <div class="flex justify-between items-center py-3">
-                  <span class="text-sm font-medium">Quote</span>
-                  <span class="font-semibold">Contact us</span>
-                </div>
+            <!-- Tier 3: 15–50kW -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <div class="mb-6">
+                <span class="inline-block px-3 py-1 bg-blue-100 border-2 border-blue-300 rounded-full text-xs font-semibold mb-4 text-blue-800">G99 Application</span>
+                <h3 class="text-xl font-semibold tracking-tight mb-1">15kW – 50kW</h3>
+                <p class="text-sm text-gray-500">Commercial & larger systems</p>
               </div>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Contact Us</a>
+              <div class="mb-8">
+                <div class="flex items-end gap-1 mb-1">
+                  <span class="text-5xl font-semibold tracking-tight">£249</span>
+                  <span class="text-gray-500 text-sm mb-2">+ VAT</span>
+                </div>
+                <p class="text-xs text-gray-500">per submission</p>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-700 mb-8 flex-1">
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Full G99 application prepared</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Technical documentation included</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO engineering liaison</li>
+              </ul>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
+            </div>
+
+            <!-- Tier 4: 50–500kW -->
+            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <div class="mb-6">
+                <span class="inline-block px-3 py-1 bg-purple-100 border-2 border-purple-300 rounded-full text-xs font-semibold mb-4 text-purple-800">G99 Application</span>
+                <h3 class="text-xl font-semibold tracking-tight mb-1">50kW – 500kW</h3>
+                <p class="text-sm text-gray-500">Large commercial & industrial</p>
+              </div>
+              <div class="mb-8">
+                <div class="flex items-end gap-1 mb-1">
+                  <span class="text-5xl font-semibold tracking-tight">£449</span>
+                  <span class="text-gray-500 text-sm mb-2">+ VAT</span>
+                </div>
+                <p class="text-xs text-gray-500">per submission</p>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-700 mb-8 flex-1">
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Full G99 application prepared</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Feasibility & connection offer</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
+                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Full DNO engineering liaison</li>
+              </ul>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
             </div>
 
           </div>

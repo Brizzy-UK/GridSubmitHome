@@ -110,7 +110,20 @@
 
             <!-- Form -->
             <div class="lg:col-span-2">
-              <form class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
+              <!-- Success state -->
+              <div id="form-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
+                <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                </div>
+                <h2 class="text-2xl font-semibold tracking-tight mb-3">Application Received</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">Thanks — we've received your details and sent you a confirmation email. We'll get to work on your application shortly.</p>
+                <p class="text-sm text-gray-500">Need to send files? Just reply to the confirmation email with your site plans, datasheets, or SLDs attached.</p>
+              </div>
+
+              <!-- Error state -->
+              <div id="form-error" class="hidden mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+
+              <form id="contact-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="name">Your name / company name</label>
@@ -230,4 +243,75 @@
       </footer>
 
     </div>
+  <script>
+    (function () {
+      const form = document.getElementById('contact-form');
+      const successEl = document.getElementById('form-success');
+      const errorEl = document.getElementById('form-error');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+
+      function readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            // result is "data:mime/type;base64,XXXX" — strip the prefix
+            const base64 = reader.result.split(',')[1];
+            resolve({ name: file.name, content: base64 });
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        errorEl.classList.add('hidden');
+        errorEl.textContent = '';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        try {
+          const fileInput = document.getElementById('files');
+          const attachments = fileInput.files.length > 0
+            ? await Promise.all(Array.from(fileInput.files).map(readFileAsBase64))
+            : [];
+
+          const payload = {
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            postcode: document.getElementById('postcode').value.trim(),
+            systemSize: document.getElementById('system-size').value.trim(),
+            applicationType: document.getElementById('app-type').value,
+            dno: document.getElementById('dno').value.trim(),
+            mpan: document.getElementById('mpan').value.trim(),
+            exportType: document.getElementById('export-type').value,
+            notes: document.getElementById('notes').value.trim(),
+            attachments,
+          };
+
+          const res = await fetch('/api/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw new Error(data.error || 'Something went wrong. Please try again.');
+          }
+
+          form.classList.add('hidden');
+          successEl.classList.remove('hidden');
+        } catch (err) {
+          errorEl.textContent = err.message || 'Failed to send — please try again or email submit@gridsubmit.co.uk directly.';
+          errorEl.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
+      });
+    })();
+  </script>
   </body></html>
