@@ -1,0 +1,187 @@
+<html lang="en" style="overscroll-behavior-x: none;"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solar DNO Application Guides: G98, G99 & Export MPAN | GridSubmit</title>
+    <meta name="description" content="Practical guides for solar installers on DNO applications, solar grid connection, G98 vs G99 requirements, and export MPAN numbers. Written for UK trade installers.">
+    <link rel="canonical" href="https://gridsubmit.co.uk/blog/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Solar DNO Application Guides: G98, G99 & Export MPAN | GridSubmit">
+    <meta property="og:description" content="Practical guides for solar installers on DNO applications, solar grid connection, G98 vs G99, and export MPAN numbers.">
+    <meta property="og:url" content="https://gridsubmit.co.uk/blog/">
+    <meta property="og:site_name" content="GridSubmit">
+    <meta name="robots" content="index, follow">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "GridSubmit Blog",
+      "description": "Practical DNO application guides for UK solar installers — G98, G99, solar grid connection, and export MPAN numbers.",
+      "url": "https://gridsubmit.co.uk/blog/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "GridSubmit",
+        "url": "https://gridsubmit.co.uk"
+      }
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
+    <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <style>iconify-icon{--icon-stroke-width:1.5px;}iconify-icon svg path,iconify-icon svg circle,iconify-icon svg rect,iconify-icon svg polyline,iconify-icon svg line{stroke-width:var(--icon-stroke-width,1.5)!important;}</style>
+  </head>
+  <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+    <div class="min-h-screen flex flex-col">
+
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <a class="flex items-center gap-2 group" href="/">
+            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+            </div>
+            <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
+          </a>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Home</a>
+            <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Services</a>
+            <a href="/pricing" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Pricing</a>
+            <a href="/blog" class="text-sm font-medium text-black transition-colors">Blog</a>
+            <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">About</a>
+            <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
+          </div>
+          <div class="flex items-center gap-3">
+            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block" href="/contact">Submit an Application</a>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+            </button>
+          </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+          <div class="flex flex-col gap-4">
+            <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
+            <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
+            <a href="/pricing" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Pricing</a>
+            <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
+            <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
+            <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+          </div>
+        </div>
+      </header>
+
+      <main class="flex-1">
+
+        <!-- Hero -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-16">
+          <div class="max-w-3xl">
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">DNO Application Guides for <span class="text-[#84CC16]">Solar Installers</span></h1>
+            <p class="text-xl text-gray-700 leading-relaxed">Practical advice on navigating grid connection, DNO applications, and everything in between.</p>
+          </div>
+        </section>
+
+        <!-- Articles -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Article 1 -->
+            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+              <div class="p-2">
+                <div class="bg-[#84CC16] rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
+                  <iconify-icon icon="solar:electric-plug-linear" class="text-black text-6xl"></iconify-icon>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex gap-2 mb-4">
+                  <span class="px-2 py-1 bg-[#84CC16]/20 text-black rounded text-xs font-semibold border border-black/20">Grid Connection</span>
+                  <span class="px-2 py-1 bg-[#84CC16]/20 text-black rounded text-xs font-semibold border border-black/20">G98 / G99</span>
+                </div>
+                <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">Connecting Solar Panels to the Grid: What Solar Installers Need to Know</h2>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6">Every solar install that exports energy needs to be properly connected to the grid — and that means dealing with the DNO. Here's what installers need to know to get it right and avoid delays.</p>
+                <a href="/blog/connecting-solar-panels-to-the-grid" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+              </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+              <div class="p-2">
+                <div class="bg-blue-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
+                  <iconify-icon icon="solar:document-add-linear" class="text-black text-6xl"></iconify-icon>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex gap-2 mb-4">
+                  <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold border border-blue-200">DNO Applications</span>
+                  <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold border border-blue-200">Guide</span>
+                </div>
+                <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">What Is a DNO Application? A Guide for Solar Installers</h2>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6">Not sure what a DNO application involves? This plain-English guide explains what DNO applications are, why they're required for solar, and how the process works.</p>
+                <a href="/blog/what-is-a-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+              </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+              <div class="p-2">
+                <div class="bg-purple-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
+                  <iconify-icon icon="solar:tag-linear" class="text-black text-6xl"></iconify-icon>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex gap-2 mb-4">
+                  <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold border border-purple-200">Export Numbers</span>
+                  <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold border border-purple-200">SEG</span>
+                </div>
+                <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">What Is a Solar Export Number and How Do You Get One?</h2>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6">A solar export number is issued by the DNO after grid connection approval. Here's what it is, why your customer needs it, and how to get one quickly.</p>
+                <a href="/blog/what-is-an-export-number-solar" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="md:col-span-1">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+                <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
+              </div>
+              <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>
+              <p class="text-xs text-gray-500 mt-3">We work exclusively with trade installers.</p>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
+                <li><a class="hover:text-black transition-colors" href="/pricing">Pricing</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
+                <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
+                <li><a class="hover:text-black transition-colors" href="/contact">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+              <ul class="space-y-2 text-sm text-gray-600">
+                <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
+                <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="pt-8 border-t-2 border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm font-medium text-gray-500">© 2024 GridSubmit. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </body></html>
