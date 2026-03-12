@@ -8,13 +8,34 @@
   <link rel="canonical" href="https://gridsubmit.co.uk/dno-project-submission/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <style>
     .required-star { color: #dc2626; margin-left: 2px; font-weight: 700; }
   </style>
 </head>
 <body class="bg-[#fefce8] text-gray-900 font-sans antialiased">
-  <main class="max-w-4xl mx-auto px-4 py-10 sm:py-14">
-    <a href="/" class="inline-block text-sm font-semibold underline mb-6">Back to Home</a>
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a class="flex items-center gap-2 group" href="/">
+          <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+          </div>
+          <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
+        </a>
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Home</a>
+          <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Services</a>
+          <a href="/pricing" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Pricing</a>
+          <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Blog</a>
+          <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">About</a>
+          <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
+        </div>
+        <a href="/dno-project-submission" class="hidden sm:block text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Submit an Application</a>
+      </nav>
+    </header>
+
+  <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-10 sm:py-14">
     <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mb-3">DNO Project Submission</h1>
     <p class="text-gray-700 mb-8">Installers and homeowners can submit project details so we can prepare and submit G98/G99 paperwork to the DNO on your behalf.</p>
 
@@ -118,21 +139,24 @@
         <div class="space-y-4">
           <div class="flex items-center justify-between gap-2">
             <h3 class="text-lg font-semibold">Inverter Details <span class="required-star">*</span></h3>
-            <button id="add-inverter-btn" type="button" class="px-4 py-2 rounded-xl text-sm bg-white border-2 border-black">Add another inverter</button>
           </div>
-          <p class="text-xs text-gray-600">Add one or more inverters. Each inverter is saved with its own inverter ID.</p>
+          <p class="text-xs text-gray-600">Add one or more inverters.</p>
           <div id="inverters-container" class="space-y-4">
             <div class="inverter-card border-2 border-black rounded-xl p-4 bg-[#fefce8]" data-inverter-id="1">
               <div class="flex items-center justify-between mb-3">
                 <p class="font-semibold text-sm">Inverter #1</p>
               </div>
-              <div class="grid sm:grid-cols-4 gap-4">
+              <div class="grid sm:grid-cols-3 gap-4">
                 <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               </div>
             </div>
+          </div>
+          <div>
+            <button id="add-inverter-btn" type="button" class="px-4 py-2 rounded-xl text-sm bg-white border-2 border-black">Add another inverter</button>
           </div>
         </div>
 
@@ -181,6 +205,42 @@
       </div>
     </form>
   </main>
+    <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div class="md:col-span-1">
+            <div class="flex items-center gap-2 mb-4">
+              <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+              <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
+              <li><a class="hover:text-black transition-colors" href="/pricing">Pricing</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
+              <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
+              <li><a class="hover:text-black transition-colors" href="/contact">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
+              <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script>
     (function () {
@@ -281,10 +341,11 @@
               <p class="font-semibold text-sm">Inverter #${id}</p>
               <button type="button" class="remove-inverter-btn px-3 py-1 rounded-lg border-2 border-black bg-white text-xs">Remove</button>
             </div>
-            <div class="grid sm:grid-cols-4 gap-4">
+            <div class="grid sm:grid-cols-3 gap-4">
               <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
             </div>
           </div>
@@ -297,6 +358,7 @@
           brand: card.querySelector('.inverter-brand').value.trim(),
           model: card.querySelector('.inverter-model').value.trim(),
           capacityKw: card.querySelector('.inverter-capacity').value.trim(),
+          quantity: card.querySelector('.inverter-quantity').value.trim(),
           enaReference: card.querySelector('.inverter-ena').value.trim()
         }));
       }
@@ -361,7 +423,7 @@
       document.getElementById('mpan-number').addEventListener('input', validateMpan);
       document.getElementById('mpan-number').addEventListener('blur', validateMpan);
       invertersContainer.addEventListener('input', (e) => {
-        if (e.target.classList.contains('inverter-capacity')) {
+        if (e.target.classList.contains('inverter-capacity') || e.target.classList.contains('inverter-quantity')) {
           e.target.value = e.target.value.replace(/\D/g, '');
         }
       });

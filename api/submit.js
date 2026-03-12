@@ -74,8 +74,9 @@ export default async function handler(req, res) {
       const brand = inv?.brand || 'Not provided';
       const model = inv?.model || 'Not provided';
       const cap = inv?.capacityKw || 'Not provided';
+      const qty = inv?.quantity || 'Not provided';
       const ena = inv?.enaReference || 'Not provided';
-      return `Inverter #${id}: Brand ${brand}, Model ${model}, Capacity ${cap} kW, ENA Ref ${ena}`;
+      return `Inverter #${id}: Brand ${brand}, Model ${model}, Capacity ${cap} kW, Quantity ${qty}, ENA Ref ${ena}`;
     })
     .join('<br>');
   const batterySummary = batteryBrand || batteryModel || batteryTotalCapacityKwh
