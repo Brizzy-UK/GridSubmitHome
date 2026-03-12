@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DNO Project Submission | GridSubmit</title>
+  <meta name="description" content="4-step DNO Project Submission form for solar applications.">
+  <link rel="canonical" href="https://gridsubmit.co.uk/dno-project-submission/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#fefce8] text-gray-900 font-sans antialiased">
+  <main class="max-w-4xl mx-auto px-4 py-10 sm:py-14">
+    <a href="/" class="inline-block text-sm font-semibold underline mb-6">Back to Home</a>
+    <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mb-3">DNO Project Submission</h1>
+    <p class="text-gray-700 mb-8">Installers and homeowners can submit project details so we can prepare and submit G98/G99 paperwork to the DNO on your behalf.</p>
+
+    <div id="form-success" class="hidden mb-6 border-2 border-black rounded-xl bg-white p-6">
+      <h2 class="text-xl font-semibold mb-2">Application received</h2>
+      <p class="text-sm text-gray-700">Thanks, your submission has been sent successfully.</p>
+    </div>
+    <div id="form-error" class="hidden mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+
+    <form id="dno-project-form" class="bg-white border-2 border-black rounded-2xl p-6 sm:p-8 space-y-8" novalidate>
+      <div>
+        <div class="flex items-center justify-between text-sm mb-2">
+          <span class="font-semibold">Progress</span>
+          <span id="step-label">Step 1 of 4</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          <div data-step-indicator="1" class="h-2 rounded-full bg-[#84CC16]"></div>
+          <div data-step-indicator="2" class="h-2 rounded-full bg-gray-200"></div>
+          <div data-step-indicator="3" class="h-2 rounded-full bg-gray-200"></div>
+          <div data-step-indicator="4" class="h-2 rounded-full bg-gray-200"></div>
+        </div>
+      </div>
+
+      <section data-step-panel="1" class="space-y-5">
+        <div>
+          <h2 class="text-2xl font-semibold">Step 1: What Are You Installing?</h2>
+          <p class="text-sm text-gray-600">This tells us the likely DNO route and technical requirements.</p>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="installation-type">Installation Type</label>
+          <select id="installation-type" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+            <option value="">Select installation type</option>
+            <option>Solar Only</option>
+            <option>Solar &amp; Battery</option>
+            <option>Battery Only</option>
+          </select>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm font-semibold mb-2" for="total-generation-capacity">Total Generation Capacity (kW)</label>
+            <input id="total-generation-capacity" type="number" step="0.01" min="0" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" for="planned-installation-date">Planned Installation Date</label>
+            <input id="planned-installation-date" type="date" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+          </div>
+        </div>
+      </section>
+
+      <section data-step-panel="2" class="space-y-5 hidden">
+        <div>
+          <h2 class="text-2xl font-semibold">Step 2: Installer Details</h2>
+          <p class="text-sm text-gray-600">We use these details for correspondence and submission updates.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div><label class="block text-sm font-semibold mb-2" for="installer-company-name">Company Name</label><input id="installer-company-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-company-address">Company Address</label><input id="installer-company-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-first-name">Contact First Name</label><input id="installer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-last-name">Contact Last Name</label><input id="installer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-phone">Phone</label><input id="installer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-email">Email</label><input id="installer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        </div>
+      </section>
+
+      <section data-step-panel="3" class="space-y-5 hidden">
+        <div>
+          <h2 class="text-2xl font-semibold">Step 3: Installation Details</h2>
+          <p class="text-sm text-gray-600">Site data, supply data and customer contact details.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2"><label class="block text-sm font-semibold mb-2" for="project-street-address">Project Street Address</label><input id="project-street-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="project-town">Town</label><input id="project-town" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="project-postcode">Postcode</label><input id="project-postcode" type="text" maxlength="8" required placeholder="AB3 3BY" class="uppercase w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-5">
+          <div><label class="block text-sm font-semibold mb-2" for="system-phase">System Phase</label><select id="system-phase" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option></select></div>
+          <div><label class="block text-sm font-semibold mb-2" for="cutout-rating">Cut-Out Rating</label><select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select></div>
+          <div>
+            <label class="block text-sm font-semibold mb-2" for="mpan-number">MPAN Number (Last 13 Digits)</label>
+            <input id="mpan-number" type="text" maxlength="13" inputmode="numeric" required placeholder="1401234567891" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+            <p id="mpan-help" class="mt-1 text-xs text-gray-500">Must be 13 digits and start between 10 and 45.</p>
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold mb-2" for="cutout-image">Cut-Out Image (optional)</label>
+          <input id="cutout-image" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div><label class="block text-sm font-semibold mb-2" for="customer-first-name">Customer First Name</label><input id="customer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-last-name">Customer Last Name</label><input id="customer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-phone">Customer Phone</label><input id="customer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-email">Customer Email</label><input id="customer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        </div>
+      </section>
+
+      <section data-step-panel="4" class="space-y-5 hidden">
+        <div>
+          <h2 class="text-2xl font-semibold">Step 4: Equipment Details</h2>
+          <p class="text-sm text-gray-600">Final technical details used to complete the DNO forms.</p>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-5">
+          <div><label class="block text-sm font-semibold mb-2" for="inverter-brand">Inverter Brand</label><input id="inverter-brand" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="inverter-model">Inverter Model</label><input id="inverter-model" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="inverter-capacity-kw">Inverter Capacity (kW)</label><input id="inverter-capacity-kw" type="text" required inputmode="numeric" pattern="[0-9]+" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        </div>
+        <div><label class="block text-sm font-semibold mb-2" for="ena-reference">ENA Reference (optional)</label><input id="ena-reference" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        <fieldset class="space-y-2">
+          <legend class="text-sm font-semibold">SLD / Schematic</legend>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (GBP50 + VAT)" required class="mt-1"><span>Create one for me (GBP50 + VAT)</span></label>
+        </fieldset>
+        <div id="sld-upload-wrap" class="hidden">
+          <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD</label>
+          <input id="sld-upload-file" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+        </div>
+        <div id="sld-create-wrap" class="hidden">
+          <label class="block text-sm font-semibold mb-2" for="sld-create-details">Solar Panel Details</label>
+          <textarea id="sld-create-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Brand, model, capacity and quantity."></textarea>
+        </div>
+        <fieldset class="space-y-2">
+          <legend class="text-sm font-semibold">Commissioning Documents</legend>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (GBP50 + VAT)" required class="mt-1"><span>Yes (GBP50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
+        </fieldset>
+        <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
+          <input id="consent-confirmation" type="checkbox" required class="mt-1">
+          <span>I confirm that I have obtained the necessary consent from the end customer to share their personal details (name, phone, email, and site address) with DNO Renewables for the purpose of processing this DNO application. I have read and agree to the <a href="/privacy" class="underline font-semibold">Privacy Policy</a>.</span>
+        </label>
+      </section>
+
+      <div class="flex gap-3 justify-between">
+        <button id="back-btn" type="button" disabled class="px-5 py-3 rounded-xl text-sm bg-white border-2 border-black disabled:opacity-50 disabled:cursor-not-allowed">Back</button>
+        <div class="flex gap-3">
+          <button id="next-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Next</button>
+          <button id="submit-btn" type="submit" class="hidden px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Submit my application</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById('dno-project-form');
+      const successEl = document.getElementById('form-success');
+      const errorEl = document.getElementById('form-error');
+      const panels = Array.from(document.querySelectorAll('[data-step-panel]'));
+      const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
+      const backBtn = document.getElementById('back-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const submitBtn = document.getElementById('submit-btn');
+      const stepLabel = document.getElementById('step-label');
+      const sldUploadWrap = document.getElementById('sld-upload-wrap');
+      const sldCreateWrap = document.getElementById('sld-create-wrap');
+      const sldUploadFile = document.getElementById('sld-upload-file');
+      const sldCreateDetails = document.getElementById('sld-create-details');
+      let currentStep = 1;
+
+      const normalizePhone = (v) => v.replace(/\s+/g, '');
+      const validPhone = (v) => /^(\+44\d{10}|0\d{10})$/.test(normalizePhone(v));
+      const formatPhone = (v) => {
+        let cleaned = v.replace(/[^\d+]/g, '');
+        if (cleaned.startsWith('+44')) {
+          const digits = cleaned.slice(3).replace(/\D/g, '').slice(0, 10);
+          return digits.length <= 4 ? `+44 ${digits}` : `+44 ${digits.slice(0, 4)} ${digits.slice(4)}`;
+        }
+        const digits = cleaned.replace(/\D/g, '').slice(0, 11);
+        return digits.length <= 5 ? digits : `${digits.slice(0, 5)} ${digits.slice(5)}`;
+      };
+      const formatPostcode = (v) => {
+        const n = v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 7);
+        return n.length <= 3 ? n : `${n.slice(0, n.length - 3)} ${n.slice(-3)}`;
+      };
+      const validPostcode = (v) => /^[A-Z]{1,2}\d[A-Z\d]?\s\d[A-Z]{2}$/.test(v);
+
+      function validateMpan() {
+        const input = document.getElementById('mpan-number');
+        const help = document.getElementById('mpan-help');
+        input.value = input.value.replace(/\D/g, '').slice(0, 13);
+        if (input.value.length !== 13) {
+          input.setCustomValidity('MPAN must contain exactly 13 digits.');
+          help.className = 'mt-1 text-xs text-red-600';
+          help.textContent = 'MPAN must contain exactly 13 digits.';
+          return false;
+        }
+        const firstTwo = Number(input.value.slice(0, 2));
+        if (firstTwo < 10 || firstTwo > 45) {
+          input.setCustomValidity('The first two MPAN digits must be between 10 and 45.');
+          help.className = 'mt-1 text-xs text-red-600';
+          help.textContent = 'The first two MPAN digits must be between 10 and 45.';
+          return false;
+        }
+        input.setCustomValidity('');
+        help.className = 'mt-1 text-xs text-green-700';
+        help.textContent = 'MPAN format looks valid.';
+        return true;
+      }
+
+      function syncSldFields() {
+        const selected = form.querySelector('input[name="sld-option"]:checked');
+        const upload = selected && selected.value === 'Upload SLD';
+        const create = selected && selected.value === 'Create one for me (GBP50 + VAT)';
+        sldUploadWrap.classList.toggle('hidden', !upload);
+        sldCreateWrap.classList.toggle('hidden', !create);
+        sldUploadFile.required = Boolean(upload);
+        sldCreateDetails.required = Boolean(create);
+      }
+
+      function updateStep(step) {
+        currentStep = step;
+        panels.forEach((p, i) => p.classList.toggle('hidden', i + 1 !== currentStep));
+        indicators.forEach((i, idx) => {
+          i.classList.toggle('bg-[#84CC16]', idx + 1 <= currentStep);
+          i.classList.toggle('bg-gray-200', idx + 1 > currentStep);
+        });
+        stepLabel.textContent = `Step ${currentStep} of 4`;
+        backBtn.disabled = currentStep === 1;
+        nextBtn.disabled = currentStep === 4;
+        nextBtn.classList.toggle('hidden', currentStep === 4);
+        submitBtn.classList.toggle('hidden', currentStep !== 4);
+      }
+
+      function scopedValid(panel) {
+        const disabled = Array.from(form.elements).filter((el) => !panel.contains(el) && !el.disabled);
+        disabled.forEach((el) => { el.disabled = true; el.dataset.temp = '1'; });
+        const valid = form.reportValidity();
+        disabled.forEach((el) => { if (el.dataset.temp) { delete el.dataset.temp; el.disabled = false; } });
+        return valid;
+      }
+
+      function validateCurrentStep() {
+        const panel = panels[currentStep - 1];
+        errorEl.classList.add('hidden');
+        const postcode = document.getElementById('project-postcode');
+        if (panel.contains(postcode)) postcode.setCustomValidity(postcode.value && !validPostcode(postcode.value) ? 'Enter a valid UK postcode, for example AB3 3BY.' : '');
+        ['installer-phone', 'customer-phone'].forEach((id) => {
+          const input = document.getElementById(id);
+          if (panel.contains(input)) input.setCustomValidity(input.value && !validPhone(input.value) ? 'Enter a valid UK phone number starting with +44 or 0.' : '');
+        });
+        if (panel.contains(document.getElementById('mpan-number'))) validateMpan();
+        syncSldFields();
+        return scopedValid(panel);
+      }
+
+      async function asBase64(file) {
+        return new Promise((resolve, reject) => {
+          const r = new FileReader();
+          r.onload = () => resolve({ name: file.name, content: String(r.result).split(',')[1] });
+          r.onerror = reject;
+          r.readAsDataURL(file);
+        });
+      }
+
+      ['installer-phone', 'customer-phone'].forEach((id) => {
+        const input = document.getElementById(id);
+        input.addEventListener('input', () => { input.value = formatPhone(input.value); });
+      });
+      const postcode = document.getElementById('project-postcode');
+      postcode.addEventListener('input', () => { postcode.value = formatPostcode(postcode.value); });
+      document.getElementById('mpan-number').addEventListener('input', validateMpan);
+      document.getElementById('mpan-number').addEventListener('blur', validateMpan);
+      document.getElementById('inverter-capacity-kw').addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\D/g, ''); });
+      form.querySelectorAll('input[name="sld-option"]').forEach((r) => r.addEventListener('change', syncSldFields));
+
+      backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
+      nextBtn.addEventListener('click', () => { if (validateCurrentStep() && currentStep < 4) updateStep(currentStep + 1); });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateCurrentStep() || !form.reportValidity()) return;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+        try {
+          const attachments = [];
+          const cutOut = document.getElementById('cutout-image');
+          const sld = document.getElementById('sld-upload-file');
+          if (cutOut.files.length) attachments.push(await asBase64(cutOut.files[0]));
+          if (sld.files.length) attachments.push(await asBase64(sld.files[0]));
+
+          const payload = {
+            formType: 'dno-project-submission',
+            installationType: document.getElementById('installation-type').value,
+            totalGenerationCapacity: document.getElementById('total-generation-capacity').value,
+            plannedInstallationDate: document.getElementById('planned-installation-date').value,
+            installerCompanyName: document.getElementById('installer-company-name').value.trim(),
+            installerCompanyAddress: document.getElementById('installer-company-address').value.trim(),
+            installerFirstName: document.getElementById('installer-first-name').value.trim(),
+            installerLastName: document.getElementById('installer-last-name').value.trim(),
+            installerPhone: document.getElementById('installer-phone').value.trim(),
+            installerEmail: document.getElementById('installer-email').value.trim(),
+            projectStreetAddress: document.getElementById('project-street-address').value.trim(),
+            projectTown: document.getElementById('project-town').value.trim(),
+            projectPostcode: document.getElementById('project-postcode').value.trim(),
+            systemPhase: document.getElementById('system-phase').value,
+            cutoutRating: document.getElementById('cutout-rating').value,
+            mpanNumber: document.getElementById('mpan-number').value.trim(),
+            customerFirstName: document.getElementById('customer-first-name').value.trim(),
+            customerLastName: document.getElementById('customer-last-name').value.trim(),
+            customerPhone: document.getElementById('customer-phone').value.trim(),
+            customerEmail: document.getElementById('customer-email').value.trim(),
+            inverterBrand: document.getElementById('inverter-brand').value.trim(),
+            inverterModel: document.getElementById('inverter-model').value.trim(),
+            inverterCapacityKw: document.getElementById('inverter-capacity-kw').value.trim(),
+            enaReference: document.getElementById('ena-reference').value.trim(),
+            sldOption: (form.querySelector('input[name="sld-option"]:checked') || {}).value || '',
+            sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
+            commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
+            consentConfirmation: document.getElementById('consent-confirmation').checked,
+            attachments,
+            name: `${document.getElementById('installer-first-name').value} ${document.getElementById('installer-last-name').value}`.trim(),
+            email: document.getElementById('installer-email').value.trim()
+          };
+
+          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
+          form.classList.add('hidden');
+          successEl.classList.remove('hidden');
+        } catch (err) {
+          errorEl.textContent = err.message || 'Submission failed.';
+          errorEl.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit my application';
+        }
+      });
+
+      updateStep(1);
+      syncSldFields();
+    })();
+  </script>
+</body>
+</html>

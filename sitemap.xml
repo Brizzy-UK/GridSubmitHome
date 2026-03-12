@@ -37,6 +37,13 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://gridsubmit.co.uk/dno-project-submission</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://gridsubmit.co.uk/blog</loc>
