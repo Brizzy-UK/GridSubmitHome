@@ -38,10 +38,14 @@ export default async function handler(req, res) {
     customerLastName,
     customerPhone,
     customerEmail,
+    inverters = [],
     inverterBrand,
     inverterModel,
     inverterCapacityKw,
     enaReference,
+    batteryBrand,
+    batteryModel,
+    batteryTotalCapacityKwh,
     sldOption,
     sldCreateDetails,
     commissioningDocuments,
@@ -55,6 +59,28 @@ export default async function handler(req, res) {
   const sitePostcode = (postcode || projectPostcode || '').trim();
   const siteMpan = (mpan || mpanNumber || '').trim();
   const generationKw = (systemSize || totalGenerationCapacity || '').trim();
+  const normalizedInverters = Array.isArray(inverters) && inverters.length > 0
+    ? inverters
+    : [{
+        inverterId: 1,
+        brand: inverterBrand,
+        model: inverterModel,
+        capacityKw: inverterCapacityKw,
+        enaReference,
+      }];
+  const inverterSummary = normalizedInverters
+    .map((inv) => {
+      const id = inv?.inverterId || '?';
+      const brand = inv?.brand || 'Not provided';
+      const model = inv?.model || 'Not provided';
+      const cap = inv?.capacityKw || 'Not provided';
+      const ena = inv?.enaReference || 'Not provided';
+      return `Inverter #${id}: Brand ${brand}, Model ${model}, Capacity ${cap} kW, ENA Ref ${ena}`;
+    })
+    .join('<br>');
+  const batterySummary = batteryBrand || batteryModel || batteryTotalCapacityKwh
+    ? `Brand ${batteryBrand || 'Not provided'}, Model ${batteryModel || 'Not provided'}, Total Capacity ${batteryTotalCapacityKwh || 'Not provided'} kWh`
+    : '';
 
   if (!applicantName || !applicantEmail) {
     return res.status(400).json({ error: 'Name and email are required.' });
@@ -94,10 +120,8 @@ export default async function handler(req, res) {
         row('Customer last name', customerLastName),
         row('Customer phone', customerPhone),
         row('Customer email', customerEmail ? `<a href="mailto:${customerEmail}">${customerEmail}</a>` : ''),
-        row('Inverter brand', inverterBrand),
-        row('Inverter model', inverterModel),
-        row('Inverter capacity (kW)', inverterCapacityKw),
-        row('ENA reference', enaReference),
+        row('Inverters', inverterSummary),
+        row('Battery details', batterySummary),
         row('SLD / schematic option', sldOption),
         row('SLD details (if create requested)', sldCreateDetails ? sldCreateDetails.replace(/\n/g, '<br>') : ''),
         row('Commissioning documents', commissioningDocuments),
@@ -124,6 +148,8 @@ export default async function handler(req, res) {
         row('Total generation capacity (kW)', generationKw),
         row('Project postcode', projectPostcode),
         row('System phase', systemPhase),
+        row('Inverter count', String(normalizedInverters.length)),
+        row('Battery included', batterySummary ? 'Yes' : 'No'),
         row('SLD option', sldOption),
       ].join('')
     : [

@@ -8,6 +8,9 @@
   <link rel="canonical" href="https://gridsubmit.co.uk/dno-project-submission/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .required-star { color: #dc2626; margin-left: 2px; font-weight: 700; }
+  </style>
 </head>
 <body class="bg-[#fefce8] text-gray-900 font-sans antialiased">
   <main class="max-w-4xl mx-auto px-4 py-10 sm:py-14">
@@ -41,7 +44,7 @@
           <p class="text-sm text-gray-600">This tells us the likely DNO route and technical requirements.</p>
         </div>
         <div>
-          <label class="block text-sm font-semibold mb-2" for="installation-type">Installation Type</label>
+          <label class="block text-sm font-semibold mb-2" for="installation-type">Installation Type <span class="required-star">*</span></label>
           <select id="installation-type" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
             <option value="">Select installation type</option>
             <option>Solar Only</option>
@@ -51,7 +54,7 @@
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
           <div>
-            <label class="block text-sm font-semibold mb-2" for="total-generation-capacity">Total Generation Capacity (kW)</label>
+            <label class="block text-sm font-semibold mb-2" for="total-generation-capacity">Total Generation Capacity (kW) <span class="required-star">*</span></label>
             <input id="total-generation-capacity" type="number" step="0.01" min="0" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           </div>
           <div>
@@ -67,12 +70,12 @@
           <p class="text-sm text-gray-600">We use these details for correspondence and submission updates.</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
-          <div><label class="block text-sm font-semibold mb-2" for="installer-company-name">Company Name</label><input id="installer-company-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="installer-company-address">Company Address</label><input id="installer-company-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="installer-first-name">Contact First Name</label><input id="installer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="installer-last-name">Contact Last Name</label><input id="installer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="installer-phone">Phone</label><input id="installer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="installer-email">Email</label><input id="installer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-company-name">Company Name <span class="required-star">*</span></label><input id="installer-company-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-company-address">Company Address <span class="required-star">*</span></label><input id="installer-company-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-first-name">Contact First Name <span class="required-star">*</span></label><input id="installer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-last-name">Contact Last Name <span class="required-star">*</span></label><input id="installer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-phone">Phone <span class="required-star">*</span></label><input id="installer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="installer-email">Email <span class="required-star">*</span></label><input id="installer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
         </div>
       </section>
 
@@ -82,15 +85,15 @@
           <p class="text-sm text-gray-600">Site data, supply data and customer contact details.</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
-          <div class="sm:col-span-2"><label class="block text-sm font-semibold mb-2" for="project-street-address">Project Street Address</label><input id="project-street-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="project-town">Town</label><input id="project-town" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="project-postcode">Postcode</label><input id="project-postcode" type="text" maxlength="8" required placeholder="AB3 3BY" class="uppercase w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div class="sm:col-span-2"><label class="block text-sm font-semibold mb-2" for="project-street-address">Project Street Address <span class="required-star">*</span></label><input id="project-street-address" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="project-town">Town <span class="required-star">*</span></label><input id="project-town" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="project-postcode">Postcode <span class="required-star">*</span></label><input id="project-postcode" type="text" maxlength="8" required placeholder="AB3 3BY" class="uppercase w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
         </div>
         <div class="grid sm:grid-cols-3 gap-5">
-          <div><label class="block text-sm font-semibold mb-2" for="system-phase">System Phase</label><select id="system-phase" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option></select></div>
-          <div><label class="block text-sm font-semibold mb-2" for="cutout-rating">Cut-Out Rating</label><select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select></div>
+          <div><label class="block text-sm font-semibold mb-2" for="system-phase">System Phase <span class="required-star">*</span></label><select id="system-phase" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option></select></div>
+          <div><label class="block text-sm font-semibold mb-2" for="cutout-rating">Cut-Out Rating <span class="required-star">*</span></label><select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select></div>
           <div>
-            <label class="block text-sm font-semibold mb-2" for="mpan-number">MPAN Number (Last 13 Digits)</label>
+            <label class="block text-sm font-semibold mb-2" for="mpan-number">MPAN Number (Last 13 Digits) <span class="required-star">*</span></label>
             <input id="mpan-number" type="text" maxlength="13" inputmode="numeric" required placeholder="1401234567891" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
             <p id="mpan-help" class="mt-1 text-xs text-gray-500">Must be 13 digits and start between 10 and 45.</p>
           </div>
@@ -100,10 +103,10 @@
           <input id="cutout-image" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
-          <div><label class="block text-sm font-semibold mb-2" for="customer-first-name">Customer First Name</label><input id="customer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="customer-last-name">Customer Last Name</label><input id="customer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="customer-phone">Customer Phone</label><input id="customer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="customer-email">Customer Email</label><input id="customer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-first-name">Customer First Name <span class="required-star">*</span></label><input id="customer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-last-name">Customer Last Name <span class="required-star">*</span></label><input id="customer-last-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-phone">Customer Phone <span class="required-star">*</span></label><input id="customer-phone" type="tel" required placeholder="07123 456789 or +44 7123 456789" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+          <div><label class="block text-sm font-semibold mb-2" for="customer-email">Customer Email <span class="required-star">*</span></label><input id="customer-email" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
         </div>
       </section>
 
@@ -112,33 +115,60 @@
           <h2 class="text-2xl font-semibold">Step 4: Equipment Details</h2>
           <p class="text-sm text-gray-600">Final technical details used to complete the DNO forms.</p>
         </div>
-        <div class="grid sm:grid-cols-3 gap-5">
-          <div><label class="block text-sm font-semibold mb-2" for="inverter-brand">Inverter Brand</label><input id="inverter-brand" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="inverter-model">Inverter Model</label><input id="inverter-model" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
-          <div><label class="block text-sm font-semibold mb-2" for="inverter-capacity-kw">Inverter Capacity (kW)</label><input id="inverter-capacity-kw" type="text" required inputmode="numeric" pattern="[0-9]+" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="text-lg font-semibold">Inverter Details <span class="required-star">*</span></h3>
+            <button id="add-inverter-btn" type="button" class="px-4 py-2 rounded-xl text-sm bg-white border-2 border-black">Add another inverter</button>
+          </div>
+          <p class="text-xs text-gray-600">Add one or more inverters. Each inverter is saved with its own inverter ID.</p>
+          <div id="inverters-container" class="space-y-4">
+            <div class="inverter-card border-2 border-black rounded-xl p-4 bg-[#fefce8]" data-inverter-id="1">
+              <div class="flex items-center justify-between mb-3">
+                <p class="font-semibold text-sm">Inverter #1</p>
+              </div>
+              <div class="grid sm:grid-cols-4 gap-4">
+                <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div><label class="block text-sm font-semibold mb-2" for="ena-reference">ENA Reference (optional)</label><input id="ena-reference" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
+
+        <div id="battery-section" class="hidden border-2 border-black rounded-xl p-4 bg-[#fefce8] space-y-4">
+          <div>
+            <h3 class="text-lg font-semibold">Battery Details <span class="required-star">*</span></h3>
+            <p class="text-xs text-gray-600">Shown only for Solar &amp; Battery or Battery Only installations.</p>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div><label class="block text-sm font-semibold mb-2" for="battery-brand">Brand <span class="required-star">*</span></label><input id="battery-brand" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+            <div><label class="block text-sm font-semibold mb-2" for="battery-model">Model <span class="required-star">*</span></label><input id="battery-model" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+            <div><label class="block text-sm font-semibold mb-2" for="battery-total-capacity-kwh">Total Capacity (kWh) <span class="required-star">*</span></label><input id="battery-total-capacity-kwh" type="text" inputmode="numeric" pattern="[0-9]+" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+          </div>
+        </div>
+
         <fieldset class="space-y-2">
-          <legend class="text-sm font-semibold">SLD / Schematic</legend>
+          <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (GBP50 + VAT)" required class="mt-1"><span>Create one for me (GBP50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (£50 + VAT)" required class="mt-1"><span>Create one for me (£50 + VAT)</span></label>
         </fieldset>
         <div id="sld-upload-wrap" class="hidden">
-          <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD</label>
+          <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD <span class="required-star">*</span></label>
           <input id="sld-upload-file" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
         </div>
         <div id="sld-create-wrap" class="hidden">
-          <label class="block text-sm font-semibold mb-2" for="sld-create-details">Solar Panel Details</label>
+          <label class="block text-sm font-semibold mb-2" for="sld-create-details">Solar Panel Details <span class="required-star">*</span></label>
           <textarea id="sld-create-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Brand, model, capacity and quantity."></textarea>
         </div>
         <fieldset class="space-y-2">
-          <legend class="text-sm font-semibold">Commissioning Documents</legend>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (GBP50 + VAT)" required class="mt-1"><span>Yes (GBP50 + VAT)</span></label>
+          <legend class="text-sm font-semibold">Commissioning Documents <span class="required-star">*</span></legend>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (£50 + VAT)" required class="mt-1"><span>Yes (£50 + VAT)</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
           <input id="consent-confirmation" type="checkbox" required class="mt-1">
-          <span>I confirm that I have obtained the necessary consent from the end customer to share their personal details (name, phone, email, and site address) with DNO Renewables for the purpose of processing this DNO application. I have read and agree to the <a href="/privacy" class="underline font-semibold">Privacy Policy</a>.</span>
+          <span>I confirm that I have obtained the necessary consent from the end customer to share their personal details (name, phone, email, and site address) with DNO Renewables for the purpose of processing this DNO application. I have read and agree to the <a href="/privacy" class="underline font-semibold">Privacy Policy</a>. <span class="required-star">*</span></span>
         </label>
       </section>
 
@@ -167,7 +197,15 @@
       const sldCreateWrap = document.getElementById('sld-create-wrap');
       const sldUploadFile = document.getElementById('sld-upload-file');
       const sldCreateDetails = document.getElementById('sld-create-details');
+      const installationTypeInput = document.getElementById('installation-type');
+      const invertersContainer = document.getElementById('inverters-container');
+      const addInverterBtn = document.getElementById('add-inverter-btn');
+      const batterySection = document.getElementById('battery-section');
+      const batteryBrandInput = document.getElementById('battery-brand');
+      const batteryModelInput = document.getElementById('battery-model');
+      const batteryCapacityInput = document.getElementById('battery-total-capacity-kwh');
       let currentStep = 1;
+      let nextInverterId = 2;
 
       const normalizePhone = (v) => v.replace(/\s+/g, '');
       const validPhone = (v) => /^(\+44\d{10}|0\d{10})$/.test(normalizePhone(v));
@@ -212,11 +250,55 @@
       function syncSldFields() {
         const selected = form.querySelector('input[name="sld-option"]:checked');
         const upload = selected && selected.value === 'Upload SLD';
-        const create = selected && selected.value === 'Create one for me (GBP50 + VAT)';
+        const create = selected && selected.value === 'Create one for me (£50 + VAT)';
         sldUploadWrap.classList.toggle('hidden', !upload);
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
         sldCreateDetails.required = Boolean(create);
+      }
+
+      function syncBatterySection() {
+        const installType = installationTypeInput.value;
+        const showBattery = installType === 'Solar & Battery' || installType === 'Battery Only';
+        batterySection.classList.toggle('hidden', !showBattery);
+        batteryBrandInput.required = showBattery;
+        batteryModelInput.required = showBattery;
+        batteryCapacityInput.required = showBattery;
+        if (!showBattery) {
+          batteryBrandInput.value = '';
+          batteryModelInput.value = '';
+          batteryCapacityInput.value = '';
+          batteryBrandInput.setCustomValidity('');
+          batteryModelInput.setCustomValidity('');
+          batteryCapacityInput.setCustomValidity('');
+        }
+      }
+
+      function inverterTemplate(id) {
+        return `
+          <div class="inverter-card border-2 border-black rounded-xl p-4 bg-[#fefce8]" data-inverter-id="${id}">
+            <div class="flex items-center justify-between mb-3">
+              <p class="font-semibold text-sm">Inverter #${id}</p>
+              <button type="button" class="remove-inverter-btn px-3 py-1 rounded-lg border-2 border-black bg-white text-xs">Remove</button>
+            </div>
+            <div class="grid sm:grid-cols-4 gap-4">
+              <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+            </div>
+          </div>
+        `;
+      }
+
+      function getInverterData() {
+        return Array.from(invertersContainer.querySelectorAll('.inverter-card')).map((card) => ({
+          inverterId: Number(card.dataset.inverterId),
+          brand: card.querySelector('.inverter-brand').value.trim(),
+          model: card.querySelector('.inverter-model').value.trim(),
+          capacityKw: card.querySelector('.inverter-capacity').value.trim(),
+          enaReference: card.querySelector('.inverter-ena').value.trim()
+        }));
       }
 
       function updateStep(step) {
@@ -251,7 +333,13 @@
           if (panel.contains(input)) input.setCustomValidity(input.value && !validPhone(input.value) ? 'Enter a valid UK phone number starting with +44 or 0.' : '');
         });
         if (panel.contains(document.getElementById('mpan-number'))) validateMpan();
+        if (panel.contains(batterySection) && !batterySection.classList.contains('hidden')) {
+          batteryCapacityInput.setCustomValidity(batteryCapacityInput.value && /^\d+$/.test(batteryCapacityInput.value) ? '' : 'Battery total capacity must contain digits only.');
+        } else {
+          batteryCapacityInput.setCustomValidity('');
+        }
         syncSldFields();
+        syncBatterySection();
         return scopedValid(panel);
       }
 
@@ -272,8 +360,27 @@
       postcode.addEventListener('input', () => { postcode.value = formatPostcode(postcode.value); });
       document.getElementById('mpan-number').addEventListener('input', validateMpan);
       document.getElementById('mpan-number').addEventListener('blur', validateMpan);
-      document.getElementById('inverter-capacity-kw').addEventListener('input', (e) => { e.target.value = e.target.value.replace(/\D/g, ''); });
+      invertersContainer.addEventListener('input', (e) => {
+        if (e.target.classList.contains('inverter-capacity')) {
+          e.target.value = e.target.value.replace(/\D/g, '');
+        }
+      });
+      batteryCapacityInput.addEventListener('input', () => { batteryCapacityInput.value = batteryCapacityInput.value.replace(/\D/g, ''); });
       form.querySelectorAll('input[name="sld-option"]').forEach((r) => r.addEventListener('change', syncSldFields));
+      installationTypeInput.addEventListener('change', syncBatterySection);
+
+      addInverterBtn.addEventListener('click', () => {
+        invertersContainer.insertAdjacentHTML('beforeend', inverterTemplate(nextInverterId));
+        nextInverterId += 1;
+      });
+
+      invertersContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.remove-inverter-btn');
+        if (!btn) return;
+        const cards = invertersContainer.querySelectorAll('.inverter-card');
+        if (cards.length <= 1) return;
+        btn.closest('.inverter-card').remove();
+      });
 
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
       nextBtn.addEventListener('click', () => { if (validateCurrentStep() && currentStep < 4) updateStep(currentStep + 1); });
@@ -285,6 +392,8 @@
         submitBtn.textContent = 'Submitting...';
         try {
           const attachments = [];
+          const inverters = getInverterData();
+          const firstInverter = inverters[0] || {};
           const cutOut = document.getElementById('cutout-image');
           const sld = document.getElementById('sld-upload-file');
           if (cutOut.files.length) attachments.push(await asBase64(cutOut.files[0]));
@@ -311,17 +420,21 @@
             customerLastName: document.getElementById('customer-last-name').value.trim(),
             customerPhone: document.getElementById('customer-phone').value.trim(),
             customerEmail: document.getElementById('customer-email').value.trim(),
-            inverterBrand: document.getElementById('inverter-brand').value.trim(),
-            inverterModel: document.getElementById('inverter-model').value.trim(),
-            inverterCapacityKw: document.getElementById('inverter-capacity-kw').value.trim(),
-            enaReference: document.getElementById('ena-reference').value.trim(),
+            inverters,
+            batteryBrand: batteryBrandInput.value.trim(),
+            batteryModel: batteryModelInput.value.trim(),
+            batteryTotalCapacityKwh: batteryCapacityInput.value.trim(),
             sldOption: (form.querySelector('input[name="sld-option"]:checked') || {}).value || '',
             sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
             commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
             consentConfirmation: document.getElementById('consent-confirmation').checked,
             attachments,
             name: `${document.getElementById('installer-first-name').value} ${document.getElementById('installer-last-name').value}`.trim(),
-            email: document.getElementById('installer-email').value.trim()
+            email: document.getElementById('installer-email').value.trim(),
+            inverterBrand: firstInverter.brand || '',
+            inverterModel: firstInverter.model || '',
+            inverterCapacityKw: firstInverter.capacityKw || '',
+            enaReference: firstInverter.enaReference || ''
           };
 
           const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -339,6 +452,7 @@
 
       updateStep(1);
       syncSldFields();
+      syncBatterySection();
     })();
   </script>
 </body>
