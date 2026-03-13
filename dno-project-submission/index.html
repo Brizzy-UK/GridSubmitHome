@@ -44,6 +44,7 @@
       <p class="text-sm text-gray-700">Thanks, your submission has been sent successfully.</p>
     </div>
     <div id="form-error" class="hidden mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+    <div id="draft-message" class="hidden mb-6 p-4 border-2 border-black bg-white rounded-xl text-sm text-gray-800 font-medium"></div>
 
     <form id="dno-project-form" class="bg-white border-2 border-black rounded-2xl p-6 sm:p-8 space-y-8" novalidate>
       <div>
@@ -197,12 +198,16 @@
       </section>
 
       <div class="flex gap-3 justify-between">
-        <button id="back-btn" type="button" disabled class="px-5 py-3 rounded-xl text-sm bg-white border-2 border-black disabled:opacity-50 disabled:cursor-not-allowed">Back</button>
+        <div class="flex gap-3">
+          <button id="back-btn" type="button" disabled class="px-5 py-3 rounded-xl text-sm bg-white border-2 border-black disabled:opacity-50 disabled:cursor-not-allowed">Back</button>
+          <button id="save-draft-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-white border-2 border-black">Save and Return Later</button>
+        </div>
         <div class="flex gap-3">
           <button id="next-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Next</button>
           <button id="submit-btn" type="submit" class="hidden px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Submit my application</button>
         </div>
       </div>
+      <p class="text-xs text-gray-500">Save your progress and come back later to complete it.</p>
     </form>
   </main>
     <footer class="border-t-2 border-black bg-white py-12 mt-auto">
@@ -247,9 +252,11 @@
       const form = document.getElementById('dno-project-form');
       const successEl = document.getElementById('form-success');
       const errorEl = document.getElementById('form-error');
+      const draftMessageEl = document.getElementById('draft-message');
       const panels = Array.from(document.querySelectorAll('[data-step-panel]'));
       const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
       const backBtn = document.getElementById('back-btn');
+      const saveDraftBtn = document.getElementById('save-draft-btn');
       const nextBtn = document.getElementById('next-btn');
       const submitBtn = document.getElementById('submit-btn');
       const stepLabel = document.getElementById('step-label');
@@ -264,8 +271,10 @@
       const batteryBrandInput = document.getElementById('battery-brand');
       const batteryModelInput = document.getElementById('battery-model');
       const batteryCapacityInput = document.getElementById('battery-total-capacity-kwh');
+      const urlDraftId = new URLSearchParams(window.location.search).get('draft');
       let currentStep = 1;
       let nextInverterId = 2;
+      let currentDraftId = urlDraftId || '';
 
       const normalizePhone = (v) => v.replace(/\s+/g, '');
       const validPhone = (v) => /^(\+44\d{10}|0\d{10})$/.test(normalizePhone(v));
@@ -363,6 +372,154 @@
         }));
       }
 
+      function showDraftMessage(message, isError) {
+        draftMessageEl.classList.remove('hidden');
+        draftMessageEl.className = isError
+          ? 'mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium'
+          : 'mb-6 p-4 border-2 border-black bg-white rounded-xl text-sm text-gray-800 font-medium';
+        draftMessageEl.innerHTML = message;
+      }
+
+      function collectDraftPayload() {
+        return {
+          installationType: document.getElementById('installation-type').value,
+          totalGenerationCapacity: document.getElementById('total-generation-capacity').value,
+          plannedInstallationDate: document.getElementById('planned-installation-date').value,
+          installerCompanyName: document.getElementById('installer-company-name').value.trim(),
+          installerCompanyAddress: document.getElementById('installer-company-address').value.trim(),
+          installerFirstName: document.getElementById('installer-first-name').value.trim(),
+          installerLastName: document.getElementById('installer-last-name').value.trim(),
+          installerPhone: document.getElementById('installer-phone').value.trim(),
+          installerEmail: document.getElementById('installer-email').value.trim(),
+          projectStreetAddress: document.getElementById('project-street-address').value.trim(),
+          projectTown: document.getElementById('project-town').value.trim(),
+          projectPostcode: document.getElementById('project-postcode').value.trim(),
+          systemPhase: document.getElementById('system-phase').value,
+          cutoutRating: document.getElementById('cutout-rating').value,
+          mpanNumber: document.getElementById('mpan-number').value.trim(),
+          customerFirstName: document.getElementById('customer-first-name').value.trim(),
+          customerLastName: document.getElementById('customer-last-name').value.trim(),
+          customerPhone: document.getElementById('customer-phone').value.trim(),
+          customerEmail: document.getElementById('customer-email').value.trim(),
+          inverters: getInverterData(),
+          batteryBrand: batteryBrandInput.value.trim(),
+          batteryModel: batteryModelInput.value.trim(),
+          batteryTotalCapacityKwh: batteryCapacityInput.value.trim(),
+          sldOption: (form.querySelector('input[name="sld-option"]:checked') || {}).value || '',
+          sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
+          commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
+          consentConfirmation: document.getElementById('consent-confirmation').checked
+        };
+      }
+
+      function setRadio(name, value) {
+        form.querySelectorAll(`input[name="${name}"]`).forEach((input) => {
+          input.checked = input.value === value;
+        });
+      }
+
+      function renderInverters(inverters) {
+        if (!Array.isArray(inverters) || inverters.length === 0) return;
+        invertersContainer.innerHTML = '';
+        let highest = 1;
+        inverters.forEach((inv, idx) => {
+          const inverterId = Number(inv?.inverterId) || idx + 1;
+          highest = Math.max(highest, inverterId);
+          invertersContainer.insertAdjacentHTML('beforeend', inverterTemplate(inverterId));
+          const card = invertersContainer.querySelector(`.inverter-card[data-inverter-id="${inverterId}"]`);
+          if (!card) return;
+          card.querySelector('.inverter-brand').value = inv?.brand || '';
+          card.querySelector('.inverter-model').value = inv?.model || '';
+          card.querySelector('.inverter-capacity').value = inv?.capacityKw || '';
+          card.querySelector('.inverter-quantity').value = inv?.quantity || '';
+          card.querySelector('.inverter-ena').value = inv?.enaReference || '';
+        });
+        nextInverterId = highest + 1;
+      }
+
+      function restoreDraftPayload(payload, step) {
+        if (!payload || typeof payload !== 'object') return;
+        document.getElementById('installation-type').value = payload.installationType || '';
+        document.getElementById('total-generation-capacity').value = payload.totalGenerationCapacity || '';
+        document.getElementById('planned-installation-date').value = payload.plannedInstallationDate || '';
+        document.getElementById('installer-company-name').value = payload.installerCompanyName || '';
+        document.getElementById('installer-company-address').value = payload.installerCompanyAddress || '';
+        document.getElementById('installer-first-name').value = payload.installerFirstName || '';
+        document.getElementById('installer-last-name').value = payload.installerLastName || '';
+        document.getElementById('installer-phone').value = payload.installerPhone || '';
+        document.getElementById('installer-email').value = payload.installerEmail || '';
+        document.getElementById('project-street-address').value = payload.projectStreetAddress || '';
+        document.getElementById('project-town').value = payload.projectTown || '';
+        document.getElementById('project-postcode').value = payload.projectPostcode || '';
+        document.getElementById('system-phase').value = payload.systemPhase || '';
+        document.getElementById('cutout-rating').value = payload.cutoutRating || '';
+        document.getElementById('mpan-number').value = payload.mpanNumber || '';
+        document.getElementById('customer-first-name').value = payload.customerFirstName || '';
+        document.getElementById('customer-last-name').value = payload.customerLastName || '';
+        document.getElementById('customer-phone').value = payload.customerPhone || '';
+        document.getElementById('customer-email').value = payload.customerEmail || '';
+        batteryBrandInput.value = payload.batteryBrand || '';
+        batteryModelInput.value = payload.batteryModel || '';
+        batteryCapacityInput.value = payload.batteryTotalCapacityKwh || '';
+        document.getElementById('sld-create-details').value = payload.sldCreateDetails || '';
+        document.getElementById('consent-confirmation').checked = Boolean(payload.consentConfirmation);
+        setRadio('sld-option', payload.sldOption || '');
+        setRadio('commissioning-docs', payload.commissioningDocuments || '');
+        renderInverters(payload.inverters);
+        syncBatterySection();
+        syncSldFields();
+        validateMpan();
+        updateStep(step);
+      }
+
+      async function saveDraftToServer() {
+        const payload = collectDraftPayload();
+        const response = await fetch('/api/draft', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            draftId: currentDraftId || undefined,
+            contactEmail: payload.installerEmail || payload.customerEmail || '',
+            currentStep,
+            payload
+          })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Could not save draft.');
+
+        currentDraftId = data.draftId;
+        const url = new URL(window.location.href);
+        url.searchParams.set('draft', currentDraftId);
+        window.history.replaceState({}, '', url.toString());
+        const savedAt = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : new Date().toLocaleString();
+        showDraftMessage(`Draft saved at ${savedAt}. Resume link: <a class="underline font-semibold" href="${url.toString()}">${url.toString()}</a>`, false);
+      }
+
+      async function loadDraftFromServer() {
+        if (!currentDraftId) return;
+        try {
+          const response = await fetch(`/api/draft?id=${encodeURIComponent(currentDraftId)}`);
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || 'Could not load saved draft.');
+          const step = Number(data.currentStep);
+          const validStep = step >= 1 && step <= 4 ? step : 1;
+          restoreDraftPayload(data.payload, validStep);
+          const savedAt = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : 'an earlier time';
+          showDraftMessage(`Restored saved draft from ${savedAt}. Uploaded files must be reattached before submit.`, false);
+        } catch (err) {
+          showDraftMessage(err.message || 'Could not load draft.', true);
+        }
+      }
+
+      async function deleteDraftFromServer() {
+        if (!currentDraftId) return;
+        try {
+          await fetch(`/api/draft?id=${encodeURIComponent(currentDraftId)}`, { method: 'DELETE' });
+        } catch (err) {
+          console.error('Failed to delete draft after submission', err);
+        }
+      }
+
       function updateStep(step) {
         currentStep = step;
         panels.forEach((p, i) => p.classList.toggle('hidden', i + 1 !== currentStep));
@@ -446,6 +603,18 @@
 
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
       nextBtn.addEventListener('click', () => { if (validateCurrentStep() && currentStep < 4) updateStep(currentStep + 1); });
+      saveDraftBtn.addEventListener('click', async () => {
+        saveDraftBtn.disabled = true;
+        saveDraftBtn.textContent = 'Saving...';
+        try {
+          await saveDraftToServer();
+        } catch (err) {
+          showDraftMessage(err.message || 'Could not save draft.', true);
+        } finally {
+          saveDraftBtn.disabled = false;
+          saveDraftBtn.textContent = 'Save and Return Later';
+        }
+      });
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -502,6 +671,7 @@
           const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
+          await deleteDraftFromServer();
           form.classList.add('hidden');
           successEl.classList.remove('hidden');
         } catch (err) {
@@ -515,6 +685,7 @@
       updateStep(1);
       syncSldFields();
       syncBatterySection();
+      loadDraftFromServer();
     })();
   </script>
 </body>
