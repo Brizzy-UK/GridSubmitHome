@@ -12,12 +12,74 @@ function normalizeEmail(value) {
   return email || null;
 }
 
+function isLikelyEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
+}
+
+function resolveOrigin(req, resumeBaseUrl) {
+  try {
+    if (resumeBaseUrl) {
+      const parsed = new URL(String(resumeBaseUrl));
+      if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+        return `${parsed.protocol}//${parsed.host}`;
+      }
+    }
+  } catch (error) {
+    console.warn('Invalid resumeBaseUrl provided for draft email.');
+  }
+
+  const proto = String(req.headers['x-forwarded-proto'] || 'https');
+  const host = String(req.headers['x-forwarded-host'] || req.headers.host || 'gridsubmit.co.uk');
+  return `${proto}://${host}`;
+}
+
+async function sendDraftLinkEmail({ toEmail, resumeUrl }) {
+  const BREVO_API_KEY = process.env.BREVO_API_KEY;
+  if (!BREVO_API_KEY) {
+    throw new Error('Email service not configured.');
+  }
+
+  const payload = {
+    sender: { name: 'GridSubmit', email: 'submit@gridsubmit.co.uk' },
+    to: [{ email: toEmail }],
+    replyTo: { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
+    subject: 'Your GridSubmit return link',
+    htmlContent: `
+      <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#84CC16;padding:24px;border-radius:8px 8px 0 0;border:2px solid #000;border-bottom:none">
+          <h1 style="margin:0;font-size:22px;color:#000;font-weight:700">Your Draft Has Been Saved</h1>
+        </div>
+        <div style="background:#fff;padding:28px;border:2px solid #000;border-top:none;border-radius:0 0 8px 8px">
+          <p style="font-size:16px;margin-top:0">Thanks for using GridSubmit.</p>
+          <p style="color:#374151;line-height:1.6">Use the link below to return and complete your DNO project submission.</p>
+          <p style="margin:22px 0">
+            <a href="${resumeUrl}" style="display:inline-block;background:#000;color:#84CC16;text-decoration:none;padding:12px 16px;border-radius:10px;font-weight:700">Return to my submission</a>
+          </p>
+          <p style="color:#374151;line-height:1.6;word-break:break-all">${resumeUrl}</p>
+          <p style="font-size:13px;color:#6b7280;margin:16px 0 0">If you did not request this email, you can ignore it.</p>
+        </div>
+      </div>
+    `,
+  };
+
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`Brevo error: ${err}`);
+  }
+}
+
 export default async function handler(req, res) {
   try {
     await ensureDraftTable();
 
     if (req.method === 'POST') {
-      const { draftId, contactEmail, currentStep, payload } = req.body || {};
+      const { draftId, contactEmail, currentStep, payload, sendEmail, resumeBaseUrl } = req.body || {};
       if (!payload || typeof payload !== 'object') {
         return res.status(400).json({ error: 'Draft payload is required.' });
       }
@@ -38,10 +100,21 @@ export default async function handler(req, res) {
         RETURNING id, updated_at
       `;
 
+      const origin = resolveOrigin(req, resumeBaseUrl);
+      const resumeUrl = `${origin}/dno-project-submission/?draft=${encodeURIComponent(rows[0].id)}`;
+
+      if (sendEmail) {
+        if (!email || !isLikelyEmail(email)) {
+          return res.status(400).json({ error: 'A valid email is required to send the return link.' });
+        }
+        await sendDraftLinkEmail({ toEmail: email, resumeUrl });
+      }
+
       return res.status(200).json({
         success: true,
         draftId: rows[0].id,
         updatedAt: rows[0].updated_at,
+        emailSent: Boolean(sendEmail),
       });
     }
 

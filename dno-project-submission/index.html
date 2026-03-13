@@ -209,6 +209,31 @@
       </div>
       <p class="text-xs text-gray-500">Save your progress and come back later to complete it.</p>
     </form>
+    <div id="save-draft-modal" class="hidden fixed inset-0 z-[60]">
+      <div class="absolute inset-0 bg-black/50" data-modal-close="1"></div>
+      <div class="relative h-full w-full flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-white border-2 border-black rounded-2xl p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <h3 class="text-xl font-semibold tracking-tight">Save and Return Later</h3>
+              <p class="text-sm text-gray-600 mt-1">Enter your email and we will send your return link.</p>
+            </div>
+            <button id="close-save-draft-modal-btn" type="button" class="px-3 py-1 rounded-lg border-2 border-black bg-white text-sm">Close</button>
+          </div>
+          <form id="save-draft-email-form" class="space-y-4">
+            <div>
+              <label for="draft-email-input" class="block text-sm font-semibold mb-2">Email Address</label>
+              <input id="draft-email-input" type="email" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="you@example.com">
+            </div>
+            <p id="save-draft-email-error" class="hidden text-sm text-red-700 font-medium"></p>
+            <div class="flex items-center justify-end gap-3">
+              <button id="cancel-save-draft-btn" type="button" class="px-4 py-2 rounded-xl text-sm bg-white border-2 border-black">Cancel</button>
+              <button id="send-save-draft-btn" type="submit" class="px-4 py-2 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Send Return Link</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
     <footer class="border-t-2 border-black bg-white py-12 mt-auto">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -257,6 +282,13 @@
       const indicators = Array.from(document.querySelectorAll('[data-step-indicator]'));
       const backBtn = document.getElementById('back-btn');
       const saveDraftBtn = document.getElementById('save-draft-btn');
+      const saveDraftModal = document.getElementById('save-draft-modal');
+      const closeSaveDraftModalBtn = document.getElementById('close-save-draft-modal-btn');
+      const cancelSaveDraftBtn = document.getElementById('cancel-save-draft-btn');
+      const saveDraftEmailForm = document.getElementById('save-draft-email-form');
+      const draftEmailInput = document.getElementById('draft-email-input');
+      const saveDraftEmailError = document.getElementById('save-draft-email-error');
+      const sendSaveDraftBtn = document.getElementById('send-save-draft-btn');
       const nextBtn = document.getElementById('next-btn');
       const submitBtn = document.getElementById('submit-btn');
       const stepLabel = document.getElementById('step-label');
@@ -377,7 +409,32 @@
         draftMessageEl.className = isError
           ? 'mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium'
           : 'mb-6 p-4 border-2 border-black bg-white rounded-xl text-sm text-gray-800 font-medium';
-        draftMessageEl.innerHTML = message;
+        draftMessageEl.textContent = message;
+      }
+
+      function showSaveDraftEmailError(message) {
+        saveDraftEmailError.classList.remove('hidden');
+        saveDraftEmailError.textContent = message;
+      }
+
+      function hideSaveDraftEmailError() {
+        saveDraftEmailError.classList.add('hidden');
+        saveDraftEmailError.textContent = '';
+      }
+
+      function openSaveDraftModal() {
+        const installerEmail = document.getElementById('installer-email').value.trim();
+        const customerEmail = document.getElementById('customer-email').value.trim();
+        draftEmailInput.value = installerEmail || customerEmail || '';
+        hideSaveDraftEmailError();
+        saveDraftModal.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        draftEmailInput.focus();
+      }
+
+      function closeSaveDraftModal() {
+        saveDraftModal.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
       }
 
       function collectDraftPayload() {
@@ -472,16 +529,20 @@
         updateStep(step);
       }
 
-      async function saveDraftToServer() {
+      async function saveDraftToServer(destinationEmail) {
         const payload = collectDraftPayload();
+        const email = String(destinationEmail || '').trim();
+        if (!email) throw new Error('Please enter an email address.');
         const response = await fetch('/api/draft', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             draftId: currentDraftId || undefined,
-            contactEmail: payload.installerEmail || payload.customerEmail || '',
+            contactEmail: email,
             currentStep,
-            payload
+            payload,
+            sendEmail: true,
+            resumeBaseUrl: window.location.origin
           })
         });
         const data = await response.json();
@@ -491,8 +552,6 @@
         const url = new URL(window.location.href);
         url.searchParams.set('draft', currentDraftId);
         window.history.replaceState({}, '', url.toString());
-        const savedAt = data.updatedAt ? new Date(data.updatedAt).toLocaleString() : new Date().toLocaleString();
-        showDraftMessage(`Draft saved at ${savedAt}. Resume link: <a class="underline font-semibold" href="${url.toString()}">${url.toString()}</a>`, false);
       }
 
       async function loadDraftFromServer() {
@@ -603,16 +662,37 @@
 
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
       nextBtn.addEventListener('click', () => { if (validateCurrentStep() && currentStep < 4) updateStep(currentStep + 1); });
-      saveDraftBtn.addEventListener('click', async () => {
-        saveDraftBtn.disabled = true;
-        saveDraftBtn.textContent = 'Saving...';
+      saveDraftBtn.addEventListener('click', () => { openSaveDraftModal(); });
+      closeSaveDraftModalBtn.addEventListener('click', closeSaveDraftModal);
+      cancelSaveDraftBtn.addEventListener('click', closeSaveDraftModal);
+      saveDraftModal.addEventListener('click', (event) => {
+        if (event.target && event.target.getAttribute('data-modal-close') === '1') closeSaveDraftModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !saveDraftModal.classList.contains('hidden')) closeSaveDraftModal();
+      });
+      saveDraftEmailForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        hideSaveDraftEmailError();
+        if (!draftEmailInput.value.trim()) {
+          showSaveDraftEmailError('Please enter an email address.');
+          return;
+        }
+        if (!draftEmailInput.checkValidity()) {
+          showSaveDraftEmailError('Please enter a valid email address.');
+          return;
+        }
+        sendSaveDraftBtn.disabled = true;
+        sendSaveDraftBtn.textContent = 'Sending...';
         try {
-          await saveDraftToServer();
+          await saveDraftToServer(draftEmailInput.value.trim());
+          closeSaveDraftModal();
+          showDraftMessage('Thanks. Your return link has been emailed to you.', false);
         } catch (err) {
-          showDraftMessage(err.message || 'Could not save draft.', true);
+          showSaveDraftEmailError(err.message || 'Could not save draft.');
         } finally {
-          saveDraftBtn.disabled = false;
-          saveDraftBtn.textContent = 'Save and Return Later';
+          sendSaveDraftBtn.disabled = false;
+          sendSaveDraftBtn.textContent = 'Send Return Link';
         }
       });
 
