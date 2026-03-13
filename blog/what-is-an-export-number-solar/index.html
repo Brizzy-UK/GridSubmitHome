@@ -49,10 +49,10 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#84CC16] focus:border-2 focus:border-black focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Skip to content</a>
     <div class="min-h-screen flex flex-col">
 
-      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/" aria-label="GridSubmit home">
-            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <div class="w-8 h-8 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center group-hover:bg-black transition-colors">
               <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true"></iconify-icon>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
@@ -66,13 +66,13 @@
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-3">
-            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
-            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
+            <a class="hover:bg-lime-400 transition-all text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
+            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border border-gray-200 rounded-lg bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
               <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl" aria-hidden="true"></iconify-icon>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-[#fefce8] px-4 py-4">
           <div class="flex flex-col gap-4">
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
             <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
@@ -80,7 +80,7 @@
             <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
             <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
-            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl py-2.5 px-5 text-center mt-2">Submit an Application</a>
           </div>
         </div>
       </header>
@@ -95,8 +95,8 @@
               Back to Blog
             </a>
             <div class="flex gap-2 mb-6">
-              <span class="px-3 py-1 bg-purple-400 border-2 border-black rounded-full text-xs font-semibold">Export Numbers</span>
-              <span class="px-3 py-1 bg-purple-400 border-2 border-black rounded-full text-xs font-semibold">SEG</span>
+              <span class="px-3 py-1 bg-purple-400 border border-gray-200 rounded-full text-xs font-semibold">Export Numbers</span>
+              <span class="px-3 py-1 bg-purple-400 border border-gray-200 rounded-full text-xs font-semibold">SEG</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-6">What Is a Solar Export Number and How Do You Get One?</h1>
             <p class="text-xl text-gray-600">Your customer wants to register for the Smart Export Guarantee. Their energy supplier is asking for an export number. Here's exactly what that is and how to get it.</p>
@@ -111,7 +111,7 @@
             <article class="lg:col-span-2">
               <div class="space-y-8">
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">What Is a Solar Export Number?</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>An export number — sometimes called an export MPAN — is a unique reference number issued by the Distribution Network Operator (DNO) when a solar system is approved to export electricity to the grid.</p>
@@ -119,7 +119,7 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">Why Does Your Customer Need an Export Number?</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>To register for the Smart Export Guarantee (SEG), energy suppliers require proof that the solar system is legitimately connected to the grid with export approval from the DNO. The export number is that proof.</p>
@@ -127,14 +127,14 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">How Is an Export Number Different from an MPAN?</h2>
                   <div class="grid md:grid-cols-2 gap-4 mb-4">
-                    <div class="p-4 rounded-xl border-2 border-black bg-gray-50">
+                    <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
                       <h3 class="font-semibold text-sm mb-2">Import MPAN</h3>
                       <p class="text-sm text-gray-700 leading-relaxed">Every property in the UK already has one. A 21-digit number that identifies the electricity supply point. Exists before you do anything.</p>
                     </div>
-                    <div class="p-4 rounded-xl border-2 border-black bg-purple-50">
+                    <div class="p-4 rounded-xl border border-gray-200 bg-purple-50">
                       <h3 class="font-semibold text-sm mb-2">Export Number</h3>
                       <p class="text-sm text-gray-700 leading-relaxed">A separate identifier created only when a solar system is approved to connect and export. Not all solar installations have one — only those with proper DNO approval.</p>
                     </div>
@@ -142,7 +142,7 @@
                   <p class="text-sm text-gray-600">If a system is installed without export connection approval (which would be non-compliant), no export number exists and your customer cannot register for SEG.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">When Is the Export Number Issued?</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>The DNO issues the export number as part of the grid connection approval process. For G98 notifications, it's typically issued alongside the acceptance confirmation. For G99 applications, it comes with the formal approval letter.</p>
@@ -150,20 +150,20 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">How Long Does It Take to Get an Export Number?</h2>
                   <div class="space-y-4">
-                    <div class="flex items-start gap-4 p-4 rounded-xl border-2 border-black bg-[#84CC16]/10">
-                      <div class="w-10 h-10 bg-[#84CC16] rounded-lg border-2 border-black flex items-center justify-center shrink-0">
-                        <iconify-icon icon="solar:clock-circle-linear" class="text-black text-lg"></iconify-icon>
+                    <div class="flex items-start gap-4 p-4 rounded-xl border border-gray-200 bg-gray-50">
+                      <div class="w-10 h-10 bg-gray-100 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
+                        <iconify-icon icon="solar:clock-circle-linear" class="text-gray-600 text-lg"></iconify-icon>
                       </div>
                       <div>
                         <div class="font-semibold text-sm mb-1">G98 notifications (smaller domestic systems)</div>
                         <p class="text-sm text-gray-700">Export number usually received within 24–72 hours of submission.</p>
                       </div>
                     </div>
-                    <div class="flex items-start gap-4 p-4 rounded-xl border-2 border-black bg-blue-50">
-                      <div class="w-10 h-10 bg-blue-400 rounded-lg border-2 border-black flex items-center justify-center shrink-0">
+                    <div class="flex items-start gap-4 p-4 rounded-xl border border-gray-200 bg-blue-50">
+                      <div class="w-10 h-10 bg-blue-400 rounded-lg border border-gray-200 flex items-center justify-center shrink-0">
                         <iconify-icon icon="solar:clock-circle-linear" class="text-black text-lg"></iconify-icon>
                       </div>
                       <div>
@@ -174,7 +174,7 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">What to Do If the Export Number Hasn't Arrived</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>If your customer's DNO application was submitted some time ago and you haven't received an export number, the most likely causes are:</p>
@@ -188,10 +188,10 @@
                 </div>
 
                 <!-- Article CTA -->
-                <div class="bg-[#84CC16] rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-[#84CC16] rounded-2xl border border-gray-200 p-8">
                   <h3 class="text-2xl font-semibold tracking-tight mb-3">Let us handle your DNO applications and export number retrieval</h3>
                   <p class="text-black/80 mb-6">We submit, track, and retrieve — and forward the export number to you as soon as it's issued.</p>
-                  <a href="/services" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">View Our Services</a>
+                  <a href="/services" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border border-gray-200 transition-all">View Our Services</a>
                 </div>
 
               </div>
@@ -199,7 +199,7 @@
 
             <!-- Sidebar -->
             <aside class="space-y-6">
-              <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-6 sticky top-24">
+              <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-24">
                 <h3 class="font-semibold tracking-tight mb-4">In this guide</h3>
                 <ul class="space-y-2 text-sm text-gray-600">
                   <li><a href="#" class="hover:text-black transition-colors">What is an export number?</a></li>
@@ -211,11 +211,11 @@
                 </ul>
                 <div class="mt-6 pt-6 border-t-2 border-gray-100">
                   <p class="text-xs text-gray-500 mb-4">Need a DNO application handled for you?</p>
-                  <a href="/contact" class="block text-center px-4 py-2.5 rounded-xl bg-[#84CC16] border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit an Application</a>
+                  <a href="/contact" class="block text-center px-4 py-2.5 rounded-xl bg-[#84CC16] border border-gray-200 font-semibold text-sm transition-all">Submit an Application</a>
                 </div>
               </div>
 
-              <div class="bg-white rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6">
+              <div class="bg-white rounded-2xl border border-gray-200 p-6">
                 <h3 class="font-semibold tracking-tight mb-4 text-sm">More guides</h3>
                 <div class="space-y-4">
                   <a href="/blog/connecting-solar-panels-to-the-grid" class="block group">
@@ -233,12 +233,12 @@
 
       </main>
 
-      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <footer class="border-t border-gray-200 bg-white py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>

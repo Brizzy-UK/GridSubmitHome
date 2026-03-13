@@ -36,10 +36,10 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#84CC16] focus:border-2 focus:border-black focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Skip to content</a>
     <div class="min-h-screen flex flex-col">
 
-      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/" aria-label="GridSubmit home">
-            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <div class="w-8 h-8 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center group-hover:bg-black transition-colors">
               <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true"></iconify-icon>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
@@ -53,13 +53,13 @@
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-3">
-            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
-            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
+            <a class="hover:bg-lime-400 transition-all text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
+            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border border-gray-200 rounded-lg bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
               <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl" aria-hidden="true"></iconify-icon>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-[#fefce8] px-4 py-4">
           <div class="flex flex-col gap-4">
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
             <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
@@ -67,7 +67,7 @@
             <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
             <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
-            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl py-2.5 px-5 text-center mt-2">Submit an Application</a>
           </div>
         </div>
       </header>
@@ -77,7 +77,7 @@
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-16">
           <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">DNO Application Guides for <span class="text-[#84CC16]">Solar Installers</span></h1>
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">DNO Application Guides for Solar Installers</h1>
             <p class="text-xl text-gray-700 leading-relaxed">Practical advice on navigating grid connection, DNO applications, and everything in between.</p>
           </div>
         </section>
@@ -87,16 +87,16 @@
           <div class="grid md:grid-cols-3 gap-8">
 
             <!-- Article 1 -->
-            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+            <article class="rounded-2xl border border-gray-200 bg-white overflow-hidden group transition-all">
               <div class="p-2">
-                <div class="bg-[#84CC16] rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
-                  <iconify-icon icon="solar:electric-plug-linear" class="text-black text-6xl"></iconify-icon>
+                <div class="bg-gray-100 rounded-xl border border-gray-200 p-6 flex items-center justify-center h-40">
+                  <iconify-icon icon="solar:electric-plug-linear" class="text-gray-500 text-6xl"></iconify-icon>
                 </div>
               </div>
               <div class="p-6">
                 <div class="flex gap-2 mb-4">
-                  <span class="px-2 py-1 bg-[#84CC16]/20 text-black rounded text-xs font-semibold border border-black/20">Grid Connection</span>
-                  <span class="px-2 py-1 bg-[#84CC16]/20 text-black rounded text-xs font-semibold border border-black/20">G98 / G99</span>
+                  <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium border border-gray-200">Grid Connection</span>
+                  <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium border border-gray-200">G98 / G99</span>
                 </div>
                 <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">Connecting Solar Panels to the Grid: What Solar Installers Need to Know</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">Every solar install that exports energy needs to be properly connected to the grid — and that means dealing with the DNO. Here's what installers need to know to get it right and avoid delays.</p>
@@ -105,9 +105,9 @@
             </article>
 
             <!-- Article 2 -->
-            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+            <article class="rounded-2xl border border-gray-200 bg-white overflow-hidden group transition-all">
               <div class="p-2">
-                <div class="bg-blue-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
+                <div class="bg-blue-400 rounded-xl border border-gray-200 p-6 flex items-center justify-center h-40">
                   <iconify-icon icon="solar:document-add-linear" class="text-black text-6xl"></iconify-icon>
                 </div>
               </div>
@@ -123,9 +123,9 @@
             </article>
 
             <!-- Article 3 -->
-            <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+            <article class="rounded-2xl border border-gray-200 bg-white overflow-hidden group transition-all">
               <div class="p-2">
-                <div class="bg-purple-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
+                <div class="bg-purple-400 rounded-xl border border-gray-200 p-6 flex items-center justify-center h-40">
                   <iconify-icon icon="solar:tag-linear" class="text-black text-6xl"></iconify-icon>
                 </div>
               </div>
@@ -145,12 +145,12 @@
 
       </main>
 
-      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <footer class="border-t border-gray-200 bg-white py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>

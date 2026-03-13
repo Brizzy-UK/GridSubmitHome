@@ -48,10 +48,10 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#84CC16] focus:border-2 focus:border-black focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Skip to content</a>
     <div class="min-h-screen flex flex-col">
 
-      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/" aria-label="GridSubmit home">
-            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <div class="w-8 h-8 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center group-hover:bg-black transition-colors">
               <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true"></iconify-icon>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
@@ -65,13 +65,13 @@
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-3">
-            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
-            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
+            <a class="hover:bg-lime-400 transition-all text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
+            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border border-gray-200 rounded-lg bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
               <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl" aria-hidden="true"></iconify-icon>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-[#fefce8] px-4 py-4">
           <div class="flex flex-col gap-4">
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
             <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
@@ -79,7 +79,7 @@
             <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
             <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
-            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl py-2.5 px-5 text-center mt-2">Submit an Application</a>
           </div>
         </div>
       </header>
@@ -94,8 +94,8 @@
               Back to Blog
             </a>
             <div class="flex gap-2 mb-6">
-              <span class="px-3 py-1 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold">Grid Connection</span>
-              <span class="px-3 py-1 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold">G98 / G99</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-600 border border-gray-200 rounded-full text-xs font-medium">Grid Connection</span>
+              <span class="px-3 py-1 bg-gray-100 text-gray-600 border border-gray-200 rounded-full text-xs font-medium">G98 / G99</span>
             </div>
             <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.1] mb-6">Connecting Solar Panels to the Grid: What Solar Installers Need to Know</h1>
             <p class="text-xl text-gray-600">A practical guide on getting grid connection right — and avoiding the delays that cost you time and money.</p>
@@ -112,7 +112,7 @@
 
                 <p class="text-lg text-gray-700 leading-relaxed">Every solar install that exports energy needs to be properly connected to the grid — and that means dealing with the DNO. Here's what installers need to know to get it right and avoid delays.</p>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">What Does "Grid Connected" Actually Mean?</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>When we talk about a solar system being grid connected, we mean it's linked to the local distribution network and able to export surplus energy back to the grid. From the DNO's perspective, any new generation asset connecting to their network needs to be notified or approved — even for a small domestic install.</p>
@@ -120,18 +120,18 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">G98 vs G99 — Which Applies to Your Job?</h2>
                   <p class="text-gray-700 leading-relaxed mb-6">The two main routes for connecting solar panels to the grid are governed by Engineering Recommendations G98 and G99.</p>
                   <div class="grid md:grid-cols-2 gap-4">
-                    <div class="p-4 rounded-xl border-2 border-black bg-[#84CC16]/10">
+                    <div class="p-4 rounded-xl border border-gray-200 bg-gray-50">
                       <div class="flex items-center gap-2 mb-3">
-                        <span class="px-2 py-1 bg-[#84CC16] border border-black rounded text-xs font-semibold">G98</span>
+                        <span class="px-2 py-1 bg-gray-900 text-white border border-gray-800 rounded text-xs font-semibold">G98</span>
                         <span class="text-sm font-semibold">Up to 3.68 kW/phase</span>
                       </div>
                       <p class="text-sm text-gray-700 leading-relaxed">Notification rather than application. Submit before commissioning — the DNO has 28 days to object, but in practice this rarely happens.</p>
                     </div>
-                    <div class="p-4 rounded-xl border-2 border-black bg-blue-50">
+                    <div class="p-4 rounded-xl border border-gray-200 bg-blue-50">
                       <div class="flex items-center gap-2 mb-3">
                         <span class="px-2 py-1 bg-blue-400 border border-black rounded text-xs font-semibold">G99</span>
                         <span class="text-sm font-semibold">Over 3.68 kW/phase</span>
@@ -141,11 +141,11 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">What Information Does the DNO Need?</h2>
                   <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h3 class="font-semibold text-sm mb-3 flex items-center gap-2"><span class="px-2 py-0.5 bg-[#84CC16] border border-black rounded text-xs">G98</span> Typical requirements</h3>
+                      <h3 class="font-semibold text-sm mb-3 flex items-center gap-2"><span class="px-2 py-0.5 bg-gray-900 text-white border border-gray-800 rounded text-xs">G98</span> Typical requirements</h3>
                       <ul class="space-y-2 text-sm text-gray-700">
                         <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base mt-0.5 shrink-0"></iconify-icon>Site address and MPAN</li>
                         <li class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base mt-0.5 shrink-0"></iconify-icon>Inverter make, model, and rated output</li>
@@ -166,7 +166,7 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">How Long Does Grid Connection Approval Take?</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>G98 notifications are typically processed within 24–48 hours. The DNO has 28 days to object, but most are confirmed much faster.</p>
@@ -175,7 +175,7 @@
                   </div>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">Common Reasons DNO Solar Applications Get Rejected</h2>
                   <ul class="space-y-3 text-gray-700">
                     <li class="flex items-start gap-3"><div class="w-6 h-6 bg-red-100 border-2 border-red-300 rounded flex items-center justify-center shrink-0 mt-0.5"><iconify-icon icon="solar:close-circle-linear" class="text-red-500 text-sm"></iconify-icon></div>Incorrect or missing technical specifications</li>
@@ -187,7 +187,7 @@
                   </ul>
                 </div>
 
-                <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
                   <h2 class="text-2xl font-semibold tracking-tight mb-4">How to Speed Up the Process</h2>
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>The fastest way to get grid connection approved is to submit a complete, accurate application first time. That means knowing your DNO's requirements, having all the technical data ready, and submitting through the correct portal.</p>
@@ -196,10 +196,10 @@
                 </div>
 
                 <!-- Article CTA -->
-                <div class="bg-[#84CC16] rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+                <div class="bg-[#84CC16] rounded-2xl border border-gray-200 p-8">
                   <h3 class="text-2xl font-semibold tracking-tight mb-3">Find out how our DNO application service works</h3>
                   <p class="text-black/80 mb-6">We handle submissions for solar installers across the UK — from simple G98 notifications to full G99 applications.</p>
-                  <a href="/services" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">View Our Services</a>
+                  <a href="/services" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border border-gray-200 transition-all">View Our Services</a>
                 </div>
 
               </div>
@@ -207,7 +207,7 @@
 
             <!-- Sidebar -->
             <aside class="space-y-6">
-              <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-6 sticky top-24">
+              <div class="bg-white rounded-2xl border border-gray-200 p-6 sticky top-24">
                 <h3 class="font-semibold tracking-tight mb-4">In this guide</h3>
                 <ul class="space-y-2 text-sm text-gray-600">
                   <li><a href="#" class="hover:text-black transition-colors">What "grid connected" means</a></li>
@@ -219,11 +219,11 @@
                 </ul>
                 <div class="mt-6 pt-6 border-t-2 border-gray-100">
                   <p class="text-xs text-gray-500 mb-4">Need a DNO application handled for you?</p>
-                  <a href="/contact" class="block text-center px-4 py-2.5 rounded-xl bg-[#84CC16] border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit an Application</a>
+                  <a href="/contact" class="block text-center px-4 py-2.5 rounded-xl bg-[#84CC16] border border-gray-200 font-semibold text-sm transition-all">Submit an Application</a>
                 </div>
               </div>
 
-              <div class="bg-white rounded-2xl border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6">
+              <div class="bg-white rounded-2xl border border-gray-200 p-6">
                 <h3 class="font-semibold tracking-tight mb-4 text-sm">More guides</h3>
                 <div class="space-y-4">
                   <a href="/blog/what-is-a-dno-application" class="block group">
@@ -241,12 +241,12 @@
 
       </main>
 
-      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <footer class="border-t border-gray-200 bg-white py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>

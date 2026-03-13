@@ -35,10 +35,10 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#84CC16] focus:border-2 focus:border-black focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Skip to content</a>
     <div class="min-h-screen flex flex-col">
 
-      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/" aria-label="GridSubmit home">
-            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <div class="w-8 h-8 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center group-hover:bg-black transition-colors">
               <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true"></iconify-icon>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
@@ -52,13 +52,13 @@
             <a href="/contact" class="text-sm font-medium text-black transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-3">
-            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
-            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
+            <a class="hover:bg-lime-400 transition-all text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
+            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border border-gray-200 rounded-lg bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
               <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl" aria-hidden="true"></iconify-icon>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-[#fefce8] px-4 py-4">
           <div class="flex flex-col gap-4">
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
             <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
@@ -66,7 +66,7 @@
             <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
             <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
-            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl py-2.5 px-5 text-center mt-2">Submit an Application</a>
           </div>
         </div>
       </header>
@@ -76,7 +76,7 @@
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-12">
           <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">Submit Your DNO Application <span class="text-[#84CC16]">in Minutes</span></h1>
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">Submit Your DNO Application in Minutes</h1>
             <p class="text-xl text-gray-700 leading-relaxed">Send us your installation details and we'll handle everything from here. Most submissions are confirmed within 1 business day. For G99 applications, we'll be in touch with a timeline once we've reviewed the technical details.</p>
           </div>
         </section>
@@ -87,22 +87,22 @@
 
             <!-- Side info -->
             <div class="space-y-6">
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-[#84CC16] rounded-xl border-2 border-black flex items-center justify-center mb-4">
-                  <iconify-icon icon="solar:clock-circle-linear" class="text-black text-2xl"></iconify-icon>
+              <div class="p-6 rounded-xl border border-gray-200 bg-white">
+                <div class="w-12 h-12 bg-gray-100 rounded-xl border border-gray-200 flex items-center justify-center mb-4">
+                  <iconify-icon icon="solar:clock-circle-linear" class="text-gray-600 text-2xl"></iconify-icon>
                 </div>
                 <h3 class="font-semibold tracking-tight mb-2">Fast turnaround</h3>
                 <p class="text-sm text-gray-600">G98 notifications typically confirmed within 24–48 hours. G99 applications tracked and chased on your behalf.</p>
               </div>
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-blue-400 rounded-xl border-2 border-black flex items-center justify-center mb-4">
+              <div class="p-6 rounded-xl border border-gray-200 bg-white">
+                <div class="w-12 h-12 bg-blue-400 rounded-xl border border-gray-200 flex items-center justify-center mb-4">
                   <iconify-icon icon="solar:shield-check-linear" class="text-black text-2xl"></iconify-icon>
                 </div>
                 <h3 class="font-semibold tracking-tight mb-2">Checked before submission</h3>
                 <p class="text-sm text-gray-600">Every application is reviewed for accuracy before it goes to the DNO. We don't send anything we're not confident in.</p>
               </div>
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-purple-400 rounded-xl border-2 border-black flex items-center justify-center mb-4">
+              <div class="p-6 rounded-xl border border-gray-200 bg-white">
+                <div class="w-12 h-12 bg-purple-400 rounded-xl border border-gray-200 flex items-center justify-center mb-4">
                   <iconify-icon icon="solar:tag-linear" class="text-black text-2xl"></iconify-icon>
                 </div>
                 <h3 class="font-semibold tracking-tight mb-2">Export number included</h3>
@@ -113,8 +113,8 @@
             <!-- Form -->
             <div class="lg:col-span-2">
               <!-- Success state -->
-              <div id="form-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
-                <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <div id="form-success" class="hidden bg-white rounded-2xl border border-gray-200 p-10 text-center">
+                <div class="w-16 h-16 bg-[#84CC16] border border-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                 </div>
                 <h2 class="text-2xl font-semibold tracking-tight mb-3">Application Received</h2>
@@ -125,36 +125,36 @@
               <!-- Error state -->
               <div id="form-error" class="hidden mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
 
-              <form id="contact-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
+              <form id="contact-form" class="bg-white rounded-2xl border border-gray-200 p-8 space-y-6">
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="name">Your name / company name</label>
-                    <input type="text" id="name" name="name" required placeholder="e.g. Smith Solar Ltd" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="text" id="name" name="name" required placeholder="e.g. Smith Solar Ltd" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="email">Email address</label>
-                    <input type="email" id="email" name="email" required placeholder="you@company.co.uk" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="email" id="email" name="email" required placeholder="you@company.co.uk" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                 </div>
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="phone">Phone number <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="07700 900000" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="tel" id="phone" name="phone" placeholder="07700 900000" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="postcode">Installation postcode</label>
-                    <input type="text" id="postcode" name="postcode" required placeholder="e.g. B1 1AA" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="text" id="postcode" name="postcode" required placeholder="e.g. B1 1AA" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                 </div>
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="system-size">System size in kW</label>
-                    <input type="text" id="system-size" name="system_size" required placeholder="e.g. 4.0 kW" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="text" id="system-size" name="system_size" required placeholder="e.g. 4.0 kW" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="app-type">Application type</label>
                     <div class="relative">
-                      <select id="app-type" name="application_type" required class="w-full px-4 py-3 pr-10 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
+                      <select id="app-type" name="application_type" required class="w-full px-4 py-3 pr-10 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
                         <option value="" disabled selected>Select...</option>
                         <option value="G98">G98</option>
                         <option value="G99">G99</option>
@@ -167,17 +167,17 @@
                 <div class="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="dno">DNO — if known <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="text" id="dno" name="dno" placeholder="e.g. UK Power Networks" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="text" id="dno" name="dno" placeholder="e.g. UK Power Networks" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                   <div>
                     <label class="block text-sm font-semibold mb-2" for="mpan">MPAN / meter reference <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="text" id="mpan" name="mpan" placeholder="21-digit MPAN" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <input type="text" id="mpan" name="mpan" placeholder="21-digit MPAN" class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                 </div>
                 <div>
                   <label class="block text-sm font-semibold mb-2" for="export-type">Export type</label>
                   <div class="relative">
-                    <select id="export-type" name="export_type" required class="w-full px-4 py-3 pr-10 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
+                    <select id="export-type" name="export_type" required class="w-full px-4 py-3 pr-10 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
                       <option value="" disabled selected>Select...</option>
                       <option value="limitation">Limitation</option>
                       <option value="unrestricted">Unrestricted</option>
@@ -188,11 +188,11 @@
                 </div>
                 <div>
                   <label class="block text-sm font-semibold mb-2" for="notes">Additional notes</label>
-                  <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know about this installation..." class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow resize-none"></textarea>
+                  <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know about this installation..." class="w-full px-4 py-3 border border-gray-200 rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow resize-none"></textarea>
                 </div>
                 <div>
                   <label class="block text-sm font-semibold mb-2" for="files">File upload <span class="font-normal text-gray-500">(optional — site plans, datasheets, SLDs)</span></label>
-                  <div id="drop-zone" class="w-full px-4 py-6 border-2 border-black border-dashed rounded-xl bg-[#fefce8] text-center hover:bg-lime-50 transition-colors cursor-pointer" role="button" tabindex="0" aria-label="Upload files — click or drag and drop">
+                  <div id="drop-zone" class="w-full px-4 py-6 border border-gray-200 border-dashed rounded-xl bg-[#fefce8] text-center hover:bg-lime-50 transition-colors cursor-pointer" role="button" tabindex="0" aria-label="Upload files — click or drag and drop">
                     <input type="file" id="files" name="files" multiple class="hidden" accept=".pdf,.png,.jpg,.jpeg">
                     <label for="files" class="cursor-pointer pointer-events-none">
                       <iconify-icon icon="solar:upload-linear" class="text-3xl text-gray-400 mb-2 block mx-auto" aria-hidden="true"></iconify-icon>
@@ -202,7 +202,7 @@
                     <p id="file-list" class="text-xs text-gray-500 mt-2 hidden"></p>
                   </div>
                 </div>
-                <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Send My Application Details</button>
+                <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border border-gray-200">Send My Application Details</button>
               </form>
             </div>
 
@@ -211,12 +211,12 @@
 
       </main>
 
-      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <footer class="border-t border-gray-200 bg-white py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>

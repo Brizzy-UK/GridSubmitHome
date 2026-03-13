@@ -62,10 +62,10 @@
     <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-[#84CC16] focus:border-2 focus:border-black focus:rounded-xl focus:text-sm focus:font-semibold focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Skip to content</a>
     <div class="min-h-screen flex flex-col">
 
-      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
+      <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/" aria-label="GridSubmit home">
-            <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+            <div class="w-8 h-8 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center group-hover:bg-black transition-colors">
               <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true"></iconify-icon>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
@@ -79,13 +79,13 @@
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors">Contact</a>
           </div>
           <div class="flex items-center gap-3">
-            <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
-            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
+            <a class="hover:bg-lime-400 transition-all text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 hidden sm:block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2" href="/contact">Submit an Application</a>
+            <button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu" onclick="const o=this.getAttribute('aria-expanded')==='false';this.setAttribute('aria-expanded',o);this.setAttribute('aria-label',o?'Close navigation menu':'Open navigation menu');document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border border-gray-200 rounded-lg bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#84CC16]">
               <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl" aria-hidden="true"></iconify-icon>
             </button>
           </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden border-t-2 border-black bg-[#fefce8] px-4 py-4">
+        <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-[#fefce8] px-4 py-4">
           <div class="flex flex-col gap-4">
             <a href="/" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Home</a>
             <a href="/services" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Services</a>
@@ -93,7 +93,7 @@
             <a href="/blog" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Blog</a>
             <a href="/about" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">About</a>
             <a href="/contact" class="text-sm font-medium text-gray-600 hover:text-black transition-colors py-1">Contact</a>
-            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl py-2.5 px-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-center mt-2">Submit an Application</a>
+            <a href="/contact" class="text-sm font-semibold text-black bg-[#84CC16] border border-gray-200 rounded-xl py-2.5 px-5 text-center mt-2">Submit an Application</a>
           </div>
         </div>
       </header>
@@ -102,7 +102,7 @@
 
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-16 text-center">
-          <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">Straightforward Pricing.<br><span class="text-[#84CC16]">No Surprises.</span></h1>
+          <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">Straightforward Pricing.<br>No Surprises.</h1>
           <p class="text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto">We believe you should know exactly what you're paying before you send us a single job. Our DNO application fees are fixed, transparent, and built around how you work.</p>
         </section>
 
@@ -114,9 +114,9 @@
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch mt-8">
 
             <!-- Tier 1: Up to 3.68kW -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+            <div class="p-8 rounded-2xl border border-gray-200 bg-white flex flex-col">
               <div class="mb-6">
-                <span class="inline-block px-3 py-1 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold mb-4">G98 Notification</span>
+                <span class="inline-block px-3 py-1 bg-gray-100 text-gray-600 border border-gray-200 rounded-full text-xs font-medium mb-4">G98 Notification</span>
                 <h3 class="text-xl font-semibold tracking-tight mb-1">Up to 3.68kW</h3>
                 <p class="text-sm text-gray-500">Single-phase domestic installs</p>
               </div>
@@ -133,13 +133,13 @@
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO chasing included</li>
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Typical 24–48hr turnaround</li>
               </ul>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border border-gray-200 font-semibold text-sm hover:bg-gray-50 transition-all">Submit Application</a>
             </div>
 
             <!-- Tier 2: 4–15kW -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-black shadow-[6px_6px_0px_0px_rgba(132,204,22,1)] flex flex-col relative">
+            <div class="p-8 rounded-2xl border border-[#84CC16]/40 bg-black flex flex-col relative ring-1 ring-[#84CC16]/30">
               <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span class="px-4 py-1.5 bg-[#84CC16] border-2 border-black rounded-full text-xs font-semibold whitespace-nowrap">Most Common</span>
+                <span class="px-4 py-1.5 bg-[#84CC16] border border-gray-200 rounded-full text-xs font-semibold whitespace-nowrap">Most Common</span>
               </div>
               <div class="mb-6">
                 <span class="inline-block px-3 py-1 bg-gray-700 border-2 border-gray-600 rounded-full text-xs font-semibold mb-4 text-[#84CC16]">G99 Application</span>
@@ -159,11 +159,11 @@
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO chasing included</li>
               </ul>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-[#84CC16] border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(132,204,22,0.4)] hover:bg-lime-400 hover:shadow-[2px_2px_0px_0px_rgba(132,204,22,0.4)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-[#84CC16] border border-[#84CC16]/40 font-semibold text-sm hover:bg-lime-400 transition-all">Submit Application</a>
             </div>
 
             <!-- Tier 3: 15–50kW -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+            <div class="p-8 rounded-2xl border border-gray-200 bg-white flex flex-col">
               <div class="mb-6">
                 <span class="inline-block px-3 py-1 bg-blue-100 border-2 border-blue-300 rounded-full text-xs font-semibold mb-4 text-blue-800">G99 Application</span>
                 <h3 class="text-xl font-semibold tracking-tight mb-1">15kW – 50kW</h3>
@@ -182,11 +182,11 @@
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>DNO engineering liaison</li>
               </ul>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border border-gray-200 font-semibold text-sm hover:bg-gray-50 transition-all">Submit Application</a>
             </div>
 
             <!-- Tier 4: 50–500kW -->
-            <div class="p-8 rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+            <div class="p-8 rounded-2xl border border-gray-200 bg-white flex flex-col">
               <div class="mb-6">
                 <span class="inline-block px-3 py-1 bg-purple-100 border-2 border-purple-300 rounded-full text-xs font-semibold mb-4 text-purple-800">G99 Application</span>
                 <h3 class="text-xl font-semibold tracking-tight mb-1">50kW – 500kW</h3>
@@ -205,35 +205,35 @@
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Export number retrieval</li>
                 <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] text-base shrink-0"></iconify-icon>Full DNO engineering liaison</li>
               </ul>
-              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border-2 border-black font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-gray-50 hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">Submit Application</a>
+              <a href="/contact" class="block text-center px-6 py-3 rounded-xl bg-white border border-gray-200 font-semibold text-sm hover:bg-gray-50 transition-all">Submit Application</a>
             </div>
 
           </div>
         </section>
 
         <!-- FAQ -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-16 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-16 border border-gray-200">
           <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">Common Questions</h2>
           </div>
           <div class="max-w-3xl mx-auto space-y-6">
 
-            <div class="p-6 rounded-xl border-2 border-black bg-[#fefce8]">
+            <div class="p-6 rounded-xl border border-gray-200 bg-[#fefce8]">
               <h3 class="font-semibold text-lg tracking-tight mb-3">What's the difference between G98 and G99?</h3>
               <p class="text-gray-600 leading-relaxed text-sm">G98 covers systems up to 3.68 kW per phase — these are notified to the DNO rather than applied for. G99 applies to larger systems and requires a formal application and approval before installation.</p>
             </div>
 
-            <div class="p-6 rounded-xl border-2 border-black bg-[#fefce8]">
+            <div class="p-6 rounded-xl border border-gray-200 bg-[#fefce8]">
               <h3 class="font-semibold text-lg tracking-tight mb-3">How long does a DNO application take?</h3>
               <p class="text-gray-600 leading-relaxed text-sm">G98 notifications are typically confirmed within 24–48 hours. G99 applications vary by DNO but usually take 10–30 working days. We chase on your behalf throughout.</p>
             </div>
 
-            <div class="p-6 rounded-xl border-2 border-black bg-[#fefce8]">
+            <div class="p-6 rounded-xl border border-gray-200 bg-[#fefce8]">
               <h3 class="font-semibold text-lg tracking-tight mb-3">Do you work with all DNOs?</h3>
               <p class="text-gray-600 leading-relaxed text-sm">Yes — we cover all major UK Distribution Network Operators including National Grid, UKPN, SSEN, SP Energy, ENW, and Northern Powergrid.</p>
             </div>
 
-            <div class="p-6 rounded-xl border-2 border-black bg-[#fefce8]">
+            <div class="p-6 rounded-xl border border-gray-200 bg-[#fefce8]">
               <h3 class="font-semibold text-lg tracking-tight mb-3">Can I submit jobs in bulk?</h3>
               <p class="text-gray-600 leading-relaxed text-sm">Yes. We regularly handle bulk submissions for installers running multiple jobs at once. Contact us to discuss volume pricing.</p>
             </div>
@@ -243,12 +243,12 @@
 
       </main>
 
-      <footer class="border-t-2 border-black bg-white py-12 mt-auto">
+      <footer class="border-t border-gray-200 bg-white py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border border-gray-200 rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm" aria-hidden="true"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>
