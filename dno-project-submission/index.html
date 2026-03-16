@@ -174,6 +174,16 @@
         </div>
 
         <fieldset class="space-y-2">
+          <legend class="text-sm font-semibold">Is there an existing installation already on the premises? <span class="required-star">*</span></legend>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="existing-installation" value="Yes" required class="mt-1"><span>Yes</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="existing-installation" value="No" required class="mt-1"><span>No</span></label>
+        </fieldset>
+        <div id="existing-installation-details-wrap" class="hidden">
+          <label class="block text-sm font-semibold mb-2" for="existing-installation-details">Details of Existing Installation <span class="required-star">*</span></label>
+          <textarea id="existing-installation-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Please include system type, capacity, and any relevant existing generation/storage details."></textarea>
+        </div>
+
+        <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;50 + VAT)" required class="mt-1"><span>Create one for me (&pound;50 + VAT)</span></label>
@@ -299,6 +309,8 @@
       const sldCreateWrap = document.getElementById('sld-create-wrap');
       const sldUploadFile = document.getElementById('sld-upload-file');
       const sldCreateDetails = document.getElementById('sld-create-details');
+      const existingInstallationDetailsWrap = document.getElementById('existing-installation-details-wrap');
+      const existingInstallationDetailsInput = document.getElementById('existing-installation-details');
       const installationTypeInput = document.getElementById('installation-type');
       const invertersContainer = document.getElementById('inverters-container');
       const addInverterBtn = document.getElementById('add-inverter-btn');
@@ -359,6 +371,16 @@
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
         sldCreateDetails.required = Boolean(create);
+      }
+
+      function syncExistingInstallationFields() {
+        const selected = form.querySelector('input[name="existing-installation"]:checked');
+        const showDetails = selected && selected.value === 'Yes';
+        existingInstallationDetailsWrap.classList.toggle('hidden', !showDetails);
+        existingInstallationDetailsInput.required = Boolean(showDetails);
+        if (!showDetails) {
+          existingInstallationDetailsInput.setCustomValidity('');
+        }
       }
 
       function syncBatterySection() {
@@ -467,6 +489,8 @@
           batteryTotalCapacityKwh: batteryCapacityInput.value.trim(),
           sldOption: (form.querySelector('input[name="sld-option"]:checked') || {}).value || '',
           sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
+          existingInstallation: (form.querySelector('input[name="existing-installation"]:checked') || {}).value || '',
+          existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
           commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
           consentConfirmation: document.getElementById('consent-confirmation').checked
         };
@@ -525,8 +549,11 @@
         document.getElementById('consent-confirmation').checked = Boolean(payload.consentConfirmation);
         setRadio('sld-option', payload.sldOption || '');
         setRadio('commissioning-docs', payload.commissioningDocuments || '');
+        setRadio('existing-installation', payload.existingInstallation || '');
+        existingInstallationDetailsInput.value = payload.existingInstallationDetails || '';
         renderInverters(payload.inverters);
         syncBatterySection();
+        syncExistingInstallationFields();
         syncSldFields();
         validateMpan();
         updateStep(step);
@@ -619,6 +646,12 @@
         } else {
           batteryCapacityInput.setCustomValidity('');
         }
+        if (panel.contains(existingInstallationDetailsWrap) && !existingInstallationDetailsWrap.classList.contains('hidden')) {
+          existingInstallationDetailsInput.setCustomValidity(existingInstallationDetailsInput.value.trim() ? '' : 'Please provide details of the existing installation.');
+        } else {
+          existingInstallationDetailsInput.setCustomValidity('');
+        }
+        syncExistingInstallationFields();
         syncSldFields();
         syncBatterySection();
         return scopedValid(panel);
@@ -648,6 +681,7 @@
       });
       batteryCapacityInput.addEventListener('input', () => { batteryCapacityInput.value = batteryCapacityInput.value.replace(/\D/g, ''); });
       form.querySelectorAll('input[name="sld-option"]').forEach((r) => r.addEventListener('change', syncSldFields));
+      form.querySelectorAll('input[name="existing-installation"]').forEach((r) => r.addEventListener('change', syncExistingInstallationFields));
       installationTypeInput.addEventListener('change', syncBatterySection);
 
       addInverterBtn.addEventListener('click', () => {
@@ -740,6 +774,8 @@
             batteryTotalCapacityKwh: batteryCapacityInput.value.trim(),
             sldOption: (form.querySelector('input[name="sld-option"]:checked') || {}).value || '',
             sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
+            existingInstallation: (form.querySelector('input[name="existing-installation"]:checked') || {}).value || '',
+            existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
             commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
             consentConfirmation: document.getElementById('consent-confirmation').checked,
             attachments,
@@ -768,6 +804,7 @@
       updateStep(1);
       syncSldFields();
       syncBatterySection();
+      syncExistingInstallationFields();
       loadDraftFromServer();
     })();
   </script>

@@ -85,6 +85,8 @@ export default async function handler(req, res) {
     batteryBrand,
     batteryModel,
     batteryTotalCapacityKwh,
+    existingInstallation,
+    existingInstallationDetails,
     sldOption,
     sldCreateDetails,
     commissioningDocuments,
@@ -165,6 +167,8 @@ export default async function handler(req, res) {
         row('Customer email', customerEmail ? `<a href="mailto:${customerEmail}">${customerEmail}</a>` : ''),
         row('Inverters', inverterSummary),
         row('Battery details', batterySummary),
+        row('Existing installation on premises', existingInstallation),
+        row('Existing installation details', existingInstallationDetails ? existingInstallationDetails.replace(/\n/g, '<br>') : ''),
         row('SLD / schematic option', sldOption),
         row('SLD details (if create requested)', sldCreateDetails ? sldCreateDetails.replace(/\n/g, '<br>') : ''),
         row('Commissioning documents', commissioningDocuments),
@@ -191,6 +195,7 @@ export default async function handler(req, res) {
         row('System phase', systemPhase),
         row('Inverter count', String(normalizedInverters.length)),
         row('Battery included', batterySummary ? 'Yes' : 'No'),
+        row('Existing installation on premises', existingInstallation),
         row('SLD option', sldOption),
       ].join('')
     : [
