@@ -1,0 +1,9 @@
+{
+  "name": "gridsubmithome",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@vercel/blob": "^1.1.1"
+  }
+}
