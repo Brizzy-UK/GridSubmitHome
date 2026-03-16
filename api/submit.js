@@ -1,3 +1,42 @@
+import { put } from '@vercel/blob';
+
+function sanitizeFilename(name) {
+  return String(name || 'upload')
+    .replace(/[^a-zA-Z0-9._-]/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 120);
+}
+
+async function uploadAttachmentsToBlob(attachments, formType) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token || !Array.isArray(attachments) || attachments.length === 0) return [];
+
+  const now = new Date();
+  const yyyy = now.getUTCFullYear();
+  const mm = String(now.getUTCMonth() + 1).padStart(2, '0');
+  const basePath = `submissions/${formType || 'general'}/${yyyy}/${mm}`;
+
+  const uploads = await Promise.all(
+    attachments.map(async (file) => {
+      const fileName = sanitizeFilename(file.name);
+      const uniqueName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}-${fileName}`;
+      const pathname = `${basePath}/${uniqueName}`;
+      const buffer = Buffer.from(file.content, 'base64');
+      const blob = await put(pathname, buffer, {
+        access: 'public',
+        token,
+      });
+      return {
+        name: file.name,
+        url: blob.url,
+        pathname: blob.pathname,
+      };
+    })
+  );
+
+  return uploads;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -91,6 +130,9 @@ export default async function handler(req, res) {
   if (!BREVO_API_KEY) {
     return res.status(500).json({ error: 'Email service not configured.' });
   }
+  const normalizedAttachments = Array.isArray(attachments)
+    ? attachments.filter((a) => a && typeof a.name === 'string' && a.name && typeof a.content === 'string' && a.content)
+    : [];
 
   const row = (label, value) =>
     `<tr>
@@ -116,7 +158,7 @@ export default async function handler(req, res) {
         row('System phase', systemPhase),
         row('Cut-out rating', cutoutRating),
         row('MPAN (13 digits)', siteMpan),
-        row('Cut-out file uploaded', attachments.length > 0 ? 'Yes' : 'No'),
+        row('Cut-out file uploaded', normalizedAttachments.length > 0 ? 'Yes' : 'No'),
         row('Customer first name', customerFirstName),
         row('Customer last name', customerLastName),
         row('Customer phone', customerPhone),
@@ -127,7 +169,7 @@ export default async function handler(req, res) {
         row('SLD details (if create requested)', sldCreateDetails ? sldCreateDetails.replace(/\n/g, '<br>') : ''),
         row('Commissioning documents', commissioningDocuments),
         row('Consent confirmation', consentConfirmation ? 'Yes' : 'No'),
-        attachments.length > 0 ? row('Attachments', attachments.map((a) => a.name).join(', ')) : '',
+        normalizedAttachments.length > 0 ? row('Attachments', normalizedAttachments.map((a) => a.name).join(', ')) : '',
       ].join('')
     : [
         row('Name / Company', applicantName),
@@ -140,7 +182,7 @@ export default async function handler(req, res) {
         row('MPAN / meter reference', siteMpan),
         row('Export type', exportType),
         row('Additional notes', notes ? notes.replace(/\n/g, '<br>') : ''),
-        attachments.length > 0 ? row('Attachments', attachments.map((a) => a.name).join(', ')) : '',
+        normalizedAttachments.length > 0 ? row('Attachments', normalizedAttachments.map((a) => a.name).join(', ')) : '',
       ].join('');
 
   const summaryRows = isProjectSubmission
@@ -164,6 +206,13 @@ export default async function handler(req, res) {
   const sourcePath = isProjectSubmission ? '/dno-project-submission' : '/contact';
   const subjectPrefix = isProjectSubmission ? 'New DNO Project Submission' : 'New Application';
 
+  let blobUploads = [];
+  try {
+    blobUploads = await uploadAttachmentsToBlob(normalizedAttachments, formType);
+  } catch (error) {
+    console.error('Blob upload error:', error);
+  }
+
   const internalEmail = {
     sender: { name: 'GridSubmit Website', email: 'submit@gridsubmit.co.uk' },
     to: [{ email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' }],
@@ -182,8 +231,18 @@ export default async function handler(req, res) {
     `,
   };
 
-  if (attachments.length > 0) {
-    internalEmail.attachment = attachments.map((a) => ({
+  if (blobUploads.length > 0) {
+    const blobLinks = blobUploads
+      .map((file) => `<a href="${file.url}" target="_blank" rel="noopener noreferrer">${file.name}</a>`)
+      .join('<br>');
+    internalEmail.htmlContent = internalEmail.htmlContent.replace(
+      '</table>',
+      `${row('Stored file links', blobLinks)}</table>`
+    );
+  }
+
+  if (normalizedAttachments.length > 0) {
+    internalEmail.attachment = normalizedAttachments.map((a) => ({
       name: a.name,
       content: a.content,
     }));
@@ -240,7 +299,7 @@ export default async function handler(req, res) {
       throw new Error(`Brevo error (confirmation): ${err}`);
     }
 
-    return res.status(200).json({ success: true });
+    return res.status(200).json({ success: true, files: blobUploads });
   } catch (error) {
     console.error('Email send error:', error);
     return res.status(500).json({ error: 'Failed to send. Please try again or email submit@gridsubmit.co.uk directly.' });
