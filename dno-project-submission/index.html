@@ -176,7 +176,7 @@
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (£50 + VAT)" required class="mt-1"><span>Create one for me (£50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;50 + VAT)" required class="mt-1"><span>Create one for me (&pound;50 + VAT)</span></label>
         </fieldset>
         <div id="sld-upload-wrap" class="hidden">
           <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD <span class="required-star">*</span></label>
@@ -188,7 +188,7 @@
         </div>
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">Commissioning Documents <span class="required-star">*</span></legend>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (£50 + VAT)" required class="mt-1"><span>Yes (£50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;50 + VAT)" required class="mt-1"><span>Yes (&pound;50 + VAT)</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
@@ -269,7 +269,7 @@
           </div>
         </div>
         <div class="pt-8 border-t-2 border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p class="text-sm font-medium text-gray-500">© 2024 GridSubmit. All rights reserved.</p>
+          <p class="text-sm font-medium text-gray-500">&copy; <span data-current-year></span> GridSubmit. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -354,7 +354,7 @@
       function syncSldFields() {
         const selected = form.querySelector('input[name="sld-option"]:checked');
         const upload = selected && selected.value === 'Upload SLD';
-        const create = selected && selected.value === 'Create one for me (£50 + VAT)';
+        const create = selected && selected.value === 'Create one for me (\u00A350 + VAT)';
         sldUploadWrap.classList.toggle('hidden', !upload);
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
@@ -771,5 +771,6 @@
       loadDraftFromServer();
     })();
   </script>
-</body>
+<script>document.querySelectorAll('[data-current-year]').forEach((el)=>{el.textContent=String(new Date().getFullYear());});</script>
+  </body>
 </html>
