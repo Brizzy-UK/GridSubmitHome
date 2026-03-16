@@ -169,7 +169,6 @@ export default async function handler(req, res) {
         row('SLD details (if create requested)', sldCreateDetails ? sldCreateDetails.replace(/\n/g, '<br>') : ''),
         row('Commissioning documents', commissioningDocuments),
         row('Consent confirmation', consentConfirmation ? 'Yes' : 'No'),
-        normalizedAttachments.length > 0 ? row('Attachments', normalizedAttachments.map((a) => a.name).join(', ')) : '',
       ].join('')
     : [
         row('Name / Company', applicantName),
@@ -182,7 +181,6 @@ export default async function handler(req, res) {
         row('MPAN / meter reference', siteMpan),
         row('Export type', exportType),
         row('Additional notes', notes ? notes.replace(/\n/g, '<br>') : ''),
-        normalizedAttachments.length > 0 ? row('Attachments', normalizedAttachments.map((a) => a.name).join(', ')) : '',
       ].join('');
 
   const summaryRows = isProjectSubmission
@@ -239,13 +237,6 @@ export default async function handler(req, res) {
       '</table>',
       `${row('Stored file links', blobLinks)}</table>`
     );
-  }
-
-  if (normalizedAttachments.length > 0) {
-    internalEmail.attachment = normalizedAttachments.map((a) => ({
-      name: a.name,
-      content: a.content,
-    }));
   }
 
   const confirmationEmail = {
