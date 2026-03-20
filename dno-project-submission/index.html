@@ -9,6 +9,12 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};
+    plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init();
+  </script>
   <style>
     .required-star { color: #dc2626; margin-left: 2px; font-weight: 700; }
   </style>
@@ -698,9 +704,29 @@
         btn.closest('.inverter-card').remove();
       });
 
+      // Plausible: fire "Form Started" on first interaction with any step 1 field
+      let formStartedFired = false;
+      const step1Panel = panels[0];
+      step1Panel.querySelectorAll('input, select, textarea').forEach((el) => {
+        el.addEventListener('change', () => {
+          if (!formStartedFired) {
+            formStartedFired = true;
+            plausible('Form Started');
+          }
+        }, { once: false });
+      });
+
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
-      nextBtn.addEventListener('click', () => { if (validateCurrentStep() && currentStep < 4) updateStep(currentStep + 1); });
-      saveDraftBtn.addEventListener('click', () => { openSaveDraftModal(); });
+      nextBtn.addEventListener('click', () => {
+        if (validateCurrentStep() && currentStep < 4) {
+          plausible('Completed Step ' + currentStep);
+          updateStep(currentStep + 1);
+        }
+      });
+      saveDraftBtn.addEventListener('click', () => {
+        plausible('Save For Later Clicked');
+        openSaveDraftModal();
+      });
       closeSaveDraftModalBtn.addEventListener('click', closeSaveDraftModal);
       cancelSaveDraftBtn.addEventListener('click', closeSaveDraftModal);
       saveDraftModal.addEventListener('click', (event) => {
@@ -792,6 +818,7 @@
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
           await deleteDraftFromServer();
+          plausible('Form Submitted');
           form.classList.add('hidden');
           successEl.classList.remove('hidden');
         } catch (err) {
