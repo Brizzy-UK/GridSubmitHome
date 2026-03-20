@@ -1,4 +1,6 @@
 import { put } from '@vercel/blob';
+import { randomUUID } from 'node:crypto';
+import { ensureSubmissionTable, sql } from './_db.js';
 
 function sanitizeFilename(name) {
   return String(name || 'upload')
@@ -216,6 +218,86 @@ export default async function handler(req, res) {
     console.error('Blob upload error:', error);
   }
 
+  const submissionPayload = {
+    formType: formType || (isProjectSubmission ? 'dno-project-submission' : 'general'),
+    name: applicantName,
+    email: applicantEmail,
+    phone: applicantPhone,
+    postcode: sitePostcode,
+    systemSize: generationKw,
+    applicationType: applicationType || '',
+    dno: dno || '',
+    mpan: siteMpan,
+    exportType: exportType || '',
+    notes: notes || '',
+    installationType: installationType || '',
+    totalGenerationCapacity: totalGenerationCapacity || '',
+    plannedInstallationDate: plannedInstallationDate || '',
+    installerCompanyName: installerCompanyName || '',
+    installerCompanyAddress: installerCompanyAddress || '',
+    installerFirstName: installerFirstName || '',
+    installerLastName: installerLastName || '',
+    installerPhone: installerPhone || '',
+    installerEmail: installerEmail || '',
+    projectStreetAddress: projectStreetAddress || '',
+    projectTown: projectTown || '',
+    projectPostcode: projectPostcode || '',
+    systemPhase: systemPhase || '',
+    cutoutRating: cutoutRating || '',
+    mpanNumber: mpanNumber || '',
+    customerFirstName: customerFirstName || '',
+    customerLastName: customerLastName || '',
+    customerPhone: customerPhone || '',
+    customerEmail: customerEmail || '',
+    inverters: normalizedInverters,
+    inverterBrand: inverterBrand || '',
+    inverterModel: inverterModel || '',
+    inverterCapacityKw: inverterCapacityKw || '',
+    enaReference: enaReference || '',
+    batteryBrand: batteryBrand || '',
+    batteryModel: batteryModel || '',
+    batteryTotalCapacityKwh: batteryTotalCapacityKwh || '',
+    existingInstallation: existingInstallation || '',
+    existingInstallationDetails: existingInstallationDetails || '',
+    sldOption: sldOption || '',
+    sldCreateDetails: sldCreateDetails || '',
+    commissioningDocuments: commissioningDocuments || '',
+    consentConfirmation: Boolean(consentConfirmation),
+  };
+
+  const submissionId = randomUUID();
+
+  try {
+    await ensureSubmissionTable();
+    await sql`
+      INSERT INTO dno_form_submissions (
+        id,
+        form_type,
+        applicant_name,
+        applicant_email,
+        applicant_phone,
+        project_postcode,
+        mpan_number,
+        payload,
+        files
+      )
+      VALUES (
+        ${submissionId},
+        ${submissionPayload.formType},
+        ${applicantName || null},
+        ${applicantEmail || null},
+        ${applicantPhone || null},
+        ${sitePostcode || null},
+        ${siteMpan || null},
+        ${JSON.stringify(submissionPayload)}::jsonb,
+        ${JSON.stringify(blobUploads)}::jsonb
+      )
+    `;
+  } catch (error) {
+    console.error('Submission DB save error:', error);
+    return res.status(500).json({ error: 'Failed to save your submission. Please try again.' });
+  }
+
   const internalEmail = {
     sender: { name: 'GridSubmit Website', email: 'submit@gridsubmit.co.uk' },
     to: [{ email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' }],
@@ -295,7 +377,7 @@ export default async function handler(req, res) {
       throw new Error(`Brevo error (confirmation): ${err}`);
     }
 
-    return res.status(200).json({ success: true, files: blobUploads });
+    return res.status(200).json({ success: true, submissionId, files: blobUploads });
   } catch (error) {
     console.error('Email send error:', error);
     return res.status(500).json({ error: 'Failed to send. Please try again or email submit@gridsubmit.co.uk directly.' });

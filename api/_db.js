@@ -14,10 +14,11 @@ if (!DATABASE_URL) {
 
 export const sql = neon(DATABASE_URL);
 
-let ensured = false;
+let ensuredDraft = false;
+let ensuredSubmissions = false;
 
 export async function ensureDraftTable() {
-  if (ensured) return;
+  if (ensuredDraft) return;
 
   await sql`
     CREATE TABLE IF NOT EXISTS dno_form_drafts (
@@ -35,5 +36,36 @@ export async function ensureDraftTable() {
     ON dno_form_drafts (updated_at DESC)
   `;
 
-  ensured = true;
+  ensuredDraft = true;
+}
+
+export async function ensureSubmissionTable() {
+  if (ensuredSubmissions) return;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS dno_form_submissions (
+      id TEXT PRIMARY KEY,
+      form_type TEXT NOT NULL,
+      applicant_name TEXT,
+      applicant_email TEXT,
+      applicant_phone TEXT,
+      project_postcode TEXT,
+      mpan_number TEXT,
+      payload JSONB NOT NULL,
+      files JSONB NOT NULL DEFAULT '[]'::jsonb,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_dno_form_submissions_created_at
+    ON dno_form_submissions (created_at DESC)
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_dno_form_submissions_form_type
+    ON dno_form_submissions (form_type)
+  `;
+
+  ensuredSubmissions = true;
 }
