@@ -16,6 +16,7 @@ export const sql = neon(DATABASE_URL);
 
 let ensuredDraft = false;
 let ensuredSubmissions = false;
+let ensuredPartialCompletions = false;
 
 export async function ensureDraftTable() {
   if (ensuredDraft) return;
@@ -68,4 +69,41 @@ export async function ensureSubmissionTable() {
   `;
 
   ensuredSubmissions = true;
+}
+
+export async function ensurePartialCompletionTable() {
+  if (ensuredPartialCompletions) return;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS dno_form_partial_completions (
+      id TEXT PRIMARY KEY,
+      current_step INTEGER NOT NULL DEFAULT 1,
+      event_type TEXT NOT NULL DEFAULT 'step_change',
+      contact_name TEXT,
+      contact_email TEXT,
+      contact_phone TEXT,
+      payload JSONB NOT NULL,
+      last_seen_path TEXT,
+      user_agent TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+      updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_dno_form_partial_completions_updated_at
+    ON dno_form_partial_completions (updated_at DESC)
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_dno_form_partial_completions_contact_email
+    ON dno_form_partial_completions (contact_email)
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_dno_form_partial_completions_contact_phone
+    ON dno_form_partial_completions (contact_phone)
+  `;
+
+  ensuredPartialCompletions = true;
 }

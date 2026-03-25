@@ -335,9 +335,14 @@
       const batteryModelInput = document.getElementById('battery-model');
       const batteryCapacityInput = document.getElementById('battery-total-capacity-kwh');
       const urlDraftId = new URLSearchParams(window.location.search).get('draft');
+      const PARTIAL_ID_STORAGE_KEY = 'dnoProjectPartialId';
       let currentStep = 1;
       let nextInverterId = 2;
       let currentDraftId = urlDraftId || '';
+      let isFormSubmitted = false;
+      let lastPartialSaveAt = 0;
+      let lastPartialSaveFingerprint = '';
+      let partialId = getOrCreatePartialId();
 
       const normalizePhone = (v) => v.replace(/\s+/g, '');
       const validPhone = (v) => /^(\+44\d{10}|0\d{10})$/.test(normalizePhone(v));
@@ -355,6 +360,93 @@
         return n.length <= 3 ? n : `${n.slice(0, n.length - 3)} ${n.slice(-3)}`;
       };
       const validPostcode = (v) => /^[A-Z]{1,2}\d[A-Z\d]?\s\d[A-Z]{2}$/.test(v);
+
+      function createClientId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+        return `partial-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+
+      function getOrCreatePartialId() {
+        try {
+          const existing = localStorage.getItem(PARTIAL_ID_STORAGE_KEY);
+          if (existing) return existing;
+          const created = createClientId();
+          localStorage.setItem(PARTIAL_ID_STORAGE_KEY, created);
+          return created;
+        } catch (error) {
+          return createClientId();
+        }
+      }
+
+      function hasLeadSignal(payload) {
+        if (!payload || typeof payload !== 'object') return false;
+        return Boolean(
+          (payload.installerEmail && payload.installerEmail.trim()) ||
+          (payload.customerEmail && payload.customerEmail.trim()) ||
+          (payload.installerPhone && payload.installerPhone.trim()) ||
+          (payload.customerPhone && payload.customerPhone.trim()) ||
+          (payload.installerFirstName && payload.installerFirstName.trim()) ||
+          (payload.installerLastName && payload.installerLastName.trim())
+        );
+      }
+
+      async function savePartialToServer(eventType, options = {}) {
+        if (isFormSubmitted) return false;
+
+        const useBeacon = Boolean(options.useBeacon);
+        const force = Boolean(options.force);
+        const payload = collectDraftPayload();
+        if (!force && !hasLeadSignal(payload)) return false;
+
+        const requestBody = {
+          partialId,
+          currentStep,
+          payload,
+          eventType,
+        };
+
+        const fingerprint = JSON.stringify({
+          currentStep,
+          eventType,
+          installerEmail: payload.installerEmail || '',
+          customerEmail: payload.customerEmail || '',
+          installerPhone: payload.installerPhone || '',
+          customerPhone: payload.customerPhone || '',
+          installerFirstName: payload.installerFirstName || '',
+          installerLastName: payload.installerLastName || '',
+        });
+        const now = Date.now();
+        if (!force && now - lastPartialSaveAt < 1500 && fingerprint === lastPartialSaveFingerprint) return false;
+        lastPartialSaveAt = now;
+        lastPartialSaveFingerprint = fingerprint;
+
+        if (useBeacon && navigator.sendBeacon) {
+          const blob = new Blob([JSON.stringify(requestBody)], { type: 'application/json' });
+          return navigator.sendBeacon('/api/partial', blob);
+        }
+
+        try {
+          const response = await fetch('/api/partial', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody),
+            keepalive: eventType === 'page_exit'
+          });
+          if (!response.ok) return false;
+          const data = await response.json();
+          if (data && data.partialId) {
+            partialId = data.partialId;
+            try {
+              localStorage.setItem(PARTIAL_ID_STORAGE_KEY, partialId);
+            } catch (error) {
+              // Ignore localStorage write errors.
+            }
+          }
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
 
       function validateMpan() {
         const input = document.getElementById('mpan-number');
@@ -726,11 +818,20 @@
       });
 
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', async () => {
         if (validateCurrentStep() && currentStep < 4) {
+          await savePartialToServer('step_change', { force: true });
           plausible('Completed Step ' + currentStep);
           updateStep(currentStep + 1);
         }
+      });
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          savePartialToServer('page_exit', { useBeacon: true });
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        savePartialToServer('page_exit', { useBeacon: true });
       });
       saveDraftBtn.addEventListener('click', () => {
         plausible('Save For Later Clicked');
@@ -814,6 +915,7 @@
             existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
             commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
             consentConfirmation: document.getElementById('consent-confirmation').checked,
+            partialCompletionId: partialId,
             attachments,
             name: `${document.getElementById('installer-first-name').value} ${document.getElementById('installer-last-name').value}`.trim(),
             email: document.getElementById('installer-email').value.trim(),
@@ -827,6 +929,12 @@
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
           await deleteDraftFromServer();
+          isFormSubmitted = true;
+          try {
+            localStorage.removeItem(PARTIAL_ID_STORAGE_KEY);
+          } catch (error) {
+            // Ignore localStorage write errors.
+          }
           plausible('Form Submitted');
           form.classList.add('hidden');
           successEl.classList.remove('hidden');
