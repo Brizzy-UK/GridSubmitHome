@@ -1,6 +1,10 @@
 import { randomUUID } from 'node:crypto';
 import { ensurePartialCompletionTable, sql } from './_db.js';
 
+function isProductionEnvironment() {
+  return String(process.env.VERCEL_ENV || process.env.NODE_ENV || '').toLowerCase() === 'production';
+}
+
 function normalizeStep(value) {
   const parsed = Number(value);
   if (!Number.isInteger(parsed) || parsed < 1 || parsed > 4) return 1;
@@ -56,6 +60,14 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!isProductionEnvironment()) {
+      return res.status(200).json({
+        success: true,
+        skipped: true,
+        reason: 'Partial completions are disabled outside production.',
+      });
+    }
+
     await ensurePartialCompletionTable();
 
     const body =
