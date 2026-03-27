@@ -25,6 +25,31 @@
   </script>
   <style>
     .required-star { color: #dc2626; margin-left: 2px; font-weight: 700; }
+    .info-trigger {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid #000;
+      border-radius: 9999px;
+      background: #fff;
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-trigger:hover { background: #84CC16; }
+    .info-trigger:focus-visible {
+      outline: 2px solid #84CC16;
+      outline-offset: 2px;
+    }
+    .info-panel-link {
+      color: #065f46;
+      text-decoration: underline;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body class="bg-[#fefce8] text-gray-900 font-sans antialiased">
@@ -94,7 +119,13 @@
             <input id="total-generation-capacity" type="number" step="0.01" min="0" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           </div>
           <div>
-            <label class="block text-sm font-semibold mb-2" for="planned-installation-date">Planned Installation Date</label>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="planned-installation-date">Planned Installation Date</label>
+              <button type="button" class="info-trigger js-info-toggle" data-info-target="info-planned-installation-date" aria-controls="info-planned-installation-date" aria-expanded="false" aria-label="More information about planned installation date">i</button>
+            </div>
+            <div id="info-planned-installation-date" class="hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+              For systems above 3.68kW per phase (G99), this should be a future date. G99 approvals can take time, so choose a realistic installation date.
+            </div>
             <input id="planned-installation-date" type="date" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           </div>
         </div>
@@ -127,15 +158,37 @@
         </div>
         <div class="grid sm:grid-cols-3 gap-5">
           <div><label class="block text-sm font-semibold mb-2" for="system-phase">System Phase <span class="required-star">*</span></label><select id="system-phase" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option></select></div>
-          <div><label class="block text-sm font-semibold mb-2" for="cutout-rating">Cut-Out Rating <span class="required-star">*</span></label><select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select></div>
           <div>
-            <label class="block text-sm font-semibold mb-2" for="mpan-number">MPAN Number (Last 13 Digits) <span class="required-star">*</span></label>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="cutout-rating">Cut-Out Rating <span class="required-star">*</span></label>
+              <button type="button" class="info-trigger js-info-toggle" data-info-target="info-cutout-rating" aria-controls="info-cutout-rating" aria-expanded="false" aria-label="More information about cut-out rating">i</button>
+            </div>
+            <div id="info-cutout-rating" class="hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+              This is the fuse rating in the cut-out, usually 60A, 80A, or 100A.
+            </div>
+            <select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="mpan-number">MPAN Number (Last 13 Digits) <span class="required-star">*</span></label>
+              <button type="button" class="info-trigger js-info-toggle" data-info-target="info-mpan-number" aria-controls="info-mpan-number" aria-expanded="false" aria-label="More information about MPAN number">i</button>
+            </div>
+            <div id="info-mpan-number" class="hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+              You can find the MPAN on the electricity bill as a 21-digit number. We only need the last 13 digits.
+            </div>
             <input id="mpan-number" type="text" maxlength="13" inputmode="numeric" required placeholder="1401234567891" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
             <p id="mpan-help" class="mt-1 text-xs text-gray-500">Must be 13 digits and start between 10 and 45.</p>
           </div>
         </div>
         <div>
-          <label class="block text-sm font-semibold mb-2" for="cutout-image">Cut-Out Image (optional)</label>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="block text-sm font-semibold mb-0" for="cutout-image">Cut-Out Image (optional)</label>
+            <button type="button" class="info-trigger js-info-toggle" data-info-target="info-cutout-image" aria-controls="info-cutout-image" aria-expanded="false" aria-label="More information about cut-out image">i</button>
+          </div>
+          <div id="info-cutout-image" class="hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+            Upload a clear photo showing the cut-out, fuse(s), meter, and any CT clamps.
+            <a class="info-panel-link" href="https://www.energynetworks.org/assets/images/Resource%20library/LCT_Cut-Out%20Rating%20Guidance%20to%20EV-HP%20Installers%20v1.1.docx.pdf" target="_blank" rel="noopener noreferrer">View examples</a>.
+          </div>
           <input id="cutout-image" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           <p class="mt-2 text-sm text-gray-600">We require the customer's details to send alongside the application in case the DNO needs to arrange access with the customer to inspect the cut-out for a fuse upgrade or perform other site assessments.</p>
         </div>
@@ -167,7 +220,17 @@
                 <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-                <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <label class="block text-sm font-semibold mb-0">ENA Ref</label>
+                    <button type="button" class="info-trigger js-info-toggle-local" aria-expanded="false" aria-label="More information about ENA reference">i</button>
+                  </div>
+                  <div class="js-info-panel hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+                    This unique ENA number identifies compliant inverters. You can find it on the
+                    <a class="info-panel-link" href="https://connect-direct.energynetworks.org/device-databases/search-gen" target="_blank" rel="noopener noreferrer">type test registry</a> or leave it to us to find.
+                  </div>
+                  <input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm">
+                </div>
               </div>
             </div>
           </div>
@@ -194,7 +257,13 @@
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="existing-installation" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <div id="existing-installation-details-wrap" class="hidden">
-          <label class="block text-sm font-semibold mb-2" for="existing-installation-details">Details of Existing Installation <span class="required-star">*</span></label>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="block text-sm font-semibold mb-0" for="existing-installation-details">Details of Existing Installation <span class="required-star">*</span></label>
+            <button type="button" class="info-trigger js-info-toggle" data-info-target="info-existing-installation-details" aria-controls="info-existing-installation-details" aria-expanded="false" aria-label="More information about existing installation details">i</button>
+          </div>
+          <div id="info-existing-installation-details" class="hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+            Include the brand, model, and quantity of any existing solar panels, inverters, and batteries already installed on site.
+          </div>
           <textarea id="existing-installation-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Please include system type, capacity, and any relevant existing generation/storage details."></textarea>
         </div>
 
@@ -508,6 +577,32 @@
         }
       }
 
+      function setupInfoToggles() {
+        form.addEventListener('click', (event) => {
+          const targetButton = event.target.closest('.js-info-toggle');
+          if (targetButton) {
+            const panelId = targetButton.getAttribute('data-info-target');
+            if (!panelId) return;
+            const panel = document.getElementById(panelId);
+            if (!panel) return;
+            const willExpand = panel.classList.contains('hidden');
+            panel.classList.toggle('hidden', !willExpand);
+            targetButton.setAttribute('aria-expanded', String(willExpand));
+            return;
+          }
+
+          const localButton = event.target.closest('.js-info-toggle-local');
+          if (!localButton) return;
+          const wrapper = localButton.closest('div');
+          if (!wrapper) return;
+          const panel = wrapper.parentElement ? wrapper.parentElement.querySelector('.js-info-panel') : null;
+          if (!panel) return;
+          const willExpand = panel.classList.contains('hidden');
+          panel.classList.toggle('hidden', !willExpand);
+          localButton.setAttribute('aria-expanded', String(willExpand));
+        });
+      }
+
       function inverterTemplate(id) {
         return `
           <div class="inverter-card border-2 border-black rounded-xl p-4 bg-[#fefce8]" data-inverter-id="${id}">
@@ -520,7 +615,17 @@
               <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-              <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <label class="block text-sm font-semibold mb-0">ENA Ref</label>
+                  <button type="button" class="info-trigger js-info-toggle-local" aria-expanded="false" aria-label="More information about ENA reference">i</button>
+                </div>
+                <div class="js-info-panel hidden mt-2 mb-2 p-3 border-2 border-black rounded-xl bg-[#f0fdf4] text-xs text-gray-700">
+                  This unique ENA number identifies compliant inverters. You can find it on the
+                  <a class="info-panel-link" href="https://connect-direct.energynetworks.org/device-databases/search-gen" target="_blank" rel="noopener noreferrer">type test registry</a>.
+                </div>
+                <input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm">
+              </div>
             </div>
           </div>
         `;
@@ -947,6 +1052,7 @@
       });
 
       updateStep(1);
+      setupInfoToggles();
       syncSldFields();
       syncBatterySection();
       syncExistingInstallationFields();
