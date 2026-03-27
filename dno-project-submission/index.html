@@ -65,6 +65,18 @@
       z-index: 30;
       box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
     }
+    .info-popover-left {
+      left: auto;
+      right: calc(100% + 0.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .info-popover-below {
+      left: auto;
+      right: 0;
+      top: calc(100% + 0.5rem);
+      transform: none;
+    }
     @media (max-width: 640px) {
       .info-popover {
         left: auto;
@@ -624,6 +636,27 @@
           form.querySelectorAll('.info-popover').forEach((panel) => panel.classList.add('hidden'));
         };
 
+        const positionPopover = (triggerButton, panel) => {
+          panel.classList.remove('info-popover-left', 'info-popover-below');
+          panel.classList.remove('hidden');
+          panel.style.visibility = 'hidden';
+
+          const panelWidth = panel.getBoundingClientRect().width || Math.min(window.innerWidth * 0.7, 352);
+          const triggerRect = triggerButton.getBoundingClientRect();
+          const spaceRight = window.innerWidth - triggerRect.right;
+          const spaceLeft = triggerRect.left;
+          const gutter = 12;
+          const isSmallScreen = window.innerWidth <= 640;
+
+          if (isSmallScreen || (spaceRight < panelWidth + gutter && spaceLeft < panelWidth + gutter)) {
+            panel.classList.add('info-popover-below');
+          } else if (spaceRight < panelWidth + gutter) {
+            panel.classList.add('info-popover-left');
+          }
+
+          panel.style.visibility = '';
+        };
+
         form.addEventListener('click', (event) => {
           const targetButton = event.target.closest('.js-info-toggle');
           if (targetButton) {
@@ -633,8 +666,13 @@
             if (!panel) return;
             const willExpand = panel.classList.contains('hidden');
             closeAllInfo();
-            panel.classList.toggle('hidden', !willExpand);
-            targetButton.setAttribute('aria-expanded', String(willExpand));
+            if (willExpand) {
+              positionPopover(targetButton, panel);
+              targetButton.setAttribute('aria-expanded', 'true');
+            } else {
+              panel.classList.add('hidden');
+              targetButton.setAttribute('aria-expanded', 'false');
+            }
             return;
           }
 
@@ -646,8 +684,13 @@
             if (!panel) return;
             const willExpand = panel.classList.contains('hidden');
             closeAllInfo();
-            panel.classList.toggle('hidden', !willExpand);
-            localButton.setAttribute('aria-expanded', String(willExpand));
+            if (willExpand) {
+              positionPopover(localButton, panel);
+              localButton.setAttribute('aria-expanded', 'true');
+            } else {
+              panel.classList.add('hidden');
+              localButton.setAttribute('aria-expanded', 'false');
+            }
             return;
           }
 
