@@ -3,10 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DNO Project Submission | GridSubmit</title>
+  <title>DNO Project Submission | Grid Submit</title>
   <meta name="description" content="4-step DNO Project Submission form for solar applications.">
   <link rel="canonical" href="https://gridsubmit.co.uk/dno-project-submission/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DNO Project Submission | Grid Submit">
+  <meta property="og:description" content="4-step DNO Project Submission form for solar applications.">
+  <meta property="og:url" content="https://gridsubmit.co.uk/dno-project-submission/">
+  <meta property="og:site_name" content="Grid Submit">
+  <meta name="application-name" content="Grid Submit">
+  <meta name="apple-mobile-web-app-title" content="Grid Submit">
+  <meta name="robots" content="index, follow">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
@@ -17,6 +25,67 @@
   </script>
   <style>
     .required-star { color: #dc2626; margin-left: 2px; font-weight: 700; }
+    .info-trigger {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid #000;
+      border-radius: 9999px;
+      background: #fff;
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-trigger:hover { background: #84CC16; }
+    .info-trigger:focus-visible {
+      outline: 2px solid #84CC16;
+      outline-offset: 2px;
+    }
+    .info-panel-link {
+      color: #065f46;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .info-popover {
+      position: absolute;
+      left: calc(100% + 0.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(22rem, 70vw);
+      padding: 0.75rem;
+      border: 2px solid #000;
+      border-radius: 0.75rem;
+      background: #f0fdf4;
+      font-size: 0.75rem;
+      color: #374151;
+      z-index: 30;
+      box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 1);
+    }
+    .info-popover-left {
+      left: auto;
+      right: calc(100% + 0.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .info-popover-below {
+      left: auto;
+      right: 0;
+      top: calc(100% + 0.5rem);
+      transform: none;
+    }
+    @media (max-width: 640px) {
+      .info-popover {
+        left: auto;
+        right: 0;
+        top: calc(100% + 0.5rem);
+        transform: none;
+        width: min(20rem, 86vw);
+      }
+    }
   </style>
 </head>
 <body class="bg-[#fefce8] text-gray-900 font-sans antialiased">
@@ -86,7 +155,15 @@
             <input id="total-generation-capacity" type="number" step="0.01" min="0" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           </div>
           <div>
-            <label class="block text-sm font-semibold mb-2" for="planned-installation-date">Planned Installation Date</label>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="planned-installation-date">Planned Installation Date</label>
+              <span class="relative inline-flex items-center">
+                <button type="button" class="info-trigger js-info-toggle" data-info-target="info-planned-installation-date" aria-controls="info-planned-installation-date" aria-expanded="false" aria-label="More information about planned installation date">i</button>
+                <div id="info-planned-installation-date" class="info-popover hidden" role="tooltip">
+                  For systems above 3.68kW per phase (G99), this should be a future date. G99 approvals can take time, so choose a realistic installation date.
+                </div>
+              </span>
+            </div>
             <input id="planned-installation-date" type="date" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
           </div>
         </div>
@@ -119,16 +196,45 @@
         </div>
         <div class="grid sm:grid-cols-3 gap-5">
           <div><label class="block text-sm font-semibold mb-2" for="system-phase">System Phase <span class="required-star">*</span></label><select id="system-phase" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>Single Phase</option><option>Three Phase</option></select></div>
-          <div><label class="block text-sm font-semibold mb-2" for="cutout-rating">Cut-Out Rating <span class="required-star">*</span></label><select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select></div>
           <div>
-            <label class="block text-sm font-semibold mb-2" for="mpan-number">MPAN Number (Last 13 Digits) <span class="required-star">*</span></label>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="cutout-rating">Cut-Out Rating <span class="required-star">*</span></label>
+              <span class="relative inline-flex items-center">
+                <button type="button" class="info-trigger js-info-toggle" data-info-target="info-cutout-rating" aria-controls="info-cutout-rating" aria-expanded="false" aria-label="More information about cut-out rating">i</button>
+                <div id="info-cutout-rating" class="info-popover hidden" role="tooltip">
+                  This is the fuse rating in the cut-out, usually 60A, 80A, or 100A.
+                </div>
+              </span>
+            </div>
+            <select id="cutout-rating" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"><option value="">Select</option><option>60A</option><option>80A</option><option>100A</option><option>Unknown</option></select>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <label class="block text-sm font-semibold mb-0" for="mpan-number">MPAN Number (Last 13 Digits) <span class="required-star">*</span></label>
+              <span class="relative inline-flex items-center">
+                <button type="button" class="info-trigger js-info-toggle" data-info-target="info-mpan-number" aria-controls="info-mpan-number" aria-expanded="false" aria-label="More information about MPAN number">i</button>
+                <div id="info-mpan-number" class="info-popover hidden" role="tooltip">
+                  You can find the MPAN on the electricity bill as a 21-digit number. We only need the last 13 digits.
+                </div>
+              </span>
+            </div>
             <input id="mpan-number" type="text" maxlength="13" inputmode="numeric" required placeholder="1401234567891" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
             <p id="mpan-help" class="mt-1 text-xs text-gray-500">Must be 13 digits and start between 10 and 45.</p>
           </div>
         </div>
         <div>
-          <label class="block text-sm font-semibold mb-2" for="cutout-image">Cut-Out Image (optional)</label>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="block text-sm font-semibold mb-0" for="cutout-image">Cut-Out Image (optional)</label>
+            <span class="relative inline-flex items-center">
+              <button type="button" class="info-trigger js-info-toggle" data-info-target="info-cutout-image" aria-controls="info-cutout-image" aria-expanded="false" aria-label="More information about cut-out image">i</button>
+              <div id="info-cutout-image" class="info-popover hidden" role="tooltip">
+                Upload a clear photo showing the cut-out, fuse(s), meter, and any CT clamps.
+                <a class="info-panel-link" href="https://www.energynetworks.org/assets/images/Resource%20library/LCT_Cut-Out%20Rating%20Guidance%20to%20EV-HP%20Installers%20v1.1.docx.pdf" target="_blank" rel="noopener noreferrer">View examples</a>.
+              </div>
+            </span>
+          </div>
           <input id="cutout-image" type="file" accept=".pdf,image/*" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm">
+          <p class="mt-2 text-sm text-gray-600">We require the customer's details to send alongside the application in case the DNO needs to arrange access with the customer to inspect the cut-out for a fuse upgrade or perform other site assessments.</p>
         </div>
         <div class="grid sm:grid-cols-2 gap-5">
           <div><label class="block text-sm font-semibold mb-2" for="customer-first-name">Customer First Name <span class="required-star">*</span></label><input id="customer-first-name" type="text" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm"></div>
@@ -158,7 +264,19 @@
                 <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-                <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <label class="block text-sm font-semibold mb-0">ENA Ref</label>
+                    <span class="relative inline-flex items-center">
+                      <button type="button" class="info-trigger js-info-toggle-local" aria-expanded="false" aria-label="More information about ENA reference">i</button>
+                      <div class="js-info-panel info-popover hidden" role="tooltip">
+                        This unique ENA number identifies compliant inverters. You can find it on the
+                        <a class="info-panel-link" href="https://connect-direct.energynetworks.org/device-databases/search-gen" target="_blank" rel="noopener noreferrer">type test registry</a>.
+                      </div>
+                    </span>
+                  </div>
+                  <input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm">
+                </div>
               </div>
             </div>
           </div>
@@ -185,14 +303,22 @@
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="existing-installation" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <div id="existing-installation-details-wrap" class="hidden">
-          <label class="block text-sm font-semibold mb-2" for="existing-installation-details">Details of Existing Installation <span class="required-star">*</span></label>
+          <div class="flex items-center gap-2 mb-2">
+            <label class="block text-sm font-semibold mb-0" for="existing-installation-details">Details of Existing Installation <span class="required-star">*</span></label>
+            <span class="relative inline-flex items-center">
+              <button type="button" class="info-trigger js-info-toggle" data-info-target="info-existing-installation-details" aria-controls="info-existing-installation-details" aria-expanded="false" aria-label="More information about existing installation details">i</button>
+              <div id="info-existing-installation-details" class="info-popover hidden" role="tooltip">
+                Include the brand, model, and quantity of any existing solar panels, inverters, and batteries already installed on site.
+              </div>
+            </span>
+          </div>
           <textarea id="existing-installation-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Please include system type, capacity, and any relevant existing generation/storage details."></textarea>
         </div>
 
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;50 + VAT)" required class="mt-1"><span>Create one for me (&pound;50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;99 + VAT)" required class="mt-1"><span>Create one for me (&pound;99 + VAT)</span></label>
         </fieldset>
         <div id="sld-upload-wrap" class="hidden">
           <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD <span class="required-star">*</span></label>
@@ -204,7 +330,7 @@
         </div>
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">Commissioning Documents <span class="required-star">*</span></legend>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;50 + VAT)" required class="mt-1"><span>Yes (&pound;50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;99 + VAT)" required class="mt-1"><span>Yes (&pound;99 + VAT)</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
@@ -327,9 +453,14 @@
       const batteryModelInput = document.getElementById('battery-model');
       const batteryCapacityInput = document.getElementById('battery-total-capacity-kwh');
       const urlDraftId = new URLSearchParams(window.location.search).get('draft');
+      const PARTIAL_ID_STORAGE_KEY = 'dnoProjectPartialId';
       let currentStep = 1;
       let nextInverterId = 2;
       let currentDraftId = urlDraftId || '';
+      let isFormSubmitted = false;
+      let lastPartialSaveAt = 0;
+      let lastPartialSaveFingerprint = '';
+      let partialId = getOrCreatePartialId();
 
       const normalizePhone = (v) => v.replace(/\s+/g, '');
       const validPhone = (v) => /^(\+44\d{10}|0\d{10})$/.test(normalizePhone(v));
@@ -347,6 +478,93 @@
         return n.length <= 3 ? n : `${n.slice(0, n.length - 3)} ${n.slice(-3)}`;
       };
       const validPostcode = (v) => /^[A-Z]{1,2}\d[A-Z\d]?\s\d[A-Z]{2}$/.test(v);
+
+      function createClientId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+        return `partial-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+      }
+
+      function getOrCreatePartialId() {
+        try {
+          const existing = localStorage.getItem(PARTIAL_ID_STORAGE_KEY);
+          if (existing) return existing;
+          const created = createClientId();
+          localStorage.setItem(PARTIAL_ID_STORAGE_KEY, created);
+          return created;
+        } catch (error) {
+          return createClientId();
+        }
+      }
+
+      function hasLeadSignal(payload) {
+        if (!payload || typeof payload !== 'object') return false;
+        return Boolean(
+          (payload.installerEmail && payload.installerEmail.trim()) ||
+          (payload.customerEmail && payload.customerEmail.trim()) ||
+          (payload.installerPhone && payload.installerPhone.trim()) ||
+          (payload.customerPhone && payload.customerPhone.trim()) ||
+          (payload.installerFirstName && payload.installerFirstName.trim()) ||
+          (payload.installerLastName && payload.installerLastName.trim())
+        );
+      }
+
+      async function savePartialToServer(eventType, options = {}) {
+        if (isFormSubmitted) return false;
+
+        const useBeacon = Boolean(options.useBeacon);
+        const force = Boolean(options.force);
+        const payload = collectDraftPayload();
+        if (!force && !hasLeadSignal(payload)) return false;
+
+        const requestBody = {
+          partialId,
+          currentStep,
+          payload,
+          eventType,
+        };
+
+        const fingerprint = JSON.stringify({
+          currentStep,
+          eventType,
+          installerEmail: payload.installerEmail || '',
+          customerEmail: payload.customerEmail || '',
+          installerPhone: payload.installerPhone || '',
+          customerPhone: payload.customerPhone || '',
+          installerFirstName: payload.installerFirstName || '',
+          installerLastName: payload.installerLastName || '',
+        });
+        const now = Date.now();
+        if (!force && now - lastPartialSaveAt < 1500 && fingerprint === lastPartialSaveFingerprint) return false;
+        lastPartialSaveAt = now;
+        lastPartialSaveFingerprint = fingerprint;
+
+        if (useBeacon && navigator.sendBeacon) {
+          const blob = new Blob([JSON.stringify(requestBody)], { type: 'application/json' });
+          return navigator.sendBeacon('/api/partial', blob);
+        }
+
+        try {
+          const response = await fetch('/api/partial', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody),
+            keepalive: eventType === 'page_exit'
+          });
+          if (!response.ok) return false;
+          const data = await response.json();
+          if (data && data.partialId) {
+            partialId = data.partialId;
+            try {
+              localStorage.setItem(PARTIAL_ID_STORAGE_KEY, partialId);
+            } catch (error) {
+              // Ignore localStorage write errors.
+            }
+          }
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
 
       function validateMpan() {
         const input = document.getElementById('mpan-number');
@@ -374,7 +592,7 @@
       function syncSldFields() {
         const selected = form.querySelector('input[name="sld-option"]:checked');
         const upload = selected && selected.value === 'Upload SLD';
-        const create = selected && selected.value === 'Create one for me (\u00A350 + VAT)';
+        const create = selected && selected.value === 'Create one for me (\u00A399 + VAT)';
         sldUploadWrap.classList.toggle('hidden', !upload);
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
@@ -408,6 +626,81 @@
         }
       }
 
+      function setupInfoToggles() {
+        const closeAllInfo = () => {
+          form.querySelectorAll('.js-info-toggle[aria-expanded="true"]').forEach((button) => {
+            button.setAttribute('aria-expanded', 'false');
+          });
+          form.querySelectorAll('.js-info-toggle-local[aria-expanded="true"]').forEach((button) => {
+            button.setAttribute('aria-expanded', 'false');
+          });
+          form.querySelectorAll('.info-popover').forEach((panel) => panel.classList.add('hidden'));
+        };
+
+        const positionPopover = (triggerButton, panel) => {
+          panel.classList.remove('info-popover-left', 'info-popover-below');
+          panel.classList.remove('hidden');
+          panel.style.visibility = 'hidden';
+
+          const panelWidth = panel.getBoundingClientRect().width || Math.min(window.innerWidth * 0.7, 352);
+          const triggerRect = triggerButton.getBoundingClientRect();
+          const spaceRight = window.innerWidth - triggerRect.right;
+          const spaceLeft = triggerRect.left;
+          const gutter = 12;
+          const isSmallScreen = window.innerWidth <= 640;
+
+          if (isSmallScreen || (spaceRight < panelWidth + gutter && spaceLeft < panelWidth + gutter)) {
+            panel.classList.add('info-popover-below');
+          } else if (spaceRight < panelWidth + gutter) {
+            panel.classList.add('info-popover-left');
+          }
+
+          panel.style.visibility = '';
+        };
+
+        form.addEventListener('click', (event) => {
+          const targetButton = event.target.closest('.js-info-toggle');
+          if (targetButton) {
+            const panelId = targetButton.getAttribute('data-info-target');
+            if (!panelId) return;
+            const panel = document.getElementById(panelId);
+            if (!panel) return;
+            const willExpand = panel.classList.contains('hidden');
+            closeAllInfo();
+            if (willExpand) {
+              positionPopover(targetButton, panel);
+              targetButton.setAttribute('aria-expanded', 'true');
+            } else {
+              panel.classList.add('hidden');
+              targetButton.setAttribute('aria-expanded', 'false');
+            }
+            return;
+          }
+
+          const localButton = event.target.closest('.js-info-toggle-local');
+          if (localButton) {
+            const wrapper = localButton.parentElement;
+            if (!wrapper) return;
+            const panel = wrapper.querySelector('.js-info-panel');
+            if (!panel) return;
+            const willExpand = panel.classList.contains('hidden');
+            closeAllInfo();
+            if (willExpand) {
+              positionPopover(localButton, panel);
+              localButton.setAttribute('aria-expanded', 'true');
+            } else {
+              panel.classList.add('hidden');
+              localButton.setAttribute('aria-expanded', 'false');
+            }
+            return;
+          }
+
+          if (!event.target.closest('.info-popover')) {
+            closeAllInfo();
+          }
+        });
+      }
+
       function inverterTemplate(id) {
         return `
           <div class="inverter-card border-2 border-black rounded-xl p-4 bg-[#fefce8]" data-inverter-id="${id}">
@@ -420,7 +713,19 @@
               <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-              <div><label class="block text-sm font-semibold mb-2">ENA Ref</label><input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div>
+                  <div class="flex items-center gap-2 mb-2">
+                    <label class="block text-sm font-semibold mb-0">ENA Ref</label>
+                    <span class="relative inline-flex items-center">
+                      <button type="button" class="info-trigger js-info-toggle-local" aria-expanded="false" aria-label="More information about ENA reference">i</button>
+                      <div class="js-info-panel info-popover hidden" role="tooltip">
+                        This unique ENA number identifies compliant inverters. You can find it on the
+                        <a class="info-panel-link" href="https://connect-direct.energynetworks.org/device-databases/search-gen" target="_blank" rel="noopener noreferrer">type test registry</a>.
+                      </div>
+                    </span>
+                  </div>
+                  <input type="text" class="inverter-ena w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm">
+                </div>
             </div>
           </div>
         `;
@@ -718,11 +1023,20 @@
       });
 
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', async () => {
         if (validateCurrentStep() && currentStep < 4) {
+          await savePartialToServer('step_change', { force: true });
           plausible('Completed Step ' + currentStep);
           updateStep(currentStep + 1);
         }
+      });
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+          savePartialToServer('page_exit', { useBeacon: true });
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        savePartialToServer('page_exit', { useBeacon: true });
       });
       saveDraftBtn.addEventListener('click', () => {
         plausible('Save For Later Clicked');
@@ -806,6 +1120,7 @@
             existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
             commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
             consentConfirmation: document.getElementById('consent-confirmation').checked,
+            partialCompletionId: partialId,
             attachments,
             name: `${document.getElementById('installer-first-name').value} ${document.getElementById('installer-last-name').value}`.trim(),
             email: document.getElementById('installer-email').value.trim(),
@@ -819,6 +1134,12 @@
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
           await deleteDraftFromServer();
+          isFormSubmitted = true;
+          try {
+            localStorage.removeItem(PARTIAL_ID_STORAGE_KEY);
+          } catch (error) {
+            // Ignore localStorage write errors.
+          }
           plausible('Form Submitted');
           form.classList.add('hidden');
           successEl.classList.remove('hidden');
@@ -831,6 +1152,7 @@
       });
 
       updateStep(1);
+      setupInfoToggles();
       syncSldFields();
       syncBatterySection();
       syncExistingInstallationFields();
