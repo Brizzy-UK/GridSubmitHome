@@ -20,7 +20,14 @@
       "publisher": {
         "@type": "Organization",
         "name": "GridSubmit",
-        "url": "https://gridsubmit.co.uk"
+        "url": "https://gridsubmit.co.uk",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Flat 15, Heather Court, Mountain Ash Close",
+          "addressLocality": "Southampton",
+          "postalCode": "SO18 5SJ",
+          "addressCountry": "GB"
+        }
       }
     }
     </script>
@@ -74,8 +81,8 @@
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-12">
           <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">Submit Your DNO Application <span class="text-[#84CC16]">in Minutes</span></h1>
-            <p class="text-xl text-gray-700 leading-relaxed">Send us your installation details and we'll handle everything from here. Most submissions are confirmed within 1 business day. For G99 applications, we'll be in touch with a timeline once we've reviewed the technical details.</p>
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">How Can We <span class="text-[#84CC16]">Help?</span></h1>
+            <p class="text-xl text-gray-700 leading-relaxed">Whether you're ready to submit an application, have a quick question, or just want to talk it through — pick the option that suits you best.</p>
           </div>
         </section>
 
@@ -106,95 +113,122 @@
                 <h3 class="font-semibold tracking-tight mb-2">Export number included</h3>
                 <p class="text-sm text-gray-600">We retrieve and forward your export number as soon as the DNO issues it. No separate chasing required.</p>
               </div>
+              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                <div class="w-12 h-12 bg-yellow-300 rounded-xl border-2 border-black flex items-center justify-center mb-4">
+                  <iconify-icon icon="solar:mailbox-linear" class="text-black text-2xl"></iconify-icon>
+                </div>
+                <h3 class="font-semibold tracking-tight mb-2">Postal address</h3>
+                <address class="not-italic text-sm text-gray-600 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton<br>SO18 5SJ</address>
+              </div>
             </div>
 
-            <!-- Form -->
-            <div class="lg:col-span-2">
-              <!-- Success state -->
-              <div id="form-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
-                <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                </div>
-                <h2 class="text-2xl font-semibold tracking-tight mb-3">Application Received</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">Thanks &mdash; we've received your details and sent you a confirmation email. We'll get to work on your application shortly.</p>
-                <p class="text-sm text-gray-500">Need to send files? Just reply to the confirmation email with your site plans, datasheets, or SLDs attached.</p>
+            <!-- Contact options -->
+            <div class="lg:col-span-2 space-y-6">
+
+              <!-- Option selector -->
+              <div class="grid sm:grid-cols-3 gap-4">
+                <button data-option="submit" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                  <div class="w-10 h-10 bg-white border-2 border-black rounded-lg flex items-center justify-center mb-3">
+                    <iconify-icon icon="solar:document-add-linear" class="text-black text-xl"></iconify-icon>
+                  </div>
+                  <h3 class="font-semibold tracking-tight text-sm">Submit a project</h3>
+                  <p class="text-xs text-gray-700 mt-1 leading-relaxed">Ready to go? Head straight to the full application form.</p>
+                </button>
+                <button data-option="callback" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                  <div class="w-10 h-10 bg-blue-400 border-2 border-black rounded-lg flex items-center justify-center mb-3">
+                    <iconify-icon icon="solar:phone-linear" class="text-black text-xl"></iconify-icon>
+                  </div>
+                  <h3 class="font-semibold tracking-tight text-sm">Request a callback</h3>
+                  <p class="text-xs text-gray-600 mt-1 leading-relaxed">Leave your number and we'll call you back within 30 minutes.</p>
+                </button>
+                <button data-option="contact" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                  <div class="w-10 h-10 bg-purple-400 border-2 border-black rounded-lg flex items-center justify-center mb-3">
+                    <iconify-icon icon="solar:chat-line-linear" class="text-black text-xl"></iconify-icon>
+                  </div>
+                  <h3 class="font-semibold tracking-tight text-sm">Send a message</h3>
+                  <p class="text-xs text-gray-600 mt-1 leading-relaxed">Got a question? Drop us a note and we'll get back to you.</p>
+                </button>
               </div>
 
-              <!-- Error state -->
-              <div id="form-error" class="hidden mb-6 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+              <!-- Panel: Submit a project -->
+              <div id="panel-submit" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8">
+                <h2 class="text-xl font-semibold tracking-tight mb-2">Ready to submit?</h2>
+                <p class="text-gray-600 text-sm mb-6">Our full application form walks you through everything we need in 4 simple steps. Most G98 submissions are confirmed within 24&ndash;48 hours.</p>
+                <a href="/dno-project-submission" class="block w-full text-center px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Go to Application Form &rarr;</a>
+              </div>
 
-              <form id="contact-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
-                <div class="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="name">Your name / company name</label>
-                    <input type="text" id="name" name="name" required placeholder="e.g. Smith Solar Ltd" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+              <!-- Panel: Request a callback -->
+              <div id="panel-callback" class="hidden">
+                <div id="callback-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
+                  <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                   </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="email">Email address</label>
-                    <input type="email" id="email" name="email" required placeholder="you@company.co.uk" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
-                  </div>
+                  <h2 class="text-2xl font-semibold tracking-tight mb-3">We'll call you back shortly</h2>
+                  <p class="text-gray-600 leading-relaxed">Thanks &mdash; we've got your number and will call you within 30 minutes during business hours.</p>
                 </div>
-                <div class="grid sm:grid-cols-2 gap-6">
+                <div id="callback-error" class="hidden mb-4 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+                <form id="callback-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
                   <div>
-                    <label class="block text-sm font-semibold mb-2" for="phone">Phone number <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="tel" id="phone" name="phone" placeholder="07700 900000" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="postcode">Installation postcode</label>
-                    <input type="text" id="postcode" name="postcode" required placeholder="e.g. B1 1AA" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
-                  </div>
-                </div>
-                <div class="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="system-size">System size in kW</label>
-                    <input type="text" id="system-size" name="system_size" required placeholder="e.g. 4.0 kW" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <h2 class="text-xl font-semibold tracking-tight mb-1">Request a callback</h2>
+                    <p class="text-sm text-gray-600">We return calls within 30 minutes during business hours.</p>
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold mb-2" for="app-type">Application type</label>
-                    <select id="app-type" name="application_type" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
-                      <option value="" disabled selected>Select...</option>
-                      <option value="G98">G98</option>
-                      <option value="G99">G99</option>
-                      <option value="not-sure">Not sure</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="dno">DNO &mdash; if known <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="text" id="dno" name="dno" placeholder="e.g. UK Power Networks" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <label class="block text-sm font-semibold mb-2" for="cb-name">Your name</label>
+                    <input type="text" id="cb-name" name="name" required placeholder="e.g. James Smith" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold mb-2" for="mpan">MPAN / meter reference <span class="font-normal text-gray-500">(optional)</span></label>
-                    <input type="text" id="mpan" name="mpan" placeholder="21-digit MPAN" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    <label class="block text-sm font-semibold mb-2" for="cb-phone">Phone number</label>
+                    <input type="tel" id="cb-phone" name="phone" required placeholder="07700 900000" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                   </div>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold mb-2" for="export-type">Export type</label>
-                  <select id="export-type" name="export_type" required class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
-                    <option value="" disabled selected>Select...</option>
-                    <option value="limitation">Limitation</option>
-                    <option value="unrestricted">Unrestricted</option>
-                    <option value="not-sure">Not sure</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold mb-2" for="notes">Additional notes</label>
-                  <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know about this installation..." class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow resize-none"></textarea>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold mb-2" for="files">File upload <span class="font-normal text-gray-500">(optional &mdash; site plans, datasheets, SLDs)</span></label>
-                  <div class="w-full px-4 py-6 border-2 border-black border-dashed rounded-xl bg-[#fefce8] text-center hover:bg-lime-50 transition-colors cursor-pointer">
-                    <input type="file" id="files" name="files" multiple class="hidden">
-                    <label for="files" class="cursor-pointer">
-                      <iconify-icon icon="solar:upload-linear" class="text-3xl text-gray-400 mb-2 block mx-auto"></iconify-icon>
-                      <span class="text-sm text-gray-600">Click to upload files or drag and drop</span>
-                      <span class="block text-xs text-gray-400 mt-1">PDF, PNG, JPG up to 10MB each</span>
-                    </label>
+                  <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Request Callback</button>
+                </form>
+              </div>
+
+              <!-- Panel: Send a message -->
+              <div id="panel-contact" class="hidden">
+                <div id="contact-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
+                  <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                   </div>
+                  <h2 class="text-2xl font-semibold tracking-tight mb-3">Message received</h2>
+                  <p class="text-gray-600 leading-relaxed">Thanks &mdash; we'll be in touch shortly.</p>
                 </div>
-                <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Send My Application Details</button>
-              </form>
+                <div id="contact-error" class="hidden mb-4 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
+                <form id="contact-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
+                  <div>
+                    <h2 class="text-xl font-semibold tracking-tight mb-1">Send a message</h2>
+                    <p class="text-sm text-gray-600">Got a question or want to find out more? We'll get back to you.</p>
+                  </div>
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-sm font-semibold mb-2" for="ct-name">Your name</label>
+                      <input type="text" id="ct-name" name="name" required placeholder="e.g. James Smith" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-semibold mb-2" for="ct-contact">Email or phone</label>
+                      <input type="text" id="ct-contact" name="contact" required placeholder="email@example.com or 07700..." class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    </div>
+                  </div>
+                  <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-sm font-semibold mb-2" for="ct-postcode">Installation postcode <span class="font-normal text-gray-500">(optional)</span></label>
+                      <input type="text" id="ct-postcode" name="postcode" placeholder="e.g. SO18 5SJ" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-semibold mb-2" for="ct-installation">Installation type <span class="font-normal text-gray-500">(optional)</span></label>
+                      <select id="ct-installation" name="installation_type" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
+                        <option value="">Select...</option>
+                        <option>Solar Only</option>
+                        <option>Solar &amp; Battery</option>
+                        <option>Battery Only</option>
+                        <option>Not sure</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Send Message</button>
+                </form>
+              </div>
+
             </div>
 
           </div>
@@ -212,6 +246,7 @@
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>
               <p class="text-xs text-gray-500 mt-3">We work exclusively with trade installers.</p>
+              <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
               <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
@@ -245,71 +280,84 @@
     </div>
   <script>
     (function () {
-      const form = document.getElementById('contact-form');
-      const successEl = document.getElementById('form-success');
-      const errorEl = document.getElementById('form-error');
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnText = submitBtn.textContent;
+      const optionBtns = document.querySelectorAll('.option-btn');
+      const panels = {
+        submit: document.getElementById('panel-submit'),
+        callback: document.getElementById('panel-callback'),
+        contact: document.getElementById('panel-contact'),
+      };
 
-      function readFileAsBase64(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            // result is "data:mime/type;base64,XXXX" &mdash; strip the prefix
-            const base64 = reader.result.split(',')[1];
-            resolve({ name: file.name, content: base64 });
-          };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
+      function selectOption(key) {
+        optionBtns.forEach(btn => {
+          const active = btn.dataset.option === key;
+          btn.classList.toggle('bg-[#84CC16]', active);
+          btn.classList.toggle('bg-white', !active);
         });
+        Object.entries(panels).forEach(([k, panel]) => panel.classList.toggle('hidden', k !== key));
       }
 
-      form.addEventListener('submit', async function (e) {
+      optionBtns.forEach(btn => btn.addEventListener('click', () => selectOption(btn.dataset.option)));
+      selectOption('submit');
+
+      // Callback form
+      const callbackForm = document.getElementById('callback-form');
+      const callbackSuccess = document.getElementById('callback-success');
+      const callbackError = document.getElementById('callback-error');
+      const callbackBtn = callbackForm.querySelector('button[type="submit"]');
+
+      callbackForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        errorEl.classList.add('hidden');
-        errorEl.textContent = '';
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
+        callbackError.classList.add('hidden');
+        callbackBtn.disabled = true;
+        callbackBtn.textContent = 'Sending...';
         try {
-          const fileInput = document.getElementById('files');
-          const attachments = fileInput.files.length > 0
-            ? await Promise.all(Array.from(fileInput.files).map(readFileAsBase64))
-            : [];
-
           const payload = {
-            name: document.getElementById('name').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            phone: document.getElementById('phone').value.trim(),
-            postcode: document.getElementById('postcode').value.trim(),
-            systemSize: document.getElementById('system-size').value.trim(),
-            applicationType: document.getElementById('app-type').value,
-            dno: document.getElementById('dno').value.trim(),
-            mpan: document.getElementById('mpan').value.trim(),
-            exportType: document.getElementById('export-type').value,
-            notes: document.getElementById('notes').value.trim(),
-            attachments,
+            formType: 'callback-request',
+            name: document.getElementById('cb-name').value.trim(),
+            phone: document.getElementById('cb-phone').value.trim(),
           };
-
-          const res = await fetch('/api/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-
+          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await res.json();
-
-          if (!res.ok) {
-            throw new Error(data.error || 'Something went wrong. Please try again.');
-          }
-
-          form.classList.add('hidden');
-          successEl.classList.remove('hidden');
+          if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+          callbackForm.classList.add('hidden');
+          callbackSuccess.classList.remove('hidden');
         } catch (err) {
-          errorEl.textContent = err.message || 'Failed to send &mdash; please try again or email submit@gridsubmit.co.uk directly.';
-          errorEl.classList.remove('hidden');
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalBtnText;
+          callbackError.textContent = err.message || 'Failed to send &mdash; please try again.';
+          callbackError.classList.remove('hidden');
+          callbackBtn.disabled = false;
+          callbackBtn.textContent = 'Request Callback';
+        }
+      });
+
+      // Contact form
+      const contactForm = document.getElementById('contact-form');
+      const contactSuccess = document.getElementById('contact-success');
+      const contactError = document.getElementById('contact-error');
+      const contactBtn = contactForm.querySelector('button[type="submit"]');
+
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        contactError.classList.add('hidden');
+        contactBtn.disabled = true;
+        contactBtn.textContent = 'Sending...';
+        try {
+          const payload = {
+            formType: 'contact-enquiry',
+            name: document.getElementById('ct-name').value.trim(),
+            contact: document.getElementById('ct-contact').value.trim(),
+            postcode: document.getElementById('ct-postcode').value.trim(),
+            installationType: document.getElementById('ct-installation').value,
+          };
+          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+          contactForm.classList.add('hidden');
+          contactSuccess.classList.remove('hidden');
+        } catch (err) {
+          contactError.textContent = err.message || 'Failed to send &mdash; please try again.';
+          contactError.classList.remove('hidden');
+          contactBtn.disabled = false;
+          contactBtn.textContent = 'Send Message';
         }
       });
     })();
