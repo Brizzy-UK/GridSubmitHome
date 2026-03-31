@@ -81,127 +81,84 @@
       <main class="flex-1">
 
         <!-- Hero -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-12">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 md:pt-24 md:pb-14">
           <div class="max-w-3xl">
             <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">How Can We <span class="text-[#84CC16]">Help?</span></h1>
-            <p class="text-xl text-gray-700 leading-relaxed">Whether you're ready to submit an application, have a quick question, or just want to talk it through — pick the option that suits you best.</p>
+            <p class="text-xl text-gray-700 leading-relaxed">Whether you're ready to submit an application, want a quick call, or have a question &mdash; we've made it easy to get in touch.</p>
           </div>
         </section>
 
-        <!-- Form + Side Info -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 pb-24">
-          <div class="grid lg:grid-cols-3 gap-12">
+        <!-- Submit + Callback -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div class="grid md:grid-cols-2 gap-6">
 
-            <!-- Side info -->
-            <div class="space-y-6">
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-[#84CC16] rounded-xl border-2 border-black flex items-center justify-center mb-4">
-                  <iconify-icon icon="solar:clock-circle-linear" class="text-black text-2xl"></iconify-icon>
-                </div>
-                <h3 class="font-semibold tracking-tight mb-2">Fast turnaround</h3>
-                <p class="text-sm text-gray-600">G98 notifications typically confirmed within 24&ndash;48 hours. G99 applications tracked and chased on your behalf.</p>
+            <!-- Submit a project -->
+            <div class="bg-[#84CC16] rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col">
+              <div class="w-12 h-12 bg-white border-2 border-black rounded-xl flex items-center justify-center mb-5">
+                <iconify-icon icon="solar:document-add-linear" class="text-black text-2xl"></iconify-icon>
               </div>
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-blue-400 rounded-xl border-2 border-black flex items-center justify-center mb-4">
-                  <iconify-icon icon="solar:shield-check-linear" class="text-black text-2xl"></iconify-icon>
-                </div>
-                <h3 class="font-semibold tracking-tight mb-2">Checked before submission</h3>
-                <p class="text-sm text-gray-600">Every application is reviewed for accuracy before it goes to the DNO. We don't send anything we're not confident in.</p>
-              </div>
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-purple-400 rounded-xl border-2 border-black flex items-center justify-center mb-4">
-                  <iconify-icon icon="solar:tag-linear" class="text-black text-2xl"></iconify-icon>
-                </div>
-                <h3 class="font-semibold tracking-tight mb-2">Export number included</h3>
-                <p class="text-sm text-gray-600">We retrieve and forward your export number as soon as the DNO issues it. No separate chasing required.</p>
-              </div>
-              <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                <div class="w-12 h-12 bg-yellow-300 rounded-xl border-2 border-black flex items-center justify-center mb-4">
-                  <iconify-icon icon="solar:mailbox-linear" class="text-black text-2xl"></iconify-icon>
-                </div>
-                <h3 class="font-semibold tracking-tight mb-2">Postal address</h3>
-                <address class="not-italic text-sm text-gray-600 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton<br>SO18 5SJ</address>
-              </div>
+              <h2 class="text-2xl font-semibold tracking-tight mb-2">Submit a project</h2>
+              <p class="text-gray-800 text-sm leading-relaxed mb-6 flex-1">Ready to go? Our guided form collects everything we need in 4 steps. Most G98 submissions are confirmed within 24&ndash;48 hours. Works for installers and homeowners designing their own systems.</p>
+              <a href="/dno-project-submission" class="block text-center px-6 py-3.5 rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Go to Application Form &rarr;</a>
             </div>
 
-            <!-- Contact options -->
-            <div class="lg:col-span-2 space-y-6">
-
-              <!-- Option selector -->
-              <div class="grid sm:grid-cols-3 gap-4">
-                <button data-option="submit" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
-                  <div class="w-10 h-10 bg-white border-2 border-black rounded-lg flex items-center justify-center mb-3">
-                    <iconify-icon icon="solar:document-add-linear" class="text-black text-xl"></iconify-icon>
-                  </div>
-                  <h3 class="font-semibold tracking-tight text-sm">Submit a project</h3>
-                  <p class="text-xs text-gray-700 mt-1 leading-relaxed">Ready to go? Head straight to the full application form.</p>
-                </button>
-                <button data-option="callback" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
-                  <div class="w-10 h-10 bg-blue-400 border-2 border-black rounded-lg flex items-center justify-center mb-3">
-                    <iconify-icon icon="solar:phone-linear" class="text-black text-xl"></iconify-icon>
-                  </div>
-                  <h3 class="font-semibold tracking-tight text-sm">Request a callback</h3>
-                  <p class="text-xs text-gray-600 mt-1 leading-relaxed">Leave your number and we'll call you back within 30 minutes.</p>
-                </button>
-                <button data-option="contact" class="option-btn text-left p-5 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
-                  <div class="w-10 h-10 bg-purple-400 border-2 border-black rounded-lg flex items-center justify-center mb-3">
-                    <iconify-icon icon="solar:chat-line-linear" class="text-black text-xl"></iconify-icon>
-                  </div>
-                  <h3 class="font-semibold tracking-tight text-sm">Send a message</h3>
-                  <p class="text-xs text-gray-600 mt-1 leading-relaxed">Got a question? Drop us a note and we'll get back to you.</p>
-                </button>
+            <!-- Request a callback -->
+            <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
+              <div class="w-12 h-12 bg-blue-400 border-2 border-black rounded-xl flex items-center justify-center mb-5">
+                <iconify-icon icon="solar:phone-linear" class="text-black text-2xl"></iconify-icon>
               </div>
-
-              <!-- Panel: Submit a project -->
-              <div id="panel-submit" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8">
-                <h2 class="text-xl font-semibold tracking-tight mb-2">Ready to submit?</h2>
-                <p class="text-gray-600 text-sm mb-6">Our full application form walks you through everything we need in 4 simple steps. Most G98 submissions are confirmed within 24&ndash;48 hours.</p>
-                <a href="/dno-project-submission" class="block w-full text-center px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Go to Application Form &rarr;</a>
+              <h2 class="text-2xl font-semibold tracking-tight mb-2">Request a callback</h2>
+              <p class="text-sm text-gray-600 mb-5">Leave your name and number. We return calls within 30 minutes during business hours.</p>
+              <div id="callback-success" class="hidden pt-4 pb-2 text-center">
+                <div class="w-12 h-12 bg-[#84CC16] border-2 border-black rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                </div>
+                <p class="font-semibold text-sm">We'll call you back shortly.</p>
+                <p class="text-xs text-gray-500 mt-1">Thanks &mdash; we'll be in touch within 30 minutes.</p>
               </div>
+              <div id="callback-error" class="hidden mb-4 p-3 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700"></div>
+              <form id="callback-form" class="space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold mb-2" for="cb-name">Your name</label>
+                  <input type="text" id="cb-name" name="name" required placeholder="e.g. James Smith" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold mb-2" for="cb-phone">Phone number</label>
+                  <input type="tel" id="cb-phone" name="phone" required placeholder="07700 900000" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
+                </div>
+                <button type="submit" class="w-full px-6 py-3.5 text-sm rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">Request Callback</button>
+              </form>
+            </div>
 
-              <!-- Panel: Request a callback -->
-              <div id="panel-callback" class="hidden">
-                <div id="callback-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
+          </div>
+        </section>
+
+        <!-- Send a message -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8 md:p-10">
+            <div class="md:flex md:gap-12">
+              <div class="md:w-1/3 mb-8 md:mb-0">
+                <div class="w-12 h-12 bg-purple-400 border-2 border-black rounded-xl flex items-center justify-center mb-5">
+                  <iconify-icon icon="solar:chat-line-linear" class="text-black text-2xl"></iconify-icon>
+                </div>
+                <h2 class="text-2xl font-semibold tracking-tight mb-3">Send a message</h2>
+                <p class="text-sm text-gray-600 leading-relaxed mb-6">Got a question about the process, pricing, or a specific installation? Fill in the form and we'll get back to you.</p>
+                <div class="border-t-2 border-gray-100 pt-6">
+                  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Postal address</p>
+                  <address class="not-italic text-sm text-gray-600 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton<br>SO18 5SJ</address>
+                </div>
+              </div>
+              <div class="md:w-2/3">
+                <div id="contact-success" class="hidden py-10 text-center">
                   <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
                   </div>
-                  <h2 class="text-2xl font-semibold tracking-tight mb-3">We'll call you back shortly</h2>
-                  <p class="text-gray-600 leading-relaxed">Thanks &mdash; we've got your number and will call you within 30 minutes during business hours.</p>
+                  <h3 class="text-2xl font-semibold tracking-tight mb-3">Message received</h3>
+                  <p class="text-gray-600">Thanks &mdash; we'll be in touch shortly.</p>
                 </div>
-                <div id="callback-error" class="hidden mb-4 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
-                <form id="callback-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
-                  <div>
-                    <h2 class="text-xl font-semibold tracking-tight mb-1">Request a callback</h2>
-                    <p class="text-sm text-gray-600">We return calls within 30 minutes during business hours.</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="cb-name">Your name</label>
-                    <input type="text" id="cb-name" name="name" required placeholder="e.g. James Smith" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold mb-2" for="cb-phone">Phone number</label>
-                    <input type="tel" id="cb-phone" name="phone" required placeholder="07700 900000" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
-                  </div>
-                  <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Request Callback</button>
-                </form>
-              </div>
-
-              <!-- Panel: Send a message -->
-              <div id="panel-contact" class="hidden">
-                <div id="contact-success" class="hidden bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
-                  <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
-                  </div>
-                  <h2 class="text-2xl font-semibold tracking-tight mb-3">Message received</h2>
-                  <p class="text-gray-600 leading-relaxed">Thanks &mdash; we'll be in touch shortly.</p>
-                </div>
-                <div id="contact-error" class="hidden mb-4 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700 font-medium"></div>
-                <form id="contact-form" class="bg-white rounded-2xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 space-y-6">
-                  <div>
-                    <h2 class="text-xl font-semibold tracking-tight mb-1">Send a message</h2>
-                    <p class="text-sm text-gray-600">Got a question or want to find out more? We'll get back to you.</p>
-                  </div>
-                  <div class="grid sm:grid-cols-2 gap-6">
+                <div id="contact-error" class="hidden mb-5 p-4 border-2 border-red-500 bg-red-50 rounded-xl text-sm text-red-700"></div>
+                <form id="contact-form" class="space-y-5">
+                  <div class="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label class="block text-sm font-semibold mb-2" for="ct-name">Your name</label>
                       <input type="text" id="ct-name" name="name" required placeholder="e.g. James Smith" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
@@ -211,13 +168,13 @@
                       <input type="text" id="ct-contact" name="contact" required placeholder="email@example.com or 07700..." class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                     </div>
                   </div>
-                  <div class="grid sm:grid-cols-2 gap-6">
+                  <div class="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label class="block text-sm font-semibold mb-2" for="ct-postcode">Installation postcode <span class="font-normal text-gray-500">(optional)</span></label>
+                      <label class="block text-sm font-semibold mb-2" for="ct-postcode">Installation postcode <span class="font-normal text-gray-400">(optional)</span></label>
                       <input type="text" id="ct-postcode" name="postcode" placeholder="e.g. SO18 5SJ" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                     </div>
                     <div>
-                      <label class="block text-sm font-semibold mb-2" for="ct-installation">Installation type <span class="font-normal text-gray-500">(optional)</span></label>
+                      <label class="block text-sm font-semibold mb-2" for="ct-installation">Installation type <span class="font-normal text-gray-400">(optional)</span></label>
                       <select id="ct-installation" name="installation_type" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
                         <option value="">Select...</option>
                         <option>Solar Only</option>
@@ -230,9 +187,7 @@
                   <button type="submit" class="w-full px-8 py-4 text-base rounded-xl bg-black text-[#84CC16] hover:bg-gray-900 transition-all font-semibold border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">Send Message</button>
                 </form>
               </div>
-
             </div>
-
           </div>
         </section>
 
@@ -246,8 +201,7 @@
                 <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
-              <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers.</p>
-              <p class="text-xs text-gray-500 mt-3">We work exclusively with trade installers.</p>
+              <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
               <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
@@ -282,25 +236,6 @@
     </div>
   <script>
     (function () {
-      const optionBtns = document.querySelectorAll('.option-btn');
-      const panels = {
-        submit: document.getElementById('panel-submit'),
-        callback: document.getElementById('panel-callback'),
-        contact: document.getElementById('panel-contact'),
-      };
-
-      function selectOption(key) {
-        optionBtns.forEach(btn => {
-          const active = btn.dataset.option === key;
-          btn.classList.toggle('bg-[#84CC16]', active);
-          btn.classList.toggle('bg-white', !active);
-        });
-        Object.entries(panels).forEach(([k, panel]) => panel.classList.toggle('hidden', k !== key));
-      }
-
-      optionBtns.forEach(btn => btn.addEventListener('click', () => selectOption(btn.dataset.option)));
-      selectOption('submit');
-
       // Callback form
       const callbackForm = document.getElementById('callback-form');
       const callbackSuccess = document.getElementById('callback-success');
