@@ -1,6 +1,6 @@
 import { put } from '@vercel/blob';
 import { randomUUID } from 'node:crypto';
-import { ensureSubmissionTable, sql } from './_db.js';
+import { ensureCallbackRequestTable, ensureSubmissionTable, sql } from './_db.js';
 
 function sanitizeFilename(name) {
   return String(name || 'upload')
@@ -286,31 +286,47 @@ export default async function handler(req, res) {
   const submissionId = randomUUID();
 
   try {
-    await ensureSubmissionTable();
-    await sql`
-      INSERT INTO dno_form_submissions (
-        id,
-        form_type,
-        applicant_name,
-        applicant_email,
-        applicant_phone,
-        project_postcode,
-        mpan_number,
-        payload,
-        files
-      )
-      VALUES (
-        ${submissionId},
-        ${submissionPayload.formType},
-        ${applicantName || null},
-        ${applicantEmail || null},
-        ${applicantPhone || null},
-        ${sitePostcode || null},
-        ${siteMpan || null},
-        ${JSON.stringify(submissionPayload)}::jsonb,
-        ${JSON.stringify(blobUploads)}::jsonb
-      )
-    `;
+    if (isCallbackRequest) {
+      await ensureCallbackRequestTable();
+      await sql`
+        INSERT INTO callback_request (
+          id,
+          name,
+          phone
+        )
+        VALUES (
+          ${submissionId},
+          ${applicantName},
+          ${applicantPhone}
+        )
+      `;
+    } else {
+      await ensureSubmissionTable();
+      await sql`
+        INSERT INTO dno_form_submissions (
+          id,
+          form_type,
+          applicant_name,
+          applicant_email,
+          applicant_phone,
+          project_postcode,
+          mpan_number,
+          payload,
+          files
+        )
+        VALUES (
+          ${submissionId},
+          ${submissionPayload.formType},
+          ${applicantName || null},
+          ${applicantEmail || null},
+          ${applicantPhone || null},
+          ${sitePostcode || null},
+          ${siteMpan || null},
+          ${JSON.stringify(submissionPayload)}::jsonb,
+          ${JSON.stringify(blobUploads)}::jsonb
+        )
+      `;
+    }
   } catch (error) {
     console.error('Submission DB save error:', error);
     return res.status(500).json({ error: 'Failed to save your submission. Please try again.' });

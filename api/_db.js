@@ -17,6 +17,7 @@ export const sql = neon(DATABASE_URL);
 let ensuredDraft = false;
 let ensuredSubmissions = false;
 let ensuredPartialCompletions = false;
+let ensuredCallbackRequests = false;
 
 export async function ensureDraftTable() {
   if (ensuredDraft) return;
@@ -69,6 +70,26 @@ export async function ensureSubmissionTable() {
   `;
 
   ensuredSubmissions = true;
+}
+
+export async function ensureCallbackRequestTable() {
+  if (ensuredCallbackRequests) return;
+
+  await sql`
+    CREATE TABLE IF NOT EXISTS callback_request (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL,
+      phone TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+
+  await sql`
+    CREATE INDEX IF NOT EXISTS idx_callback_request_created_at
+    ON callback_request (created_at DESC)
+  `;
+
+  ensuredCallbackRequests = true;
 }
 
 export async function ensurePartialCompletionTable() {
