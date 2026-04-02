@@ -49,6 +49,7 @@ export default async function handler(req, res) {
     formType,
     name,
     email,
+    contact,
     phone,
     postcode,
     systemSize,
@@ -96,9 +97,13 @@ export default async function handler(req, res) {
   } = req.body || {};
 
   const isProjectSubmission = formType === 'dno-project-submission';
+  const isCallbackRequest = formType === 'callback-request';
+  const isContactEnquiry = formType === 'contact-enquiry';
+  const contactValue = (contact || '').trim();
+  const contactLooksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactValue);
   const applicantName = (name || `${installerFirstName || ''} ${installerLastName || ''}`.trim() || installerCompanyName || '').trim();
-  const applicantEmail = (email || installerEmail || customerEmail || '').trim();
-  const applicantPhone = (phone || installerPhone || customerPhone || '').trim();
+  const applicantEmail = (email || installerEmail || customerEmail || (contactLooksLikeEmail ? contactValue : '') || '').trim();
+  const applicantPhone = (phone || installerPhone || customerPhone || (!contactLooksLikeEmail ? contactValue : '') || '').trim();
   const sitePostcode = (postcode || projectPostcode || '').trim();
   const siteMpan = (mpan || mpanNumber || '').trim();
   const generationKw = (systemSize || totalGenerationCapacity || '').trim();
@@ -126,7 +131,15 @@ export default async function handler(req, res) {
     ? `Brand ${batteryBrand || 'Not provided'}, Model ${batteryModel || 'Not provided'}, Total Capacity ${batteryTotalCapacityKwh || 'Not provided'} kWh`
     : '';
 
-  if (!applicantName || !applicantEmail) {
+  if (isCallbackRequest && (!applicantName || !applicantPhone)) {
+    return res.status(400).json({ error: 'Name and phone are required.' });
+  }
+
+  if (isContactEnquiry && (!applicantName || (!applicantEmail && !applicantPhone))) {
+    return res.status(400).json({ error: 'Name and contact details are required.' });
+  }
+
+  if (!isCallbackRequest && !isContactEnquiry && (!applicantName || !applicantEmail)) {
     return res.status(400).json({ error: 'Name and email are required.' });
   }
 
@@ -178,8 +191,9 @@ export default async function handler(req, res) {
       ].join('')
     : [
         row('Name / Company', applicantName),
-        row('Email', `<a href="mailto:${applicantEmail}">${applicantEmail}</a>`),
+        row('Email', applicantEmail ? `<a href="mailto:${applicantEmail}">${applicantEmail}</a>` : ''),
         row('Phone', applicantPhone),
+        row('Contact field (raw)', isContactEnquiry ? contactValue : ''),
         row('Installation postcode', sitePostcode),
         row('System size (kW)', generationKw),
         row('Application type', applicationType),
@@ -209,7 +223,11 @@ export default async function handler(req, res) {
       ].join('');
 
   const sourcePath = isProjectSubmission ? '/dno-project-submission' : '/contact';
-  const subjectPrefix = isProjectSubmission ? 'New DNO Project Submission' : 'New Application';
+  const subjectPrefix = isProjectSubmission
+    ? 'New DNO Project Submission'
+    : isCallbackRequest
+      ? 'New Callback Request'
+      : 'New Application';
 
   let blobUploads = [];
   try {
@@ -301,7 +319,6 @@ export default async function handler(req, res) {
   const internalEmail = {
     sender: { name: 'GridSubmit Website', email: 'submit@gridsubmit.co.uk' },
     to: [{ email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' }],
-    replyTo: { email: applicantEmail, name: applicantName },
     subject: `${subjectPrefix}: ${applicantName} - ${sitePostcode || 'No postcode'} - ${generationKw || '?'} kW`,
     htmlContent: `
       <div style="font-family:system-ui,sans-serif;max-width:680px;margin:0 auto">
@@ -315,6 +332,9 @@ export default async function handler(req, res) {
       </div>
     `,
   };
+  if (applicantEmail) {
+    internalEmail.replyTo = { email: applicantEmail, name: applicantName };
+  }
 
   if (blobUploads.length > 0) {
     const blobLinks = blobUploads
@@ -328,7 +348,7 @@ export default async function handler(req, res) {
 
   const confirmationEmail = {
     sender: { name: 'GridSubmit', email: 'submit@gridsubmit.co.uk' },
-    to: [{ email: applicantEmail, name: applicantName }],
+    to: applicantEmail ? [{ email: applicantEmail, name: applicantName }] : [],
     replyTo: { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
     subject: "We've received your DNO application - GridSubmit",
     htmlContent: `
@@ -355,24 +375,29 @@ export default async function handler(req, res) {
   };
 
   try {
-    const [internalRes, confirmRes] = await Promise.all([
+    const emailRequests = [
       fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
         headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify(internalEmail),
       }),
-      fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify(confirmationEmail),
-      }),
-    ]);
+    ];
+    if (applicantEmail) {
+      emailRequests.push(
+        fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify(confirmationEmail),
+        })
+      );
+    }
+    const [internalRes, confirmRes] = await Promise.all(emailRequests);
 
     if (!internalRes.ok) {
       const err = await internalRes.text();
       throw new Error(`Brevo error (internal): ${err}`);
     }
-    if (!confirmRes.ok) {
+    if (confirmRes && !confirmRes.ok) {
       const err = await confirmRes.text();
       throw new Error(`Brevo error (confirmation): ${err}`);
     }
