@@ -228,6 +228,12 @@ export default async function handler(req, res) {
     : isCallbackRequest
       ? 'New Callback Request'
       : 'New Application';
+  const internalRecipients = isCallbackRequest
+    ? [
+        { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
+        { email: 'kyle@gridsubmit.co.uk', name: 'Kyle' },
+      ]
+    : [{ email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' }];
 
   let blobUploads = [];
   try {
@@ -334,7 +340,7 @@ export default async function handler(req, res) {
 
   const internalEmail = {
     sender: { name: 'GridSubmit Website', email: 'submit@gridsubmit.co.uk' },
-    to: [{ email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' }],
+    to: internalRecipients,
     subject: `${subjectPrefix}: ${applicantName} - ${sitePostcode || 'No postcode'} - ${generationKw || '?'} kW`,
     htmlContent: `
       <div style="font-family:system-ui,sans-serif;max-width:680px;margin:0 auto">
