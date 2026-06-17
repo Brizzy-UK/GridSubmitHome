@@ -28,7 +28,6 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
   <style>
-    /* Custom range slider */
     input[type=range] {
       -webkit-appearance: none;
       appearance: none;
@@ -64,33 +63,36 @@
       cursor: pointer;
       box-shadow: 3px 3px 0px #000;
     }
-    input[type=range]:focus {
-      outline: none;
-    }
-    /* Date input */
+    input[type=range]:focus { outline: none; }
     input[type=date] { color-scheme: light; }
     input[type=date]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.7; }
-    /* Step transitions */
     .step { transition: opacity 0.22s ease, transform 0.22s ease; }
-    /* Type btn selected state */
     .type-btn.selected {
       background-color: #84CC16;
       box-shadow: 1px 1px 0px 0px rgba(0,0,0,1);
       transform: translate(2px, 2px);
     }
-    /* MCS / installed button selected */
     .choice-btn.selected {
       background-color: #84CC16;
       box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
       transform: translate(2px, 2px);
     }
+    #date-reveal {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+    #date-reveal.open {
+      max-height: 140px;
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="font-sans antialiased bg-[#fefce8] text-gray-900">
 
-  <!-- Minimal header — no nav distractions for ad landing page -->
   <header class="sticky top-0 z-50 bg-[#fefce8]/90 backdrop-blur-md border-b-2 border-black">
-    <div class="max-w-xl mx-auto px-4 py-3.5 flex items-center justify-between">
+    <div class="max-w-md mx-auto px-4 py-3.5 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2 group">
         <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
           <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
@@ -104,102 +106,69 @@
     </div>
   </header>
 
-  <main class="max-w-lg mx-auto px-4 py-10 sm:py-14">
+  <main class="max-w-md mx-auto px-4 py-5 sm:py-8">
 
-    <!-- Page headline -->
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-2 bg-[#84CC16] border-2 border-black rounded-full px-4 py-1.5 text-sm font-bold mb-5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-        <iconify-icon icon="solar:bolt-linear"></iconify-icon>
-        DNO Applications, Done For You
-      </div>
-      <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight mb-3">
-        Tell us about<br>your install
-      </h1>
-      <p class="text-gray-600 text-base">Takes under 60 seconds. We handle everything else.</p>
-    </div>
-
-    <!-- Trust stat strip -->
-    <div class="grid grid-cols-3 gap-2.5 mb-8">
-      <div class="text-center bg-white border-2 border-black rounded-xl p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-xl font-bold text-[#84CC16] leading-none mb-1">200+</div>
-        <div class="text-xs text-gray-500">UK installers</div>
-      </div>
-      <div class="text-center bg-white border-2 border-black rounded-xl p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-xl font-bold text-[#84CC16] leading-none mb-1">24h</div>
-        <div class="text-xs text-gray-500">avg. turnaround</div>
-      </div>
-      <div class="text-center bg-white border-2 border-black rounded-xl p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-        <div class="text-xl font-bold text-[#84CC16] leading-none mb-1">G98/99</div>
-        <div class="text-xs text-gray-500">fully covered</div>
-      </div>
-    </div>
-
-    <!-- Form card -->
+    <!-- Form card — title lives inside so nothing pushes it down the page -->
     <div id="form-card" class="bg-white border-2 border-black rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
 
-      <!-- Progress bar -->
-      <div id="progress-area" class="px-6 pt-5 pb-1">
-        <div class="flex items-center gap-1.5 mb-1.5">
-          <div class="h-2 rounded-full bg-black transition-all duration-500 flex-1" id="prog-1"></div>
-          <div class="h-2 rounded-full bg-gray-200 transition-all duration-500 flex-1" id="prog-2"></div>
-          <div class="h-2 rounded-full bg-gray-200 transition-all duration-500 flex-1" id="prog-3"></div>
-          <div class="h-2 rounded-full bg-gray-200 transition-all duration-500 flex-1" id="prog-4"></div>
-          <div class="h-2 rounded-full bg-gray-200 transition-all duration-500 flex-1" id="prog-5"></div>
+      <!-- Card header: title + progress -->
+      <div class="px-6 pt-6 pb-5 border-b-2 border-black">
+        <h1 class="text-2xl font-bold tracking-tight leading-tight mb-4">
+          DNO Applications,<br><span class="text-[#84CC16]">Done For You.</span>
+        </h1>
+        <div id="progress-area">
+          <div class="flex gap-1.5 mb-1.5">
+            <div id="prog-1" class="h-2 flex-1 rounded-full bg-black transition-all duration-500"></div>
+            <div id="prog-2" class="h-2 flex-1 rounded-full bg-gray-200 transition-all duration-500"></div>
+            <div id="prog-3" class="h-2 flex-1 rounded-full bg-gray-200 transition-all duration-500"></div>
+            <div id="prog-4" class="h-2 flex-1 rounded-full bg-gray-200 transition-all duration-500"></div>
+          </div>
+          <p class="text-xs text-gray-400" id="step-counter">Step 1 of 4</p>
         </div>
-        <p class="text-xs text-gray-400" id="step-counter">Step 1 of 5</p>
       </div>
 
       <!-- Steps -->
-      <div class="px-6 pb-6 pt-4">
+      <div class="px-6 pt-5 pb-6">
 
-        <!-- ── Step 1: MCS ─────────────────────── -->
+        <!-- ── Step 1: MCS ───────────────────────── -->
         <div id="step-1" class="step">
-          <div class="mb-6">
-            <h2 class="text-xl font-semibold tracking-tight mb-2">Are you MCS registered?</h2>
-            <div class="flex items-center gap-1.5 text-xs text-gray-500">
-              <iconify-icon icon="solar:verified-check-linear" class="text-[#84CC16] text-base flex-shrink-0"></iconify-icon>
-              Trusted by 200+ MCS-certified installers across the UK
-            </div>
-          </div>
+          <h2 class="text-lg font-semibold tracking-tight mb-4">Are you MCS registered?</h2>
 
-          <div class="grid grid-cols-2 gap-3 mb-4">
-            <button
-              type="button"
-              onclick="selectChoice('mcs','yes',this)"
-              data-value="yes"
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <button type="button" data-value="yes" onclick="selectMCS('yes', this)"
               class="choice-btn flex flex-col items-center gap-2.5 py-6 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
               <iconify-icon icon="solar:medal-ribbons-star-linear" class="text-3xl"></iconify-icon>
               Yes, I'm MCS registered
             </button>
-            <button
-              type="button"
-              onclick="selectChoice('mcs','no',this)"
-              data-value="no"
+            <button type="button" data-value="no" onclick="selectMCS('no', this)"
               class="choice-btn flex flex-col items-center gap-2.5 py-6 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
               <iconify-icon icon="solar:question-circle-linear" class="text-3xl"></iconify-icon>
               No, not yet
             </button>
           </div>
-          <p class="text-xs text-gray-400 text-center leading-relaxed">Not MCS registered? That's okay — we can still submit your DNO application without it.</p>
+
+          <p class="text-xs text-gray-400 text-center leading-relaxed mb-5">
+            Not MCS registered? That's okay — we can still submit your DNO application without it.
+          </p>
+
+          <!-- Testimonial -->
+          <div class="border-t border-gray-100 pt-4">
+            <p class="text-xs text-gray-400 italic leading-relaxed">
+              "Wasn't sure if we qualified — they sorted everything within the hour, no questions asked."
+            </p>
+            <p class="text-xs text-gray-400 font-medium mt-1">— Jamie R., Solar Installer, Somerset</p>
+          </div>
         </div>
 
-        <!-- ── Step 2: Size + Type ──────────────── -->
+        <!-- ── Step 2: Size + Type ───────────────── -->
         <div id="step-2" class="step hidden">
-          <div class="mb-5">
-            <h2 class="text-xl font-semibold tracking-tight mb-2">What size is the install?</h2>
-            <div class="flex items-center gap-1.5 text-xs text-gray-500">
-              <iconify-icon icon="solar:bolt-linear" class="text-[#84CC16] text-base flex-shrink-0"></iconify-icon>
-              We handle G98 &amp; G99 for every system size, large or small
-            </div>
-          </div>
+          <h2 class="text-lg font-semibold tracking-tight mb-5">What size is the install?</h2>
 
-          <!-- kW display -->
           <div class="text-center mb-4">
             <span id="kw-display" class="text-6xl font-bold tracking-tighter">5</span>
             <span class="text-3xl font-semibold text-gray-400 ml-1">kW</span>
           </div>
 
-          <!-- Slider -->
           <div class="mb-6">
             <input type="range" id="kw-slider" min="1" max="100" value="5" oninput="updateKW(this.value)">
             <div class="flex justify-between text-xs text-gray-400 mt-2 font-medium">
@@ -209,8 +178,7 @@
             </div>
           </div>
 
-          <!-- Install type -->
-          <div class="mb-6">
+          <div class="mb-5">
             <p class="text-sm font-semibold mb-3">Install type <span class="font-normal text-gray-400">(select all that apply)</span></p>
             <div class="grid grid-cols-3 gap-2">
               <button type="button" data-type="Solar" onclick="toggleType(this)"
@@ -229,141 +197,142 @@
                 Heat Pump
               </button>
             </div>
-            <p class="text-xs text-red-500 mt-2 hidden" id="type-error">Please select at least one install type to continue.</p>
+            <p class="text-xs text-red-500 mt-2 hidden" id="type-error">Please select at least one install type.</p>
           </div>
 
-          <div class="flex items-center justify-between">
-            <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors flex items-center gap-1">
-              ← Back
-            </button>
+          <div class="flex items-center justify-between mb-5">
+            <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors">← Back</button>
             <button onclick="nextStep2()"
               class="px-6 py-3 bg-black text-[#84CC16] border-2 border-black rounded-xl font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               Continue →
             </button>
           </div>
+
+          <!-- Testimonial -->
+          <div class="border-t border-gray-100 pt-4">
+            <p class="text-xs text-gray-400 italic leading-relaxed">
+              "Handled our 12kW G99 without any fuss. First company that just got on with it."
+            </p>
+            <p class="text-xs text-gray-400 font-medium mt-1">— Dan H., Energy Contractor, Yorkshire</p>
+          </div>
         </div>
 
-        <!-- ── Step 3: Installed? ───────────────── -->
+        <!-- ── Step 3: Timing (merged) ───────────── -->
         <div id="step-3" class="step hidden">
-          <div class="mb-6">
-            <h2 class="text-xl font-semibold tracking-tight mb-2">Has the installation been completed?</h2>
-            <div class="flex items-center gap-1.5 text-xs text-gray-500">
-              <iconify-icon icon="solar:document-check-linear" class="text-[#84CC16] text-base flex-shrink-0"></iconify-icon>
-              500+ DNO applications submitted and approved across the UK
+          <h2 class="text-lg font-semibold tracking-tight mb-4">When is your install?</h2>
+
+          <!-- 4 timing options in 2×2 grid — clicking advances automatically except "installed" -->
+          <div class="grid grid-cols-2 gap-3 mb-3">
+            <button type="button" data-timing="installed" onclick="selectTiming('installed', this)"
+              class="timing-btn flex flex-col items-center gap-2 py-5 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
+              <iconify-icon icon="solar:check-circle-linear" class="text-2xl"></iconify-icon>
+              Already installed
+            </button>
+            <button type="button" data-timing="asap" onclick="selectTiming('asap', this)"
+              class="timing-btn flex flex-col items-center gap-2 py-5 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
+              <iconify-icon icon="solar:bolt-linear" class="text-2xl"></iconify-icon>
+              Installing ASAP
+            </button>
+            <button type="button" data-timing="next-week" onclick="selectTiming('next-week', this)"
+              class="timing-btn flex flex-col items-center gap-2 py-5 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
+              <iconify-icon icon="solar:calendar-linear" class="text-2xl"></iconify-icon>
+              Next week
+            </button>
+            <button type="button" data-timing="this-month" onclick="selectTiming('this-month', this)"
+              class="timing-btn flex flex-col items-center gap-2 py-5 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
+              <iconify-icon icon="solar:calendar-date-linear" class="text-2xl"></iconify-icon>
+              This month
+            </button>
+          </div>
+
+          <!-- Inline date picker — only revealed when "Already installed" is chosen -->
+          <div id="date-reveal">
+            <div class="pt-4">
+              <label class="block text-sm font-semibold mb-2">When was it installed?</label>
+              <input type="date" id="install-date"
+                class="w-full border-2 border-black rounded-xl px-4 py-3.5 text-base font-semibold bg-[#fefce8] focus:outline-none focus:ring-2 focus:ring-[#84CC16] focus:border-[#84CC16] transition-colors">
+              <p class="text-xs text-red-500 mt-1.5 hidden" id="date-error">Please select the installation date.</p>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-3 mb-4">
-            <button
-              type="button"
-              onclick="selectChoice('installed','yes',this)"
-              data-value="yes"
-              class="choice-btn flex flex-col items-center gap-2.5 py-6 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
-              <iconify-icon icon="solar:check-circle-linear" class="text-3xl"></iconify-icon>
-              Yes, it's done
-            </button>
-            <button
-              type="button"
-              onclick="selectChoice('installed','no',this)"
-              data-value="no"
-              class="choice-btn flex flex-col items-center gap-2.5 py-6 px-3 border-2 border-black rounded-xl font-semibold text-sm text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all bg-white">
-              <iconify-icon icon="solar:calendar-linear" class="text-3xl"></iconify-icon>
-              Not yet
-            </button>
-          </div>
-
-          <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors flex items-center gap-1 mt-2">
-            ← Back
-          </button>
-        </div>
-
-        <!-- ── Step 4: Date ────────────────────── -->
-        <div id="step-4" class="step hidden">
-          <div class="mb-6">
-            <h2 class="text-xl font-semibold tracking-tight mb-2" id="date-question">When was it installed?</h2>
-            <div class="flex items-center gap-1.5 text-xs text-gray-500">
-              <iconify-icon icon="solar:clock-circle-linear" class="text-[#84CC16] text-base flex-shrink-0"></iconify-icon>
-              <span id="date-proof">G98 notifications confirmed in as little as 24 hours</span>
-            </div>
-          </div>
-
-          <div class="mb-6">
-            <input
-              type="date"
-              id="install-date"
-              class="w-full border-2 border-black rounded-xl px-4 py-4 text-base font-semibold bg-[#fefce8] focus:outline-none focus:ring-2 focus:ring-[#84CC16] focus:border-[#84CC16] transition-colors">
-            <p class="text-xs text-red-500 mt-2 hidden" id="date-error">Please select a date to continue.</p>
-          </div>
-
-          <div class="flex items-center justify-between">
-            <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors flex items-center gap-1">
-              ← Back
-            </button>
-            <button onclick="nextStep4()"
-              class="px-6 py-3 bg-black text-[#84CC16] border-2 border-black rounded-xl font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+          <div class="flex items-center justify-between mt-4 mb-5">
+            <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors">← Back</button>
+            <button id="timing-continue" onclick="nextStep3Installed()"
+              class="hidden px-6 py-3 bg-black text-[#84CC16] border-2 border-black rounded-xl font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               Continue →
             </button>
           </div>
+
+          <!-- Testimonial -->
+          <div class="border-t border-gray-100 pt-4">
+            <p class="text-xs text-gray-400 italic leading-relaxed">
+              "Submitted on a Friday afternoon, had DNO approval by Monday morning. Best turnaround I've seen in 10 years."
+            </p>
+            <p class="text-xs text-gray-400 font-medium mt-1">— Mark S., MCS Installer, Hampshire</p>
+          </div>
         </div>
 
-        <!-- ── Step 5: Contact ─────────────────── -->
-        <div id="step-5" class="step hidden">
-          <div class="mb-6">
-            <h2 class="text-xl font-semibold tracking-tight mb-2">Where should we reach you?</h2>
-            <div class="flex items-center gap-1.5 text-xs text-gray-500">
-              <iconify-icon icon="solar:lock-linear" class="text-[#84CC16] text-base flex-shrink-0"></iconify-icon>
-              Your details stay private. We'll respond within 2 hours — no spam, ever.
-            </div>
-          </div>
+        <!-- ── Step 4: Contact ───────────────────── -->
+        <div id="step-4" class="step hidden">
+          <h2 class="text-lg font-semibold tracking-tight mb-5">Where should we reach you?</h2>
 
           <div class="space-y-4 mb-5">
             <div>
               <label for="contact-email" class="block text-sm font-semibold mb-1.5">Work email address</label>
-              <input
-                type="email"
-                id="contact-email"
-                placeholder="you@company.co.uk"
+              <input type="email" id="contact-email" placeholder="you@company.co.uk"
                 class="w-full border-2 border-black rounded-xl px-4 py-3.5 text-base bg-[#fefce8] focus:outline-none focus:ring-2 focus:ring-[#84CC16] focus:border-[#84CC16] transition-colors placeholder:text-gray-400">
               <p class="text-xs text-red-500 mt-1 hidden" id="email-error">Please enter a valid email address.</p>
             </div>
             <div>
               <label for="contact-phone" class="block text-sm font-semibold mb-1.5">Contact number</label>
-              <input
-                type="tel"
-                id="contact-phone"
-                placeholder="07700 000000"
+              <input type="tel" id="contact-phone" placeholder="07700 000000"
                 class="w-full border-2 border-black rounded-xl px-4 py-3.5 text-base bg-[#fefce8] focus:outline-none focus:ring-2 focus:ring-[#84CC16] focus:border-[#84CC16] transition-colors placeholder:text-gray-400">
               <p class="text-xs text-red-500 mt-1 hidden" id="phone-error">Please enter a contact number.</p>
             </div>
           </div>
 
-          <button
-            id="submit-btn"
-            onclick="submitForm()"
-            class="w-full py-4 px-6 bg-[#84CC16] text-black border-2 border-black rounded-xl font-bold text-base shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2">
+          <button id="submit-btn" onclick="submitForm()"
+            class="w-full py-4 px-6 bg-[#84CC16] text-black border-2 border-black rounded-xl font-bold text-base shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2 mb-2">
             <iconify-icon icon="solar:bolt-linear"></iconify-icon>
             Get My DNO Application Started
           </button>
-          <p id="submit-error" class="text-xs text-red-500 mt-2 text-center hidden">
+          <p id="submit-error" class="text-xs text-red-500 mb-4 text-center hidden">
             Something went wrong. Please try again or email <a href="mailto:submit@gridsubmit.co.uk" class="underline">submit@gridsubmit.co.uk</a>
           </p>
 
-          <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors flex items-center gap-1 mt-5">
-            ← Back
-          </button>
+          <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors mb-5">← Back</button>
+
+          <!-- Testimonial -->
+          <div class="border-t border-gray-100 pt-4">
+            <p class="text-xs text-gray-400 italic leading-relaxed">
+              "First response within the hour. Export number landed in our inbox the same day — couldn't ask for more."
+            </p>
+            <p class="text-xs text-gray-400 font-medium mt-1">— Rhys B., Solar Installer, Cardiff</p>
+          </div>
         </div>
 
-        <!-- ── Step 6: Success ─────────────────── -->
-        <div id="step-6" class="step hidden">
-          <div class="text-center py-4">
-            <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-full flex items-center justify-center mx-auto mb-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <!-- ── Step 5: Success ───────────────────── -->
+        <div id="step-5" class="step hidden">
+          <div class="text-center py-2">
+            <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <iconify-icon icon="solar:check-circle-bold" class="text-black text-3xl"></iconify-icon>
             </div>
             <h2 class="text-2xl font-bold tracking-tight mb-2">You're in!</h2>
-            <p class="text-gray-600 mb-7 text-sm leading-relaxed">We've received your details and will be in touch within 2 hours to kick off your DNO application.</p>
-            <div class="bg-[#fefce8] border-2 border-black rounded-xl p-4 mb-6 text-left">
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">We've received your details and will be in touch within 2 hours to kick off your DNO application.</p>
+
+            <!-- WhatsApp CTA -->
+            <a href="https://wa.me/447520659733" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2.5 w-full justify-center py-4 px-6 bg-[#25D366] text-white border-2 border-black rounded-xl font-bold text-base shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Chat with us on WhatsApp
+            </a>
+            <p class="text-xs text-gray-400 mb-6">For instant replies — we're usually online within minutes.</p>
+
+            <div class="bg-[#fefce8] border-2 border-black rounded-xl p-4 text-left">
               <p class="text-sm font-bold mb-3">What happens next</p>
-              <ul class="space-y-2.5">
+              <ul class="space-y-2">
                 <li class="flex items-start gap-2 text-sm text-gray-700">
                   <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
                   We review your installation details
@@ -374,50 +343,44 @@
                 </li>
                 <li class="flex items-start gap-2 text-sm text-gray-700">
                   <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
-                  We submit and track progress on your behalf
+                  We submit and track progress with your DNO
                 </li>
                 <li class="flex items-start gap-2 text-sm text-gray-700">
                   <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
-                  You receive confirmation — usually within 24 hours
+                  You get confirmation — usually within 24 hours
                 </li>
               </ul>
             </div>
-            <a href="/" class="text-sm font-semibold text-gray-500 hover:text-black underline underline-offset-2 transition-colors">
-              Return to GridSubmit.co.uk
-            </a>
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- Bottom trust strip -->
-    <div class="mt-8 flex items-center justify-center gap-5 flex-wrap text-xs text-gray-500">
-      <span class="flex items-center gap-1.5">
-        <iconify-icon icon="solar:shield-check-linear" class="text-[#84CC16] text-base"></iconify-icon>
+    <div class="mt-5 flex items-center justify-center gap-5 text-xs text-gray-400">
+      <span class="flex items-center gap-1">
+        <iconify-icon icon="solar:shield-check-linear" class="text-[#84CC16]"></iconify-icon>
         SSL Secured
       </span>
-      <span class="flex items-center gap-1.5">
-        <iconify-icon icon="solar:star-linear" class="text-[#84CC16] text-base"></iconify-icon>
-        5★ rated by installers
-      </span>
-      <span class="flex items-center gap-1.5">
-        <iconify-icon icon="solar:map-point-linear" class="text-[#84CC16] text-base"></iconify-icon>
+      <span class="flex items-center gap-1">
+        <iconify-icon icon="solar:map-point-linear" class="text-[#84CC16]"></iconify-icon>
         UK-based team
+      </span>
+      <span class="flex items-center gap-1">
+        <iconify-icon icon="solar:lock-linear" class="text-[#84CC16]"></iconify-icon>
+        No spam, ever
       </span>
     </div>
 
   </main>
 
   <script>
-    // ── State ──────────────────────────────────────────────────────
     const formData = {
       mcsRegistered: '',
       systemSizeKw: 5,
       installTypes: [],
-      installCompleted: '',
+      installTiming: '',
       installDate: '',
-      plannedInstallDate: '',
       email: '',
       phone: '',
     };
@@ -425,27 +388,31 @@
     let currentStep = 1;
     const stepHistory = [1];
 
-    // ── Progress bar ───────────────────────────────────────────────
-    function updateProgress(step) {
-      for (let i = 1; i <= 5; i++) {
-        const el = document.getElementById(`prog-${i}`);
-        if (el) el.className = `h-2 rounded-full transition-all duration-500 flex-1 ${i <= step ? 'bg-black' : 'bg-gray-200'}`;
+    // ── Meta Pixel step tracking ──────────────────────────────────
+    function trackStep(name) {
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'InstallerFormStep', { step_name: name });
       }
-      const counter = document.getElementById('step-counter');
-      if (counter && step <= 5) counter.textContent = `Step ${step} of 5`;
     }
 
-    // ── Step transition ────────────────────────────────────────────
+    // ── Progress ──────────────────────────────────────────────────
+    function updateProgress(step) {
+      for (let i = 1; i <= 4; i++) {
+        const el = document.getElementById(`prog-${i}`);
+        if (el) el.className = `h-2 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-black' : 'bg-gray-200'}`;
+      }
+      const counter = document.getElementById('step-counter');
+      if (counter && step <= 4) counter.textContent = `Step ${step} of 4`;
+    }
+
+    // ── Transition ────────────────────────────────────────────────
     function goToStep(nextNum, direction) {
       const cur = document.getElementById(`step-${currentStep}`);
       const nxt = document.getElementById(`step-${nextNum}`);
       if (!cur || !nxt) return;
 
-      const outX = direction === 'backward' ? '20px' : '-20px';
-      const inX  = direction === 'backward' ? '-20px' : '20px';
-
       cur.style.opacity = '0';
-      cur.style.transform = `translateX(${outX})`;
+      cur.style.transform = `translateX(${direction === 'backward' ? '20px' : '-20px'})`;
 
       setTimeout(() => {
         cur.classList.add('hidden');
@@ -454,7 +421,7 @@
 
         nxt.classList.remove('hidden');
         nxt.style.opacity = '0';
-        nxt.style.transform = `translateX(${inX})`;
+        nxt.style.transform = `translateX(${direction === 'backward' ? '-20px' : '20px'})`;
 
         requestAnimationFrame(() => requestAnimationFrame(() => {
           nxt.style.opacity = '1';
@@ -467,8 +434,7 @@
         }, 280);
 
         currentStep = nextNum;
-        if (nextNum <= 5) updateProgress(nextNum);
-        // Scroll form top into view on mobile
+        if (nextNum <= 4) updateProgress(nextNum);
         document.getElementById('form-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 200);
     }
@@ -476,42 +442,30 @@
     function goBack() {
       if (stepHistory.length <= 1) return;
       stepHistory.pop();
+
+      // If going back to step 3 and "installed" was picked, reset inline date
       const prev = stepHistory[stepHistory.length - 1];
+      if (prev === 3) {
+        document.getElementById('date-reveal').classList.remove('open');
+        document.getElementById('timing-continue').classList.add('hidden');
+        document.getElementById('install-date').value = '';
+        document.getElementById('date-error').classList.add('hidden');
+        document.querySelectorAll('.timing-btn').forEach(b => b.classList.remove('selected'));
+      }
+
       goToStep(prev, 'backward');
     }
 
-    // ── Step 1 — MCS ──────────────────────────────────────────────
-    function selectChoice(field, value, btn) {
-      formData[field === 'mcs' ? 'mcsRegistered' : 'installCompleted'] = value;
-
-      // Highlight selected button within its step
-      btn.closest('.step').querySelectorAll('.choice-btn').forEach(b => {
-        b.classList.toggle('selected', b === btn);
-      });
-
-      if (field === 'installed') {
-        // Customise step 4 label based on answer
-        const today = new Date().toISOString().split('T')[0];
-        if (value === 'yes') {
-          document.getElementById('date-question').textContent = 'When was it installed?';
-          document.getElementById('date-proof').textContent = 'G98 notifications confirmed in as little as 24 hours';
-          document.getElementById('install-date').max = today;
-          document.getElementById('install-date').removeAttribute('min');
-        } else {
-          document.getElementById('date-question').textContent = 'When do you plan to install?';
-          document.getElementById('date-proof').textContent = 'Submit early — we\'ll file as soon as you\'re ready';
-          document.getElementById('install-date').min = today;
-          document.getElementById('install-date').removeAttribute('max');
-        }
-        document.getElementById('install-date').value = '';
-      }
-
-      const nextStep = field === 'mcs' ? 2 : 4;
-      stepHistory.push(nextStep);
-      setTimeout(() => goToStep(nextStep, 'forward'), 160);
+    // ── Step 1 — MCS ─────────────────────────────────────────────
+    function selectMCS(value, btn) {
+      formData.mcsRegistered = value;
+      document.querySelectorAll('#step-1 .choice-btn').forEach(b => b.classList.toggle('selected', b === btn));
+      trackStep('1_mcs_complete');
+      stepHistory.push(2);
+      setTimeout(() => goToStep(2, 'forward'), 160);
     }
 
-    // ── Step 2 — kW + type ────────────────────────────────────────
+    // ── Step 2 — kW + type ───────────────────────────────────────
     function updateKW(val) {
       formData.systemSizeKw = parseInt(val, 10);
       document.getElementById('kw-display').textContent = val;
@@ -527,9 +481,7 @@
         formData.installTypes.push(type);
         btn.classList.add('selected');
       }
-      if (formData.installTypes.length > 0) {
-        document.getElementById('type-error').classList.add('hidden');
-      }
+      if (formData.installTypes.length > 0) document.getElementById('type-error').classList.add('hidden');
     }
 
     function nextStep2() {
@@ -537,28 +489,49 @@
         document.getElementById('type-error').classList.remove('hidden');
         return;
       }
+      trackStep('2_size_type_complete');
       stepHistory.push(3);
       goToStep(3, 'forward');
     }
 
-    // ── Step 4 — Date ─────────────────────────────────────────────
-    function nextStep4() {
+    // ── Step 3 — Timing ──────────────────────────────────────────
+    function selectTiming(timing, btn) {
+      formData.installTiming = timing;
+
+      document.querySelectorAll('.timing-btn').forEach(b => b.classList.toggle('selected', b === btn));
+
+      if (timing === 'installed') {
+        // Reveal inline date picker
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('install-date').max = today;
+        document.getElementById('date-reveal').classList.add('open');
+        document.getElementById('timing-continue').classList.remove('hidden');
+      } else {
+        // Auto-advance — ASAP, next-week, this-month need no date
+        formData.installDate = '';
+        const labels = { asap: 'ASAP', 'next-week': 'Next week', 'this-month': 'This month' };
+        formData.plannedInstallDate = labels[timing] || timing;
+        trackStep('3_timing_complete');
+        stepHistory.push(4);
+        setTimeout(() => goToStep(4, 'forward'), 160);
+      }
+    }
+
+    function nextStep3Installed() {
       const val = document.getElementById('install-date').value;
       if (!val) {
         document.getElementById('date-error').classList.remove('hidden');
         return;
       }
       document.getElementById('date-error').classList.add('hidden');
-      if (formData.installCompleted === 'yes') {
-        formData.installDate = val;
-      } else {
-        formData.plannedInstallDate = val;
-      }
-      stepHistory.push(5);
-      goToStep(5, 'forward');
+      formData.installDate = val;
+      formData.plannedInstallDate = '';
+      trackStep('3_timing_complete');
+      stepHistory.push(4);
+      goToStep(4, 'forward');
     }
 
-    // ── Step 5 — Submit ───────────────────────────────────────────
+    // ── Step 4 — Submit ──────────────────────────────────────────
     async function submitForm() {
       const email = document.getElementById('contact-email').value.trim();
       const phone = document.getElementById('contact-phone').value.trim();
@@ -571,14 +544,12 @@
       } else {
         document.getElementById('email-error').classList.add('hidden');
       }
-
       if (!phone) {
         document.getElementById('phone-error').classList.remove('hidden');
         ok = false;
       } else {
         document.getElementById('phone-error').classList.add('hidden');
       }
-
       if (!ok) return;
 
       formData.email = email;
@@ -586,15 +557,16 @@
 
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
-      btn.innerHTML = '<iconify-icon icon="solar:loading-linear" class="animate-spin"></iconify-icon> Sending…';
+      btn.innerHTML = '<iconify-icon icon="solar:loading-linear"></iconify-icon> Sending…';
 
+      const isInstalled = formData.installTiming === 'installed';
       const notes = [
         `MCS Registered: ${formData.mcsRegistered === 'yes' ? 'Yes' : 'No'}`,
         `System Size: ${formData.systemSizeKw} kW`,
         `Install Types: ${formData.installTypes.join(', ')}`,
-        `Install Completed: ${formData.installCompleted === 'yes' ? 'Yes' : 'No'}`,
+        `Install Timing: ${formData.installTiming}`,
         formData.installDate        ? `Install Date: ${formData.installDate}` : '',
-        formData.plannedInstallDate ? `Planned Install Date: ${formData.plannedInstallDate}` : '',
+        formData.plannedInstallDate ? `Planned Install: ${formData.plannedInstallDate}` : '',
       ].filter(Boolean).join('\n');
 
       try {
@@ -608,7 +580,7 @@
             systemSize: `${formData.systemSizeKw} kW`,
             installationType: formData.installTypes.join(', '),
             mcsRegistered: formData.mcsRegistered === 'yes' ? 'Yes' : 'No',
-            installCompleted: formData.installCompleted === 'yes' ? 'Yes' : 'No',
+            installCompleted: isInstalled ? 'Yes' : 'No',
             installDate: formData.installDate,
             plannedInstallDate: formData.plannedInstallDate,
             notes,
@@ -620,7 +592,6 @@
           throw new Error(err.error || 'API error');
         }
 
-        // Fire Meta Pixel Lead event
         if (typeof fbq === 'function') {
           fbq('track', 'Lead', {
             content_name: 'Installer Lead Form',
@@ -628,10 +599,9 @@
           });
         }
 
-        // Show success
         document.getElementById('progress-area').style.display = 'none';
-        stepHistory.push(6);
-        goToStep(6, 'forward');
+        stepHistory.push(5);
+        goToStep(5, 'forward');
 
       } catch (err) {
         console.error(err);
@@ -641,7 +611,6 @@
       }
     }
 
-    // ── Init ──────────────────────────────────────────────────────
     updateProgress(1);
   </script>
 
