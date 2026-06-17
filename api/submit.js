@@ -60,6 +60,12 @@ export default async function handler(req, res) {
     notes,
     attachments = [],
 
+    // installer-lead fields
+    mcsRegistered,
+    installCompleted,
+    installDate,
+    plannedInstallDate,
+
     // dno-project-submission fields
     installationType,
     totalGenerationCapacity,
@@ -99,6 +105,7 @@ export default async function handler(req, res) {
   const isProjectSubmission = formType === 'dno-project-submission';
   const isCallbackRequest = formType === 'callback-request';
   const isContactEnquiry = formType === 'contact-enquiry';
+  const isInstallerLead = formType === 'installer-lead';
   const contactValue = (contact || '').trim();
   const contactLooksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactValue);
   const applicantName = (name || `${installerFirstName || ''} ${installerLastName || ''}`.trim() || installerCompanyName || '').trim();
@@ -139,7 +146,11 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Name and contact details are required.' });
   }
 
-  if (!isCallbackRequest && !isContactEnquiry && (!applicantName || !applicantEmail)) {
+  if (isInstallerLead && (!applicantEmail || !applicantPhone)) {
+    return res.status(400).json({ error: 'Email and phone are required.' });
+  }
+
+  if (!isCallbackRequest && !isContactEnquiry && !isInstallerLead && (!applicantName || !applicantEmail)) {
     return res.status(400).json({ error: 'Name and email are required.' });
   }
 
@@ -157,7 +168,19 @@ export default async function handler(req, res) {
       <td style="padding:10px 14px;border:1px solid #e5e7eb;font-size:14px">${value || '<span style="color:#9ca3af">Not provided</span>'}</td>
     </tr>`;
 
-  const internalRows = isProjectSubmission
+  const internalRows = isInstallerLead
+    ? [
+        row('Form type', 'Installer Lead'),
+        row('Email', applicantEmail ? `<a href="mailto:${applicantEmail}">${applicantEmail}</a>` : ''),
+        row('Phone', applicantPhone),
+        row('MCS Registered', mcsRegistered),
+        row('System size', generationKw),
+        row('Install type', installationType),
+        row('Install completed', installCompleted),
+        row('Install date', installDate),
+        row('Planned install date', plannedInstallDate),
+      ].join('')
+    : isProjectSubmission
     ? [
         row('Form type', 'DNO Project Submission'),
         row('Installation type', installationType),
@@ -222,13 +245,15 @@ export default async function handler(req, res) {
         row('Export type', exportType),
       ].join('');
 
-  const sourcePath = isProjectSubmission ? '/dno-project-submission' : '/contact';
+  const sourcePath = isProjectSubmission ? '/dno-project-submission' : isInstallerLead ? '/installer-lead' : '/contact';
   const subjectPrefix = isProjectSubmission
     ? 'New DNO Project Submission'
     : isCallbackRequest
       ? 'New Callback Request'
-      : 'New Application';
-  const internalRecipients = isCallbackRequest
+      : isInstallerLead
+        ? 'New Installer Lead'
+        : 'New Application';
+  const internalRecipients = (isCallbackRequest || isInstallerLead)
     ? [
         { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
         { email: 'kyle@gridsubmit.co.uk', name: 'Kyle' },
@@ -341,7 +366,9 @@ export default async function handler(req, res) {
   const internalEmail = {
     sender: { name: 'GridSubmit Website', email: 'submit@gridsubmit.co.uk' },
     to: internalRecipients,
-    subject: `${subjectPrefix}: ${applicantName} - ${sitePostcode || 'No postcode'} - ${generationKw || '?'} kW`,
+    subject: isInstallerLead
+      ? `${subjectPrefix}: ${applicantEmail} - ${installationType || '?'} - ${generationKw || '?'} kW`
+      : `${subjectPrefix}: ${applicantName} - ${sitePostcode || 'No postcode'} - ${generationKw || '?'} kW`,
     htmlContent: `
       <div style="font-family:system-ui,sans-serif;max-width:680px;margin:0 auto">
         <div style="background:#84CC16;padding:20px 24px;border-radius:8px 8px 0 0;border:2px solid #000;border-bottom:none">
