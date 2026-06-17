@@ -64,8 +64,6 @@
       box-shadow: 3px 3px 0px #000;
     }
     input[type=range]:focus { outline: none; }
-    input[type=date] { color-scheme: light; }
-    input[type=date]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.7; }
     .step { transition: opacity 0.22s ease, transform 0.22s ease; }
     .type-btn.selected {
       background-color: #84CC16;
@@ -76,16 +74,6 @@
       background-color: #84CC16;
       box-shadow: 2px 2px 0px 0px rgba(0,0,0,1);
       transform: translate(2px, 2px);
-    }
-    #date-reveal {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-    }
-    #date-reveal.open {
-      max-height: 140px;
-      opacity: 1;
     }
   </style>
 </head>
@@ -160,26 +148,11 @@
           </div>
         </div>
 
-        <!-- ── Step 2: Size + Type ───────────────── -->
+        <!-- ── Step 2: Type + Size ───────────────── -->
         <div id="step-2" class="step hidden">
-          <h2 class="text-lg font-semibold tracking-tight mb-5">What size is the install?</h2>
-
-          <div class="text-center mb-4">
-            <span id="kw-display" class="text-6xl font-bold tracking-tighter">5</span>
-            <span class="text-3xl font-semibold text-gray-400 ml-1">kW</span>
-          </div>
-
-          <div class="mb-6">
-            <input type="range" id="kw-slider" min="1" max="100" value="5" oninput="updateKW(this.value)">
-            <div class="flex justify-between text-xs text-gray-400 mt-2 font-medium">
-              <span>1 kW</span>
-              <span>50 kW</span>
-              <span>100 kW</span>
-            </div>
-          </div>
+          <h2 class="text-lg font-semibold tracking-tight mb-4">What type of install is it?</h2>
 
           <div class="mb-5">
-            <p class="text-sm font-semibold mb-3">Install type <span class="font-normal text-gray-400">(select all that apply)</span></p>
             <div class="grid grid-cols-3 gap-2">
               <button type="button" data-type="Solar" onclick="toggleType(this)"
                 class="type-btn flex flex-col items-center gap-1.5 py-4 px-2 border-2 border-black rounded-xl text-sm font-semibold transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] bg-white">
@@ -197,7 +170,22 @@
                 Heat Pump
               </button>
             </div>
-            <p class="text-xs text-red-500 mt-2 hidden" id="type-error">Please select at least one install type.</p>
+            <p class="text-xs text-gray-400 mt-2">(Select all that apply)</p>
+            <p class="text-xs text-red-500 mt-1 hidden" id="type-error">Please select at least one install type.</p>
+          </div>
+
+          <div class="border-t border-gray-100 pt-5 mb-5">
+            <p class="text-sm font-semibold mb-4">What size is the install?</p>
+            <div class="text-center mb-4">
+              <span id="kw-display" class="text-6xl font-bold tracking-tighter">5</span>
+              <span class="text-3xl font-semibold text-gray-400 ml-1">kW</span>
+            </div>
+            <input type="range" id="kw-slider" min="1" max="100" value="5" oninput="updateKW(this.value)">
+            <div class="flex justify-between text-xs text-gray-400 mt-2 font-medium">
+              <span>1 kW</span>
+              <span>50 kW</span>
+              <span>100 kW</span>
+            </div>
           </div>
 
           <div class="flex items-center justify-between mb-5">
@@ -245,22 +233,8 @@
             </button>
           </div>
 
-          <!-- Inline date picker — only revealed when "Already installed" is chosen -->
-          <div id="date-reveal">
-            <div class="pt-4">
-              <label class="block text-sm font-semibold mb-2">When was it installed?</label>
-              <input type="date" id="install-date"
-                class="w-full border-2 border-black rounded-xl px-4 py-3.5 text-base font-semibold bg-[#fefce8] focus:outline-none focus:ring-2 focus:ring-[#84CC16] focus:border-[#84CC16] transition-colors">
-              <p class="text-xs text-red-500 mt-1.5 hidden" id="date-error">Please select the installation date.</p>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between mt-4 mb-5">
+          <div class="mt-4 mb-5">
             <button onclick="goBack()" class="text-sm font-semibold text-gray-400 hover:text-black transition-colors">← Back</button>
-            <button id="timing-continue" onclick="nextStep3Installed()"
-              class="hidden px-6 py-3 bg-black text-[#84CC16] border-2 border-black rounded-xl font-semibold text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-              Continue →
-            </button>
           </div>
 
           <!-- Testimonial -->
@@ -380,7 +354,6 @@
       systemSizeKw: 5,
       installTypes: [],
       installTiming: '',
-      installDate: '',
       email: '',
       phone: '',
     };
@@ -442,17 +415,10 @@
     function goBack() {
       if (stepHistory.length <= 1) return;
       stepHistory.pop();
-
-      // If going back to step 3 and "installed" was picked, reset inline date
       const prev = stepHistory[stepHistory.length - 1];
       if (prev === 3) {
-        document.getElementById('date-reveal').classList.remove('open');
-        document.getElementById('timing-continue').classList.add('hidden');
-        document.getElementById('install-date').value = '';
-        document.getElementById('date-error').classList.add('hidden');
         document.querySelectorAll('.timing-btn').forEach(b => b.classList.remove('selected'));
       }
-
       goToStep(prev, 'backward');
     }
 
@@ -497,38 +463,10 @@
     // ── Step 3 — Timing ──────────────────────────────────────────
     function selectTiming(timing, btn) {
       formData.installTiming = timing;
-
       document.querySelectorAll('.timing-btn').forEach(b => b.classList.toggle('selected', b === btn));
-
-      if (timing === 'installed') {
-        // Reveal inline date picker
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('install-date').max = today;
-        document.getElementById('date-reveal').classList.add('open');
-        document.getElementById('timing-continue').classList.remove('hidden');
-      } else {
-        // Auto-advance — ASAP, next-week, this-month need no date
-        formData.installDate = '';
-        const labels = { asap: 'ASAP', 'next-week': 'Next week', 'this-month': 'This month' };
-        formData.plannedInstallDate = labels[timing] || timing;
-        trackStep('3_timing_complete');
-        stepHistory.push(4);
-        setTimeout(() => goToStep(4, 'forward'), 160);
-      }
-    }
-
-    function nextStep3Installed() {
-      const val = document.getElementById('install-date').value;
-      if (!val) {
-        document.getElementById('date-error').classList.remove('hidden');
-        return;
-      }
-      document.getElementById('date-error').classList.add('hidden');
-      formData.installDate = val;
-      formData.plannedInstallDate = '';
       trackStep('3_timing_complete');
       stepHistory.push(4);
-      goToStep(4, 'forward');
+      setTimeout(() => goToStep(4, 'forward'), 160);
     }
 
     // ── Step 4 — Submit ──────────────────────────────────────────
@@ -560,14 +498,13 @@
       btn.innerHTML = '<iconify-icon icon="solar:loading-linear"></iconify-icon> Sending…';
 
       const isInstalled = formData.installTiming === 'installed';
+      const timingLabels = { installed: 'Already installed', asap: 'ASAP', 'next-week': 'Next week', 'this-month': 'This month' };
       const notes = [
         `MCS Registered: ${formData.mcsRegistered === 'yes' ? 'Yes' : 'No'}`,
-        `System Size: ${formData.systemSizeKw} kW`,
         `Install Types: ${formData.installTypes.join(', ')}`,
-        `Install Timing: ${formData.installTiming}`,
-        formData.installDate        ? `Install Date: ${formData.installDate}` : '',
-        formData.plannedInstallDate ? `Planned Install: ${formData.plannedInstallDate}` : '',
-      ].filter(Boolean).join('\n');
+        `System Size: ${formData.systemSizeKw} kW`,
+        `Install Timing: ${timingLabels[formData.installTiming] || formData.installTiming}`,
+      ].join('\n');
 
       try {
         const res = await fetch('/api/submit', {
@@ -581,8 +518,7 @@
             installationType: formData.installTypes.join(', '),
             mcsRegistered: formData.mcsRegistered === 'yes' ? 'Yes' : 'No',
             installCompleted: isInstalled ? 'Yes' : 'No',
-            installDate: formData.installDate,
-            plannedInstallDate: formData.plannedInstallDate,
+            plannedInstallDate: isInstalled ? '' : (timingLabels[formData.installTiming] || ''),
             notes,
           }),
         });
@@ -592,11 +528,14 @@
           throw new Error(err.error || 'API error');
         }
 
+        const data = await res.json();
+
+        // Fire browser pixel with same event_id as CAPI for deduplication
         if (typeof fbq === 'function') {
           fbq('track', 'Lead', {
             content_name: 'Installer Lead Form',
             content_category: formData.installTypes.join(', '),
-          });
+          }, { eventID: data.submissionId });
         }
 
         document.getElementById('progress-area').style.display = 'none';

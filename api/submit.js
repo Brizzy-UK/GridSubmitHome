@@ -1,6 +1,40 @@
 import { put } from '@vercel/blob';
-import { randomUUID } from 'node:crypto';
+import { randomUUID, createHash } from 'node:crypto';
 import { ensureCallbackRequestTable, ensureSubmissionTable, sql } from './_db.js';
+
+function sha256(val) {
+  return createHash('sha256').update(String(val || '').trim().toLowerCase()).digest('hex');
+}
+
+async function fireCapiEvent({ pixelId, accessToken, email, phone, sourceUrl, eventId }) {
+  if (!accessToken || !pixelId) return;
+  const userData = {};
+  if (email) userData.em = sha256(email);
+  if (phone) userData.ph = sha256(phone.replace(/\D/g, ''));
+  try {
+    const res = await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data: [{
+          event_name: 'Lead',
+          event_time: Math.floor(Date.now() / 1000),
+          action_source: 'website',
+          event_source_url: sourceUrl,
+          event_id: eventId,
+          user_data: userData,
+        }],
+        access_token: accessToken,
+      }),
+    });
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Facebook CAPI error:', err);
+    }
+  } catch (err) {
+    console.error('Facebook CAPI request failed:', err);
+  }
+}
 
 function sanitizeFilename(name) {
   return String(name || 'upload')
@@ -381,10 +415,6 @@ export default async function handler(req, res) {
       </div>
     `,
   };
-  if (applicantEmail) {
-    internalEmail.replyTo = { email: applicantEmail, name: applicantName };
-  }
-
   if (blobUploads.length > 0) {
     const blobLinks = blobUploads
       .map((file) => `<a href="${file.url}" target="_blank" rel="noopener noreferrer">${file.name}</a>`)
@@ -395,9 +425,14 @@ export default async function handler(req, res) {
     );
   }
 
+  const displayName = applicantName || applicantEmail || 'there';
+  if (applicantEmail) {
+    internalEmail.replyTo = { email: applicantEmail, name: displayName };
+  }
+
   const confirmationEmail = {
     sender: { name: 'GridSubmit', email: 'submit@gridsubmit.co.uk' },
-    to: applicantEmail ? [{ email: applicantEmail, name: applicantName }] : [],
+    to: applicantEmail ? [{ email: applicantEmail, name: displayName }] : [],
     replyTo: { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
     subject: "We've received your DNO application - GridSubmit",
     htmlContent: `
@@ -406,7 +441,7 @@ export default async function handler(req, res) {
           <h1 style="margin:0;font-size:22px;color:#000;font-weight:700">Application Received</h1>
         </div>
         <div style="background:#fff;padding:30px;border:2px solid #000;border-top:none;border-radius:0 0 8px 8px">
-          <p style="font-size:16px;margin-top:0">Hi ${applicantName},</p>
+          <p style="font-size:16px;margin-top:0">Hi ${displayName},</p>
           <p style="color:#374151;line-height:1.6">Thanks for submitting your application details to GridSubmit. We have received your request and our team will start review shortly.</p>
           <h3 style="font-size:15px;margin-bottom:12px">Your submission summary</h3>
           <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${summaryRows}</table>
@@ -449,6 +484,18 @@ export default async function handler(req, res) {
     if (confirmRes && !confirmRes.ok) {
       const err = await confirmRes.text();
       throw new Error(`Brevo error (confirmation): ${err}`);
+    }
+
+    // Fire Facebook Conversions API (non-blocking — a CAPI failure must not break the response)
+    if (isInstallerLead) {
+      fireCapiEvent({
+        pixelId: process.env.FB_PIXEL_ID || '1566376114909873',
+        accessToken: process.env.FB_ACCESS_TOKEN,
+        email: applicantEmail,
+        phone: applicantPhone,
+        sourceUrl: 'https://www.gridsubmit.co.uk/installer-lead/',
+        eventId: submissionId,
+      });
     }
 
     return res.status(200).json({ success: true, submissionId, files: blobUploads });
