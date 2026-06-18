@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're In — Grid Submit</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="robots" content="noindex">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1566376114909873');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <script>
+    // Fire Lead conversion event — only when arriving from a real form submission
+    // (eid param is the server-generated submissionId, same one sent via CAPI for deduplication)
+    (function () {
+      const eid = new URLSearchParams(window.location.search).get('eid');
+      if (eid && typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'Installer Lead Form' }, { eventID: eid });
+      }
+    })();
+  </script>
+</head>
+<body class="font-sans antialiased bg-[#fefce8] text-gray-900">
+
+  <header class="sticky top-0 z-50 bg-[#fefce8]/90 backdrop-blur-md border-b-2 border-black">
+    <div class="max-w-md mx-auto px-4 py-3.5 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
+          <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+        </div>
+        <span class="text-lg font-semibold tracking-tighter">GridSubmit</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto px-4 py-8 sm:py-12">
+
+    <div class="bg-white border-2 border-black rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-6 sm:p-8">
+
+      <!-- Success icon -->
+      <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-full flex items-center justify-center mb-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <iconify-icon icon="solar:check-circle-bold" class="text-black text-3xl"></iconify-icon>
+      </div>
+
+      <h1 class="text-2xl font-bold tracking-tight mb-2">You're in!</h1>
+      <p class="text-gray-600 text-sm leading-relaxed mb-6">
+        We've received your details and will be in touch within 2 hours to kick off your DNO application.
+      </p>
+
+      <!-- WhatsApp CTA -->
+      <a href="https://wa.me/447520659733" target="_blank" rel="noopener noreferrer"
+        class="flex items-center justify-center gap-2.5 w-full py-4 px-6 bg-[#25D366] text-white border-2 border-black rounded-xl font-bold text-base shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Chat with us on WhatsApp
+      </a>
+      <p class="text-xs text-gray-400 text-center mb-6">For instant replies — we're usually online within minutes.</p>
+
+      <!-- What happens next -->
+      <div class="bg-[#fefce8] border-2 border-black rounded-xl p-4">
+        <p class="text-sm font-bold mb-3">What happens next</p>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2 text-sm text-gray-700">
+            <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
+            We review your installation details
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-700">
+            <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
+            We prepare the correct application (G98 or G99)
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-700">
+            <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
+            We submit and track progress with your DNO
+          </li>
+          <li class="flex items-start gap-2 text-sm text-gray-700">
+            <iconify-icon icon="solar:check-circle-linear" class="text-[#84CC16] mt-0.5 flex-shrink-0 text-base"></iconify-icon>
+            You get confirmation — usually within 24 hours
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="mt-6 text-center">
+      <a href="/" class="text-sm text-gray-400 hover:text-black underline underline-offset-2 transition-colors">
+        Return to GridSubmit.co.uk
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>
