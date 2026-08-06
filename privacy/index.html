@@ -8,36 +8,43 @@
   <link rel="canonical" href="https://www.gridsubmit.co.uk/privacy/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="robots" content="index, follow">
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
   <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
   <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1566376114909873');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
+  <script>
+  // The fbq stub queues calls immediately; fbevents.js itself (~230 KiB) is
+  // only fetched on first interaction, or 1.5s after load, so it stays off the
+  // critical path. Queued events replay once it arrives.
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];
+  var done=0,load=function(){if(done)return;done=1;
+  t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+  ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+  f.addEventListener(ev,load,{once:!0,passive:!0})});
+  f.addEventListener('load',function(){setTimeout(load,1500)})}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1566376114909873');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body class="font-sans antialiased bg-[#fefce8] text-gray-900">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-solar-bolt-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="m5.67 9.914l3.062-4.143c1.979-2.678 2.969-4.017 3.892-3.734s.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363c2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734s-.923-1.925-.923-5.21v-.31c0-1.185 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363c-2.22 0-3.329 0-3.703-.673l-.019-.034c-.354-.683.289-1.552 1.574-3.29Z"/></symbol></svg>
   <div class="min-h-screen flex flex-col">
 
     <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         <a class="flex items-center gap-2 group" href="/">
           <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
-            <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+            <svg class="gs-icon text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg>
           </div>
           <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
         </a>
@@ -173,14 +180,14 @@ src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
         <div class="grid md:grid-cols-4 gap-8 mb-8">
           <div class="md:col-span-1">
             <div class="flex items-center gap-2 mb-4">
-              <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+              <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><svg class="gs-icon text-black text-sm" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg></div>
               <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
             </div>
             <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
-            <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
+            <address class="not-italic text-xs text-gray-500 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
           </div>
           <div>
-            <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+            <h3 class="font-semibold mb-4 tracking-tight">Services</h3>
             <ul class="space-y-2 text-sm text-gray-600">
               <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
               <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
@@ -191,7 +198,7 @@ src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
             </ul>
           </div>
           <div>
-            <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+            <h3 class="font-semibold mb-4 tracking-tight">Company</h3>
             <ul class="space-y-2 text-sm text-gray-600">
               <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
               <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
@@ -199,7 +206,7 @@ src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
             </ul>
           </div>
           <div>
-            <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+            <h3 class="font-semibold mb-4 tracking-tight">Legal</h3>
             <ul class="space-y-2 text-sm text-gray-600">
               <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
               <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>

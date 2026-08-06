@@ -2,8 +2,17 @@
   "name": "gridsubmithome",
   "private": true,
   "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i build/tailwind.src.css -o assets/site.css --minify && node build/rewrite-head.mjs",
+    "build:icons": "node build/inline-icons.mjs",
+    "build": "npm run build:icons && npm run build:css",
+    "watch:css": "tailwindcss -i build/tailwind.src.css -o assets/site.css --watch"
+  },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
     "@vercel/blob": "^1.1.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

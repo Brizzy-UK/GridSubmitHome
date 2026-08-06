@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en" style="overscroll-behavior-x: none;"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,37 +63,44 @@
       }
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
     <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <style>iconify-icon{--icon-stroke-width:1.5px;}iconify-icon svg path,iconify-icon svg circle,iconify-icon svg rect,iconify-icon svg polyline,iconify-icon svg line{stroke-width:var(--icon-stroke-width,1.5)!important;}html{scroll-behavior:smooth;}[id]{scroll-margin-top:6rem;}</style>
+    <style>html{scroll-behavior:smooth;}[id]{scroll-margin-top:6rem;}</style>
   <!-- Meta Pixel Code -->
   <script>
+  // The fbq stub queues calls immediately; fbevents.js itself (~230 KiB) is
+  // only fetched on first interaction, or 1.5s after load, so it stays off the
+  // critical path. Queued events replay once it arrives.
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  n.queue=[];
+  var done=0,load=function(){if(done)return;done=1;
+  t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+  ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+  f.addEventListener(ev,load,{once:!0,passive:!0})});
+  f.addEventListener('load',function(){setTimeout(load,1500)})}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1566376114909873');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
+  <noscript><img height="1" width="1" style="display:none" alt=""
   src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
   </head>
   <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-solar-bolt-circle-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="m9.212 10.174l2.015-1.605c1.303-1.037 1.954-1.556 2.364-1.3s.196 1.05-.229 2.636l-.04.15c-.153.572-.23.858-.095 1.086l.007.012c.14.226.438.306 1.033.465c1.072.287 1.608.43 1.702.804l.004.019c.082.376-.34.712-1.186 1.386l-2.015 1.604c-1.302 1.038-1.953 1.556-2.363 1.3s-.197-1.05.228-2.636l.04-.15c.154-.571.23-.857.096-1.086l-.007-.012c-.14-.225-.438-.305-1.033-.465c-1.072-.287-1.608-.43-1.702-.804l-.004-.019c-.083-.375.34-.712 1.185-1.385Z"/><path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Z"/></g></symbol><symbol id="i-solar-bolt-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="m5.67 9.914l3.062-4.143c1.979-2.678 2.969-4.017 3.892-3.734s.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363c2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734s-.923-1.925-.923-5.21v-.31c0-1.185 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363c-2.22 0-3.329 0-3.703-.673l-.019-.034c-.354-.683.289-1.552 1.574-3.29Z"/></symbol><symbol id="i-solar-chart-square-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" d="M7 18V9m5 9V6m5 12v-5"/></g></symbol><symbol id="i-solar-hamburger-menu-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M20 7H4m16 5H4m16 5H4"/></symbol><symbol id="i-solar-lightbulb-bolt-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 19.5h-5m5 0c0-.713 0-1.07.038-1.307c.123-.763.144-.812.631-1.412c.151-.186.711-.688 1.832-1.692A7.5 7.5 0 1 0 7 15.09c1.12 1.004 1.68 1.505 1.832 1.692c.487.6.508.649.63 1.412c.039.237.039.593.039 1.307m5 0c0 .935 0 1.402-.201 1.75a1.5 1.5 0 0 1-.549.549c-.349.2-.816.2-1.751.2s-1.402 0-1.75-.201a1.5 1.5 0 0 1-.549-.549c-.201-.348-.201-.815-.201-1.75"/><path stroke-linecap="round" stroke-linejoin="round" d="m12.786 8.5l-2.143 3h3l-2.143 3"/></g></symbol><symbol id="i-solar-plug-circle-linear" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m10.013 21.967l-.15.735zm6.021-1.482a.75.75 0 1 0 .66 1.347zm-5.872.747c-4.224-.858-7.412-4.625-7.412-9.149h-1.5c0 5.242 3.696 9.62 8.613 10.62zM2.75 12.083c0-5.16 4.147-9.333 9.25-9.333v-1.5c-5.943 0-10.75 4.856-10.75 10.833zM12 2.75c5.103 0 9.25 4.173 9.25 9.333h1.5C22.75 6.106 17.943 1.25 12 1.25zm.75 17.4v-5.042h-1.5v5.042zm8.5-8.067c0 3.697-2.13 6.89-5.216 8.402l.66 1.347a10.84 10.84 0 0 0 6.056-9.749zM9.863 22.703c1.658.336 2.887-1.085 2.887-2.553h-1.5c0 .759-.58 1.186-1.088 1.082z"/><path stroke="currentColor" stroke-width="1.5" d="M9 11.8a.8.8 0 0 1 .8-.8h4.4a.8.8 0 0 1 .8.8v.2a3 3 0 1 1-6 0z"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M13.5 11V9m-3 2V9"/></g></symbol><symbol id="i-solar-settings-minimalistic-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.843 3.802C9.872 2.601 10.886 2 12 2s2.128.6 4.157 1.802l.686.406c2.029 1.202 3.043 1.803 3.6 2.792c.557.99.557 2.19.557 4.594v.812c0 2.403 0 3.605-.557 4.594s-1.571 1.59-3.6 2.791l-.686.407C14.128 21.399 13.114 22 12 22s-2.128-.6-4.157-1.802l-.686-.407c-2.029-1.2-3.043-1.802-3.6-2.791C3 16.01 3 14.81 3 12.406v-.812C3 9.19 3 7.989 3.557 7s1.571-1.59 3.6-2.792z"/><circle cx="12" cy="12" r="3"/></g></symbol><symbol id="i-solar-socket-linear" viewBox="0 0 24 24"><g fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M12 18v-1.5m0-9V6"/><circle cx="14" cy="12" r="1" fill="currentColor"/><circle cx="10" cy="12" r="1" fill="currentColor"/></g></symbol><symbol id="i-solar-transmission-circle-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M8 9v6m4-6v6m-4-3h5c.932 0 1.398 0 1.765-.152a2 2 0 0 0 1.083-1.083C16 10.398 16 9.932 16 9"/><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10Z"/></g></symbol></svg>
     <div class="min-h-screen flex flex-col">
 
       <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/">
             <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
-              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+              <svg class="gs-icon text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
           </a>
@@ -106,8 +114,8 @@
           </div>
           <div class="flex items-center gap-3">
             <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block" href="/dno-project-submission">Submit an Application</a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+            <button type="button" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false" onclick="const m=document.getElementById('mobile-menu');const open=m.classList.toggle('hidden')===false;this.setAttribute('aria-expanded',String(open));" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <svg class="gs-icon text-xl" aria-hidden="true" focusable="false"><use href="#i-solar-hamburger-menu-linear"></use></svg>
             </button>
           </div>
         </nav>
@@ -135,9 +143,10 @@
         </section>
 
         <section id="operators" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 class="sr-only">The six distribution network operator groups</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:transmission-circle-linear" class="text-4xl mb-4 text-blue-600"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-blue-600" aria-hidden="true" focusable="false"><use href="#i-solar-transmission-circle-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">UK Power Networks</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">UKPN</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">London, South East and East of England</p>
@@ -148,7 +157,7 @@
               <!-- TODO: link to /dno/ukpn once the operator page exists -->
             </div>
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:plug-circle-linear" class="text-4xl mb-4 text-green-600"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-green-600" aria-hidden="true" focusable="false"><use href="#i-solar-plug-circle-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">National Grid Electricity Distribution</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">NGED</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">Midlands, South West and South Wales</p>
@@ -159,7 +168,7 @@
               <!-- TODO: link to /dno/nged once the operator page exists -->
             </div>
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:lightbulb-bolt-linear" class="text-4xl mb-4 text-purple-600"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-purple-600" aria-hidden="true" focusable="false"><use href="#i-solar-lightbulb-bolt-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">Northern Powergrid</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">NPg</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">North East, Yorkshire and North Lincolnshire</p>
@@ -170,7 +179,7 @@
               <!-- TODO: link to /dno/npg once the operator page exists -->
             </div>
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:settings-minimalistic-linear" class="text-4xl mb-4 text-teal-600"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-teal-600" aria-hidden="true" focusable="false"><use href="#i-solar-settings-minimalistic-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">Electricity North West</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">ENWL</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">North West England</p>
@@ -181,7 +190,7 @@
               <!-- TODO: link to /dno/enwl once the operator page exists -->
             </div>
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:socket-linear" class="text-4xl mb-4 text-orange-500"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-orange-500" aria-hidden="true" focusable="false"><use href="#i-solar-socket-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">SP Energy Networks</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">SPEN</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">Merseyside, North Wales, Central and Southern Scotland</p>
@@ -192,7 +201,7 @@
               <!-- TODO: link to /dno/spen once the operator page exists -->
             </div>
             <div class="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:bolt-circle-linear" class="text-4xl mb-4 text-red-600"></iconify-icon>
+              <svg class="gs-icon text-4xl mb-4 text-red-600" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-circle-linear"></use></svg>
               <h3 class="font-semibold text-lg tracking-tight mb-1">SSEN</h3>
               <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">SSEN</p>
               <p class="text-sm text-gray-600 leading-relaxed mb-4">Southern England and North Scotland</p>
@@ -211,7 +220,7 @@
         <section id="turnaround" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div class="bg-white rounded-3xl border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10 md:p-16 max-w-3xl mx-auto text-center">
             <div class="w-16 h-16 bg-[#84CC16] border-2 border-black rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:chart-square-linear" class="text-black text-3xl"></iconify-icon>
+              <svg class="gs-icon text-black text-3xl" aria-hidden="true" focusable="false"><use href="#i-solar-chart-square-linear"></use></svg>
             </div>
             <h2 class="text-3xl font-semibold tracking-tight mb-4">Turnaround times by operator</h2>
             <p class="text-gray-600 leading-relaxed mb-6">We're compiling median approval times per operator from our own submission records. Rather than publish round numbers we can't stand behind, this section stays empty until the sample is large enough to be honest about.</p>
@@ -256,14 +265,14 @@
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><svg class="gs-icon text-black text-sm" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
-              <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
+              <address class="not-italic text-xs text-gray-500 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Services</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
                 <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
@@ -274,7 +283,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Company</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
                 <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
@@ -282,7 +291,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Legal</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
                 <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>

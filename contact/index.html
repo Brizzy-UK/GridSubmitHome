@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en" style="overscroll-behavior-x: none;"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,37 +34,43 @@
       }
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
     <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <style>iconify-icon{--icon-stroke-width:1.5px;}iconify-icon svg path,iconify-icon svg circle,iconify-icon svg rect,iconify-icon svg polyline,iconify-icon svg line{stroke-width:var(--icon-stroke-width,1.5)!important;}</style>
   <!-- Meta Pixel Code -->
   <script>
+  // The fbq stub queues calls immediately; fbevents.js itself (~230 KiB) is
+  // only fetched on first interaction, or 1.5s after load, so it stays off the
+  // critical path. Queued events replay once it arrives.
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  n.queue=[];
+  var done=0,load=function(){if(done)return;done=1;
+  t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+  ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+  f.addEventListener(ev,load,{once:!0,passive:!0})});
+  f.addEventListener('load',function(){setTimeout(load,1500)})}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1566376114909873');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
+  <noscript><img height="1" width="1" style="display:none" alt=""
   src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
   </head>
   <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-solar-bolt-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="m5.67 9.914l3.062-4.143c1.979-2.678 2.969-4.017 3.892-3.734s.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363c2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734s-.923-1.925-.923-5.21v-.31c0-1.185 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363c-2.22 0-3.329 0-3.703-.673l-.019-.034c-.354-.683.289-1.552 1.574-3.29Z"/></symbol><symbol id="i-solar-chat-line-linear" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m13.087 21.388l.645.382zm.542-.916l-.646-.382zm-3.258 0l-.645.382zm.542.916l.646-.382zm-8.532-5.475l.693-.287zm5.409 3.078l-.013.75zm-2.703-.372l-.287.693zm16.532-2.706l.693.287zm-5.409 3.078l-.012-.75zm2.703-.372l.287.693zm.7-15.882l-.392.64zm1.65 1.65l.64-.391zM4.388 2.738l-.392-.64zm-1.651 1.65l-.64-.391zM9.403 19.21l.377-.649zm4.33 2.56l.541-.916l-1.29-.764l-.543.916zm-4.007-.916l.542.916l1.29-.764l-.541-.916zm2.715.152a.52.52 0 0 1-.882 0l-1.291.764c.773 1.307 2.69 1.307 3.464 0zM10.5 2.75h3v-1.5h-3zm10.75 7.75v1h1.5v-1zm-18.5 1v-1h-1.5v1zm-1.5 0c0 1.155 0 2.058.05 2.787c.05.735.153 1.347.388 1.913l1.386-.574c-.147-.352-.233-.782-.278-1.441c-.046-.666-.046-1.51-.046-2.685zm6.553 6.742c-1.256-.022-1.914-.102-2.43-.316L4.8 19.313c.805.334 1.721.408 2.977.43zM1.688 16.2A5.75 5.75 0 0 0 4.8 19.312l.574-1.386a4.25 4.25 0 0 1-2.3-2.3zm19.562-4.7c0 1.175 0 2.019-.046 2.685c-.045.659-.131 1.089-.277 1.441l1.385.574c.235-.566.338-1.178.389-1.913c.05-.729.049-1.632.049-2.787zm-5.027 8.241c1.256-.021 2.172-.095 2.977-.429l-.574-1.386c-.515.214-1.173.294-2.428.316zm4.704-4.115a4.25 4.25 0 0 1-2.3 2.3l.573 1.386a5.75 5.75 0 0 0 3.112-3.112zM13.5 2.75c1.651 0 2.837 0 3.762.089c.914.087 1.495.253 1.959.537l.783-1.279c-.739-.452-1.577-.654-2.6-.752c-1.012-.096-2.282-.095-3.904-.095zm9.25 7.75c0-1.622 0-2.891-.096-3.904c-.097-1.023-.299-1.862-.751-2.6l-1.28.783c.285.464.451 1.045.538 1.96c.088.924.089 2.11.089 3.761zm-3.53-7.124a4.25 4.25 0 0 1 1.404 1.403l1.279-.783a5.75 5.75 0 0 0-1.899-1.899zM10.5 1.25c-1.622 0-2.891 0-3.904.095c-1.023.098-1.862.3-2.6.752l.783 1.28c.464-.285 1.045-.451 1.96-.538c.924-.088 2.11-.089 3.761-.089zM2.75 10.5c0-1.651 0-2.837.089-3.762c.087-.914.253-1.495.537-1.959l-1.279-.783c-.452.738-.654 1.577-.752 2.6C1.25 7.61 1.25 8.878 1.25 10.5zm1.246-8.403a5.75 5.75 0 0 0-1.899 1.899l1.28.783a4.25 4.25 0 0 1 1.402-1.403zm7.02 17.993c-.202-.343-.38-.646-.554-.884a2.2 2.2 0 0 0-.682-.645l-.754 1.297c.047.028.112.078.224.232c.121.166.258.396.476.764zm-3.24-.349c.44.008.718.014.93.037c.198.022.275.054.32.08l.754-1.297a2.2 2.2 0 0 0-.909-.274c-.298-.033-.657-.038-1.069-.045zm6.498 1.113c.218-.367.355-.598.476-.764c.112-.154.177-.204.224-.232l-.754-1.297c-.29.17-.5.395-.682.645c-.173.238-.352.54-.555.884zm1.924-2.612c-.412.007-.771.012-1.069.045c-.311.035-.616.104-.909.274l.754 1.297c.045-.026.122-.058.32-.08c.212-.023.49-.03.93-.037z"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M8 9h8m-8 3.5h5.5"/></g></symbol><symbol id="i-solar-document-add-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="m18.18 8.04l.463-.464a1.966 1.966 0 1 1 2.781 2.78l-.463.464M18.18 8.04s.058.984.927 1.853s1.854.927 1.854.927M18.18 8.04l-4.26 4.26c-.29.288-.434.433-.558.592q-.22.282-.374.606c-.087.182-.151.375-.28.762l-.413 1.24l-.134.401m8.8-5.081l-4.26 4.26c-.29.29-.434.434-.593.558q-.282.22-.606.374c-.182.087-.375.151-.762.28l-1.24.413l-.401.134m0 0l-.401.134a.53.53 0 0 1-.67-.67l.133-.402m.938.938l-.938-.938"/><path stroke-linecap="round" d="M8 13h2.5M8 9h6.5M8 17h1.5M19.828 3.172C18.657 2 16.771 2 13 2h-2C7.229 2 5.343 2 4.172 3.172S3 6.229 3 10v4c0 3.771 0 5.657 1.172 6.828S7.229 22 11 22h2c3.771 0 5.657 0 6.828-1.172c.944-.943 1.127-2.348 1.163-4.828"/></g></symbol><symbol id="i-solar-hamburger-menu-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M20 7H4m16 5H4m16 5H4"/></symbol><symbol id="i-solar-phone-linear" viewBox="0 0 24 24"><path fill="currentColor" d="m16.1 13.359l-.528-.532zm.456-.453l.529.532zm2.417-.317l-.358.66zm1.91 1.039l-.358.659zm.539 3.255l.529.532zm-1.42 1.412l-.53-.531zm-1.326.67l.07.747zm-9.86-4.238l.528-.532zM4.002 5.746l-.749.042zm6.474 1.451l.53.532zm.157-2.654l.6-.449zM9.374 2.86l-.601.45zM6.26 2.575l.53.532zm-1.57 1.56l-.528-.531zm7.372 7.362l.529-.532zm4.567 2.394l.455-.453l-1.058-1.064l-.455.453zm1.985-.643l1.91 1.039l.716-1.318l-1.91-1.038zm2.278 3.103l-1.42 1.413l1.057 1.063l1.42-1.412zm-2.286 1.867c-1.45.136-5.201.015-9.263-4.023l-1.057 1.063c4.432 4.407 8.65 4.623 10.459 4.454zm-9.263-4.023c-3.871-3.85-4.512-7.087-4.592-8.492l-1.498.085c.1 1.768.895 5.356 5.033 9.47zm1.376-6.18l.286-.286L9.95 6.666l-.287.285zm.515-3.921L9.974 2.41l-1.201.899l1.26 1.684zM5.733 2.043l-1.57 1.56l1.058 1.064l1.57-1.56zm4.458 5.44c-.53-.532-.53-.532-.53-.53h-.002l-.003.004a1 1 0 0 0-.127.157c-.054.08-.113.185-.163.318a2.1 2.1 0 0 0-.088 1.071c.134.865.73 2.008 2.256 3.526l1.058-1.064c-1.429-1.42-1.769-2.284-1.832-2.692c-.03-.194.001-.29.01-.312q.009-.02 0-.006a.3.3 0 0 1-.03.039l-.01.01l-.01.009zm1.343 4.546c1.527 1.518 2.676 2.11 3.542 2.242c.443.068.8.014 1.071-.087a1.5 1.5 0 0 0 .42-.236l.05-.045l.007-.006l.003-.003l.001-.002s.002-.001-.527-.533c-.53-.532-.528-.533-.528-.533l.002-.002l.002-.002l.006-.005l.01-.01l.038-.03q.014-.009-.007.002c-.025.009-.123.04-.32.01c-.414-.064-1.284-.404-2.712-1.824zm-1.56-9.62C8.954 1.049 6.95.834 5.733 2.044L6.79 3.107c.532-.529 1.476-.475 1.983.202zM4.752 5.704c-.02-.346.139-.708.469-1.036L4.163 3.604c-.537.534-.96 1.29-.909 2.184zm14.72 12.06c-.274.274-.57.428-.865.455l.139 1.494c.735-.069 1.336-.44 1.784-.885zM11.006 7.73c.985-.979 1.058-2.527.229-3.635l-1.201.899c.403.539.343 1.246-.085 1.673zm9.52 6.558c.817.444.944 1.49.367 2.064l1.058 1.064c1.34-1.333.927-3.557-.71-4.446zm-3.441-.849c.384-.382 1.002-.476 1.53-.19l.716-1.317c-1.084-.59-2.428-.427-3.304.443z"/></symbol></svg>
     <div class="min-h-screen flex flex-col">
 
       <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/">
             <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
-              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+              <svg class="gs-icon text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
           </a>
@@ -77,8 +84,8 @@
           </div>
           <div class="flex items-center gap-3">
             <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block" href="/dno-project-submission">Submit an Application</a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+            <button type="button" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false" onclick="const m=document.getElementById('mobile-menu');const open=m.classList.toggle('hidden')===false;this.setAttribute('aria-expanded',String(open));" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <svg class="gs-icon text-xl" aria-hidden="true" focusable="false"><use href="#i-solar-hamburger-menu-linear"></use></svg>
             </button>
           </div>
         </nav>
@@ -100,7 +107,7 @@
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 md:pt-24 md:pb-14">
           <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">How Can We <span class="text-[#84CC16]">Help?</span></h1>
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">How Can We <span class="text-brand-ink">Help?</span></h1>
             <p class="text-xl text-gray-700 leading-relaxed">Whether you're ready to submit an application, want a quick call, or have a question &mdash; we've made it easy to get in touch.</p>
           </div>
         </section>
@@ -112,7 +119,7 @@
             <!-- Submit a project -->
             <div class="bg-[#84CC16] rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8 flex flex-col">
               <div class="w-12 h-12 bg-white border-2 border-black rounded-xl flex items-center justify-center mb-5">
-                <iconify-icon icon="solar:document-add-linear" class="text-black text-2xl"></iconify-icon>
+                <svg class="gs-icon text-black text-2xl" aria-hidden="true" focusable="false"><use href="#i-solar-document-add-linear"></use></svg>
               </div>
               <h2 class="text-2xl font-semibold tracking-tight mb-2">Submit a project</h2>
               <p class="text-gray-800 text-sm leading-relaxed mb-6 flex-1">Ready to go? Our guided form collects everything we need in 4 steps. Most G98 submissions are confirmed within 24&ndash;48 hours. Works for installers and homeowners designing their own systems.</p>
@@ -122,7 +129,7 @@
             <!-- Request a callback -->
             <div class="bg-white rounded-2xl border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] p-8">
               <div class="w-12 h-12 bg-blue-400 border-2 border-black rounded-xl flex items-center justify-center mb-5">
-                <iconify-icon icon="solar:phone-linear" class="text-black text-2xl"></iconify-icon>
+                <svg class="gs-icon text-black text-2xl" aria-hidden="true" focusable="false"><use href="#i-solar-phone-linear"></use></svg>
               </div>
               <h2 class="text-2xl font-semibold tracking-tight mb-2">Request a callback</h2>
               <p class="text-sm text-gray-600 mb-5">Leave your name and number. We return calls within 30 minutes during business hours.</p>
@@ -156,12 +163,12 @@
             <div class="md:flex md:gap-12">
               <div class="md:w-1/3 mb-8 md:mb-0">
                 <div class="w-12 h-12 bg-purple-400 border-2 border-black rounded-xl flex items-center justify-center mb-5">
-                  <iconify-icon icon="solar:chat-line-linear" class="text-black text-2xl"></iconify-icon>
+                  <svg class="gs-icon text-black text-2xl" aria-hidden="true" focusable="false"><use href="#i-solar-chat-line-linear"></use></svg>
                 </div>
                 <h2 class="text-2xl font-semibold tracking-tight mb-3">Send a message</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">Got a question about the process, pricing, or a specific installation? Fill in the form and we'll get back to you.</p>
                 <div class="border-t-2 border-gray-100 pt-6">
-                  <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Postal address</p>
+                  <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Postal address</p>
                   <address class="not-italic text-sm text-gray-600 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton<br>SO18 5SJ</address>
                 </div>
               </div>
@@ -187,11 +194,11 @@
                   </div>
                   <div class="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label class="block text-sm font-semibold mb-2" for="ct-postcode">Installation postcode <span class="font-normal text-gray-400">(optional)</span></label>
+                      <label class="block text-sm font-semibold mb-2" for="ct-postcode">Installation postcode <span class="font-normal text-gray-500">(optional)</span></label>
                       <input type="text" id="ct-postcode" name="postcode" placeholder="e.g. SO18 5SJ" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow">
                     </div>
                     <div>
-                      <label class="block text-sm font-semibold mb-2" for="ct-installation">Installation type <span class="font-normal text-gray-400">(optional)</span></label>
+                      <label class="block text-sm font-semibold mb-2" for="ct-installation">Installation type <span class="font-normal text-gray-500">(optional)</span></label>
                       <select id="ct-installation" name="installation_type" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm focus:outline-none focus:ring-2 focus:ring-[#84CC16] transition-shadow appearance-none">
                         <option value="">Select...</option>
                         <option>Solar Only</option>
@@ -215,14 +222,14 @@
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><svg class="gs-icon text-black text-sm" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
-              <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
+              <address class="not-italic text-xs text-gray-500 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Services</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
                 <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
@@ -233,7 +240,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Company</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
                 <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
@@ -241,7 +248,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Legal</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
                 <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>

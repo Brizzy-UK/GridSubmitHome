@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The brand lime (#84CC16) only reaches AA contrast on dark backgrounds — on
+   the cream/white surfaces it lands around 1.9:1. This is the same hue taken
+   down to lime-700, for lime *text* sitting on a light background (4.8:1). */
+.text-brand-ink {
+  color: #4d7c0f;
+}
+
+/* Inline SVG icons (previously rendered by the Iconify web component).
+   Sized in em so the existing text-* utilities keep controlling icon size. */
+.gs-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  flex-shrink: 0;
+}

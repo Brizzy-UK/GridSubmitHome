@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en" style="overscroll-behavior-x: none;"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,37 +41,43 @@
       ]
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
     <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <style>iconify-icon{--icon-stroke-width:1.5px;}iconify-icon svg path,iconify-icon svg circle,iconify-icon svg rect,iconify-icon svg polyline,iconify-icon svg line{stroke-width:var(--icon-stroke-width,1.5)!important;}</style>
   <!-- Meta Pixel Code -->
   <script>
+  // The fbq stub queues calls immediately; fbevents.js itself (~230 KiB) is
+  // only fetched on first interaction, or 1.5s after load, so it stays off the
+  // critical path. Queued events replay once it arrives.
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  n.queue=[];
+  var done=0,load=function(){if(done)return;done=1;
+  t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+  ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+  f.addEventListener(ev,load,{once:!0,passive:!0})});
+  f.addEventListener('load',function(){setTimeout(load,1500)})}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1566376114909873');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
+  <noscript><img height="1" width="1" style="display:none" alt=""
   src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
   </head>
   <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-solar-alt-arrow-right-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m9 5l6 7l-6 7"/></symbol><symbol id="i-solar-arrow-left-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 12H4m0 0l6-6m-6 6l6 6"/></symbol><symbol id="i-solar-bolt-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="m5.67 9.914l3.062-4.143c1.979-2.678 2.969-4.017 3.892-3.734s.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363c2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734s-.923-1.925-.923-5.21v-.31c0-1.185 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363c-2.22 0-3.329 0-3.703-.673l-.019-.034c-.354-.683.289-1.552 1.574-3.29Z"/></symbol><symbol id="i-solar-clock-circle-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5"/></g></symbol><symbol id="i-solar-hamburger-menu-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M20 7H4m16 5H4m16 5H4"/></symbol></svg>
     <div class="min-h-screen flex flex-col">
 
       <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/">
             <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
-              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+              <svg class="gs-icon text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
           </a>
@@ -84,8 +91,8 @@
           </div>
           <div class="flex items-center gap-3">
             <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block" href="/dno-project-submission">Submit an Application</a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+            <button type="button" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false" onclick="const m=document.getElementById('mobile-menu');const open=m.classList.toggle('hidden')===false;this.setAttribute('aria-expanded',String(open));" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <svg class="gs-icon text-xl" aria-hidden="true" focusable="false"><use href="#i-solar-hamburger-menu-linear"></use></svg>
             </button>
           </div>
         </nav>
@@ -108,7 +115,7 @@
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-12">
           <div class="max-w-3xl">
             <a href="/blog" class="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-black transition-colors mb-8 group">
-              <iconify-icon icon="solar:arrow-left-linear" class="text-base group-hover:-translate-x-1 transition-transform"></iconify-icon>
+              <svg class="gs-icon text-base group-hover:-translate-x-1 transition-transform" aria-hidden="true" focusable="false"><use href="#i-solar-arrow-left-linear"></use></svg>
               Back to Blog
             </a>
             <div class="flex gap-2 mb-6">
@@ -172,7 +179,7 @@
                   <div class="space-y-4">
                     <div class="flex items-start gap-4 p-4 rounded-xl border-2 border-black bg-[#84CC16]/10">
                       <div class="w-10 h-10 bg-[#84CC16] rounded-lg border-2 border-black flex items-center justify-center shrink-0">
-                        <iconify-icon icon="solar:clock-circle-linear" class="text-black text-lg"></iconify-icon>
+                        <svg class="gs-icon text-black text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-clock-circle-linear"></use></svg>
                       </div>
                       <div>
                         <div class="font-semibold text-sm mb-1">G98 notifications (smaller domestic systems)</div>
@@ -181,7 +188,7 @@
                     </div>
                     <div class="flex items-start gap-4 p-4 rounded-xl border-2 border-black bg-blue-50">
                       <div class="w-10 h-10 bg-blue-400 rounded-lg border-2 border-black flex items-center justify-center shrink-0">
-                        <iconify-icon icon="solar:clock-circle-linear" class="text-black text-lg"></iconify-icon>
+                        <svg class="gs-icon text-black text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-clock-circle-linear"></use></svg>
                       </div>
                       <div>
                         <div class="font-semibold text-sm mb-1">G99 applications</div>
@@ -196,9 +203,9 @@
                   <div class="space-y-4 text-gray-700 leading-relaxed">
                     <p>If your customer's DNO application was submitted some time ago and you haven't received an export number, the most likely causes are:</p>
                     <ul class="space-y-2">
-                      <li class="flex items-start gap-2"><iconify-icon icon="solar:alt-arrow-right-linear" class="text-[#84CC16] text-base mt-1 shrink-0"></iconify-icon>The application hasn't been processed yet &mdash; common with backlogs at certain DNOs</li>
-                      <li class="flex items-start gap-2"><iconify-icon icon="solar:alt-arrow-right-linear" class="text-[#84CC16] text-base mt-1 shrink-0"></iconify-icon>There was an issue with the application that caused a delay</li>
-                      <li class="flex items-start gap-2"><iconify-icon icon="solar:alt-arrow-right-linear" class="text-[#84CC16] text-base mt-1 shrink-0"></iconify-icon>The export number was issued but not passed on correctly</li>
+                      <li class="flex items-start gap-2"><svg class="gs-icon text-[#84CC16] text-base mt-1 shrink-0" aria-hidden="true" focusable="false"><use href="#i-solar-alt-arrow-right-linear"></use></svg>The application hasn't been processed yet &mdash; common with backlogs at certain DNOs</li>
+                      <li class="flex items-start gap-2"><svg class="gs-icon text-[#84CC16] text-base mt-1 shrink-0" aria-hidden="true" focusable="false"><use href="#i-solar-alt-arrow-right-linear"></use></svg>There was an issue with the application that caused a delay</li>
+                      <li class="flex items-start gap-2"><svg class="gs-icon text-[#84CC16] text-base mt-1 shrink-0" aria-hidden="true" focusable="false"><use href="#i-solar-alt-arrow-right-linear"></use></svg>The export number was issued but not passed on correctly</li>
                     </ul>
                     <p>Chasing the DNO directly can be time-consuming. If you used our service, we handle all follow-up on your behalf and will flag any issues before they become a problem for your customer.</p>
                   </div>
@@ -255,14 +262,14 @@
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><svg class="gs-icon text-black text-sm" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
-              <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
+              <address class="not-italic text-xs text-gray-500 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Services</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
                 <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
@@ -273,7 +280,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Company</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
                 <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
@@ -281,7 +288,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Legal</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
                 <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>

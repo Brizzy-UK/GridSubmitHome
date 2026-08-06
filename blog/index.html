@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en" style="overscroll-behavior-x: none;"><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,37 +28,43 @@
       }
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
     <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
     <script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <style>iconify-icon{--icon-stroke-width:1.5px;}iconify-icon svg path,iconify-icon svg circle,iconify-icon svg rect,iconify-icon svg polyline,iconify-icon svg line{stroke-width:var(--icon-stroke-width,1.5)!important;}</style>
   <!-- Meta Pixel Code -->
   <script>
+  // The fbq stub queues calls immediately; fbevents.js itself (~230 KiB) is
+  // only fetched on first interaction, or 1.5s after load, so it stays off the
+  // critical path. Queued events replay once it arrives.
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
+  n.queue=[];
+  var done=0,load=function(){if(done)return;done=1;
+  t=b.createElement(e);t.async=!0;t.src=v;
+  s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};
+  ['pointerdown','keydown','scroll','touchstart'].forEach(function(ev){
+  f.addEventListener(ev,load,{once:!0,passive:!0})});
+  f.addEventListener('load',function(){setTimeout(load,1500)})}
+  (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '1566376114909873');
   fbq('track', 'PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
+  <noscript><img height="1" width="1" style="display:none" alt=""
   src="https://www.facebook.com/tr?id=1566376114909873&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
   </head>
   <body class="font-sans antialiased bg-[#fefce8] text-gray-900" style="overscroll-behavior-x: none;">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-solar-arrow-right-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6"/></symbol><symbol id="i-solar-bolt-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="m5.67 9.914l3.062-4.143c1.979-2.678 2.969-4.017 3.892-3.734s.923 1.925.923 5.21v.31c0 1.185 0 1.777.379 2.148l.02.02c.387.363 1.003.363 2.236.363c2.22 0 3.329 0 3.704.673l.018.034c.354.683-.289 1.553-1.574 3.29l-3.062 4.144c-1.98 2.678-2.969 4.017-3.892 3.734s-.923-1.925-.923-5.21v-.31c0-1.185 0-1.777-.379-2.148l-.02-.02c-.387-.363-1.003-.363-2.236-.363c-2.22 0-3.329 0-3.703-.673l-.019-.034c-.354-.683.289-1.552 1.574-3.29Z"/></symbol><symbol id="i-solar-calendar-linear" viewBox="0 0 24 24"><g fill="none"><path stroke="currentColor" stroke-width="1.5" d="M2 12c0-3.771 0-5.657 1.172-6.828S6.229 4 10 4h4c3.771 0 5.657 0 6.828 1.172S22 8.229 22 12v2c0 3.771 0 5.657-1.172 6.828S17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172S2 17.771 2 14z"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M7 4V2.5M17 4V2.5M2.5 9h19"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></g></symbol><symbol id="i-solar-document-add-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="m18.18 8.04l.463-.464a1.966 1.966 0 1 1 2.781 2.78l-.463.464M18.18 8.04s.058.984.927 1.853s1.854.927 1.854.927M18.18 8.04l-4.26 4.26c-.29.288-.434.433-.558.592q-.22.282-.374.606c-.087.182-.151.375-.28.762l-.413 1.24l-.134.401m8.8-5.081l-4.26 4.26c-.29.29-.434.434-.593.558q-.282.22-.606.374c-.182.087-.375.151-.762.28l-1.24.413l-.401.134m0 0l-.401.134a.53.53 0 0 1-.67-.67l.133-.402m.938.938l-.938-.938"/><path stroke-linecap="round" d="M8 13h2.5M8 9h6.5M8 17h1.5M19.828 3.172C18.657 2 16.771 2 13 2h-2C7.229 2 5.343 2 4.172 3.172S3 6.229 3 10v4c0 3.771 0 5.657 1.172 6.828S7.229 22 11 22h2c3.771 0 5.657 0 6.828-1.172c.944-.943 1.127-2.348 1.163-4.828"/></g></symbol><symbol id="i-solar-hamburger-menu-linear" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M20 7H4m16 5H4m16 5H4"/></symbol><symbol id="i-solar-plug-circle-linear" viewBox="0 0 24 24"><g fill="none"><path fill="currentColor" d="m10.013 21.967l-.15.735zm6.021-1.482a.75.75 0 1 0 .66 1.347zm-5.872.747c-4.224-.858-7.412-4.625-7.412-9.149h-1.5c0 5.242 3.696 9.62 8.613 10.62zM2.75 12.083c0-5.16 4.147-9.333 9.25-9.333v-1.5c-5.943 0-10.75 4.856-10.75 10.833zM12 2.75c5.103 0 9.25 4.173 9.25 9.333h1.5C22.75 6.106 17.943 1.25 12 1.25zm.75 17.4v-5.042h-1.5v5.042zm8.5-8.067c0 3.697-2.13 6.89-5.216 8.402l.66 1.347a10.84 10.84 0 0 0 6.056-9.749zM9.863 22.703c1.658.336 2.887-1.085 2.887-2.553h-1.5c0 .759-.58 1.186-1.088 1.082z"/><path stroke="currentColor" stroke-width="1.5" d="M9 11.8a.8.8 0 0 1 .8-.8h4.4a.8.8 0 0 1 .8.8v.2a3 3 0 1 1-6 0z"/><path stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M13.5 11V9m-3 2V9"/></g></symbol><symbol id="i-solar-tag-linear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.728 16.137c-1.545-1.546-2.318-2.318-2.605-3.321c-.288-1.003-.042-2.068.45-4.197l.283-1.228c.413-1.792.62-2.688 1.233-3.302s1.51-.82 3.302-1.233l1.228-.284c2.13-.491 3.194-.737 4.197-.45c1.003.288 1.775 1.061 3.32 2.606l1.83 1.83C20.657 9.248 22 10.592 22 12.262c0 1.671-1.344 3.015-4.033 5.704c-2.69 2.69-4.034 4.034-5.705 4.034c-1.67 0-3.015-1.344-5.704-4.033z"/><circle cx="8.607" cy="8.879" r="2" transform="rotate(-45 8.607 8.879)"/><path stroke-linecap="round" d="m11.542 18.5l6.979-6.98"/></g></symbol></svg>
     <div class="min-h-screen flex flex-col">
 
       <header class="sticky top-0 z-50 bg-[#fefce8]/80 backdrop-blur-md border-b-2 border-black">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a class="flex items-center gap-2 group" href="/">
             <div class="w-8 h-8 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center group-hover:bg-black transition-colors">
-              <iconify-icon icon="solar:bolt-linear" class="text-black group-hover:text-[#84CC16] text-lg"></iconify-icon>
+              <svg class="gs-icon text-black group-hover:text-[#84CC16] text-lg" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg>
             </div>
             <span class="text-xl font-semibold tracking-tighter">GridSubmit</span>
           </a>
@@ -71,8 +78,8 @@
           </div>
           <div class="flex items-center gap-3">
             <a class="hover:bg-lime-400 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] text-sm font-semibold text-black bg-[#84CC16] border-black border-2 rounded-xl pt-2.5 pr-5 pb-2.5 pl-5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hidden sm:block" href="/dno-project-submission">Submit an Application</a>
-            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+            <button type="button" aria-label="Toggle navigation menu" aria-controls="mobile-menu" aria-expanded="false" onclick="const m=document.getElementById('mobile-menu');const open=m.classList.toggle('hidden')===false;this.setAttribute('aria-expanded',String(open));" class="md:hidden p-2 border-2 border-black rounded-lg bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <svg class="gs-icon text-xl" aria-hidden="true" focusable="false"><use href="#i-solar-hamburger-menu-linear"></use></svg>
             </button>
           </div>
         </nav>
@@ -94,7 +101,7 @@
         <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 md:pt-24 md:pb-16">
           <div class="max-w-3xl">
-            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">DNO Application Guides for <span class="text-[#84CC16]">Solar Installers</span></h1>
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tight leading-[1.1] mb-6">DNO Application Guides for <span class="text-brand-ink">Solar Installers</span></h1>
             <p class="text-xl text-gray-700 leading-relaxed">Practical advice on navigating grid connection, DNO applications, and everything in between.</p>
           </div>
         </section>
@@ -107,7 +114,7 @@
             <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div class="p-2">
                 <div class="bg-[#84CC16] rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
-                  <iconify-icon icon="solar:plug-circle-linear" class="text-black text-6xl"></iconify-icon>
+                  <svg class="gs-icon text-black text-6xl" aria-hidden="true" focusable="false"><use href="#i-solar-plug-circle-linear"></use></svg>
                 </div>
               </div>
               <div class="p-6">
@@ -117,7 +124,7 @@
                 </div>
                 <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">Connecting Solar Panels to the Grid: What Solar Installers Need to Know</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">Every solar install that exports energy needs to be properly connected to the grid &mdash; and that means dealing with the DNO. Here's what installers need to know to get it right and avoid delays.</p>
-                <a href="/blog/connecting-solar-panels-to-the-grid" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+                <a href="/blog/connecting-solar-panels-to-the-grid" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <svg class="gs-icon text-base" aria-hidden="true" focusable="false"><use href="#i-solar-arrow-right-linear"></use></svg></a>
               </div>
             </article>
 
@@ -125,7 +132,7 @@
             <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div class="p-2">
                 <div class="bg-blue-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
-                  <iconify-icon icon="solar:document-add-linear" class="text-black text-6xl"></iconify-icon>
+                  <svg class="gs-icon text-black text-6xl" aria-hidden="true" focusable="false"><use href="#i-solar-document-add-linear"></use></svg>
                 </div>
               </div>
               <div class="p-6">
@@ -135,7 +142,7 @@
                 </div>
                 <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">What Is a DNO Application? A Guide for Solar Installers</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">Not sure what a DNO application involves? This plain-English guide explains what DNO applications are, why they're required for solar, and how the process works.</p>
-                <a href="/blog/what-is-a-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+                <a href="/blog/what-is-a-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <svg class="gs-icon text-base" aria-hidden="true" focusable="false"><use href="#i-solar-arrow-right-linear"></use></svg></a>
               </div>
             </article>
 
@@ -143,7 +150,7 @@
             <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div class="p-2">
                 <div class="bg-purple-400 rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
-                  <iconify-icon icon="solar:tag-linear" class="text-black text-6xl"></iconify-icon>
+                  <svg class="gs-icon text-black text-6xl" aria-hidden="true" focusable="false"><use href="#i-solar-tag-linear"></use></svg>
                 </div>
               </div>
               <div class="p-6">
@@ -153,7 +160,7 @@
                 </div>
                 <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">What Is a Solar Export Number and How Do You Get One?</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">A solar export number is issued by the DNO after grid connection approval. Here's what it is, why your customer needs it, and how to get one quickly.</p>
-                <a href="/blog/what-is-an-export-number-solar" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+                <a href="/blog/what-is-an-export-number-solar" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <svg class="gs-icon text-base" aria-hidden="true" focusable="false"><use href="#i-solar-arrow-right-linear"></use></svg></a>
               </div>
             </article>
 
@@ -161,7 +168,7 @@
             <article class="rounded-2xl border-2 border-black bg-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] overflow-hidden group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
               <div class="p-2">
                 <div class="bg-[#84CC16] rounded-xl border-2 border-black p-6 flex items-center justify-center h-40">
-                  <iconify-icon icon="solar:calendar-linear" class="text-black text-6xl"></iconify-icon>
+                  <svg class="gs-icon text-black text-6xl" aria-hidden="true" focusable="false"><use href="#i-solar-calendar-linear"></use></svg>
                 </div>
               </div>
               <div class="p-6">
@@ -171,7 +178,7 @@
                 </div>
                 <h2 class="text-xl font-semibold tracking-tight mb-3 leading-snug">When to Submit a DNO Application</h2>
                 <p class="text-sm text-gray-600 leading-relaxed mb-6">G99 goes in when the job is won; G98 is notified within 28 days of commissioning. How to schedule around both so the paperwork never holds up an install.</p>
-                <a href="/blog/when-to-submit-a-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+                <a href="/blog/when-to-submit-a-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black group-hover:text-[#84CC16] transition-colors">Read article <svg class="gs-icon text-base" aria-hidden="true" focusable="false"><use href="#i-solar-arrow-right-linear"></use></svg></a>
               </div>
             </article>
 
@@ -185,14 +192,14 @@
           <div class="grid md:grid-cols-4 gap-8 mb-8">
             <div class="md:col-span-1">
               <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><iconify-icon icon="solar:bolt-linear" class="text-black text-sm"></iconify-icon></div>
+                <div class="w-6 h-6 bg-[#84CC16] border-2 border-black rounded flex items-center justify-center"><svg class="gs-icon text-black text-sm" aria-hidden="true" focusable="false"><use href="#i-solar-bolt-linear"></use></svg></div>
                 <span class="font-semibold text-lg tracking-tighter">GridSubmit</span>
               </div>
               <p class="text-sm text-gray-600 leading-relaxed">The UK's specialist DNO application service for solar installers and homeowners.</p>
-              <address class="not-italic text-xs text-gray-400 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
+              <address class="not-italic text-xs text-gray-500 mt-3 leading-relaxed">Flat 15, Heather Court<br>Mountain Ash Close<br>Southampton, SO18 5SJ</address>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Services</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
                 <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
@@ -203,7 +210,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Company</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Company</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/about">About</a></li>
                 <li><a class="hover:text-black transition-colors" href="/blog">Blog</a></li>
@@ -211,7 +218,7 @@
               </ul>
             </div>
             <div>
-              <h4 class="font-semibold mb-4 tracking-tight">Legal</h4>
+              <h3 class="font-semibold mb-4 tracking-tight">Legal</h3>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/privacy">Privacy Policy</a></li>
                 <li><a class="hover:text-black transition-colors" href="/terms">Terms</a></li>
