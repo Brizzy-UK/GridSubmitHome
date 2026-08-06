@@ -7,11 +7,18 @@ a ~1.7 s dependency chain in front of first paint. Both are now build-time.
 **After editing any HTML — especially adding Tailwind classes or icons — run:**
 
 ```sh
-npm run build
+npm run build:site
 ```
 
 Commit the resulting `assets/site.css` along with your HTML changes. If you skip
 this, new utility classes simply won't have any CSS behind them.
+
+> **Never name a script `build` or `vercel-build`.** Vercel auto-runs either one
+> and then looks for a `public/` output directory, which this repo doesn't have —
+> the deploy fails with *"No Output Directory named public found"*. With no such
+> script, Vercel serves the repo root statically and picks up `/api` as functions,
+> which is what we want. That also means **the build only ever runs locally**, so
+> `assets/site.css` has to be committed.
 
 ## What each script does
 

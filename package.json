@@ -2,10 +2,11 @@
   "name": "gridsubmithome",
   "private": true,
   "type": "module",
+  "_comment": "No script may be named 'build' or 'vercel-build': Vercel auto-runs those and then demands an output directory, which breaks this repo's zero-config static deploy from the root. Run build:site locally and commit assets/site.css.",
   "scripts": {
     "build:css": "tailwindcss -i build/tailwind.src.css -o assets/site.css --minify && node build/rewrite-head.mjs",
     "build:icons": "node build/inline-icons.mjs",
-    "build": "npm run build:icons && npm run build:css",
+    "build:site": "npm run build:icons && npm run build:css",
     "watch:css": "tailwindcss -i build/tailwind.src.css -o assets/site.css --watch"
   },
   "dependencies": {
