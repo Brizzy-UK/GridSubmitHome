@@ -407,45 +407,106 @@
 
         <!-- What a DNO Application Involves -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-          <div class="max-w-3xl mx-auto">
+          <div class="max-w-3xl mb-12">
             <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-6">What a DNO Application Involves</h2>
-            <p class="text-xl text-gray-600 leading-relaxed mb-12">Every solar system that connects to the grid has to be registered with the local distribution network operator. What that means in practice depends on the system.</p>
+            <p class="text-xl text-gray-600 leading-relaxed">Every solar system that connects to the grid has to be registered with the local distribution network operator. What that means in practice depends on the system.</p>
+          </div>
 
-            <h3 class="text-2xl font-semibold tracking-tight mb-4">G98 or G99</h3>
-            <div class="space-y-4 text-gray-700 leading-relaxed mb-6">
-              <p>Systems up to 16A per phase &mdash; around 3.68kW single phase, 11.04kW three phase &mdash; fall under G98. That's a notification: you install, commission, and tell the network operator within 28 days.</p>
-              <p>Anything above that is G99. That's an application, and you don't install until it's approved. Get the judgement wrong and you either delay a job that didn't need delaying, or commission a system the DNO hasn't agreed to.</p>
-              <p>Batteries complicate it. A battery counts as generation, so a modest solar array with storage attached often lands in G99 when the panels alone wouldn't.</p>
+          <!-- Bento grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- G98 or G99 -->
+            <div class="lg:col-span-7 p-8 rounded-2xl border-2 border-black bg-[#fefce8] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <h3 class="text-2xl font-semibold tracking-tight mb-6">G98 or G99</h3>
+
+              <div class="grid sm:grid-cols-2 gap-4 mb-6">
+                <div class="p-4 rounded-xl border-2 border-black bg-white">
+                  <span class="inline-block px-2 py-1 bg-[#84CC16] border border-black rounded text-xs font-bold mb-3">G98</span>
+                  <div class="text-2xl font-semibold tracking-tighter leading-none mb-1">&le; 16A</div>
+                  <p class="text-xs text-gray-500 leading-snug">per phase &middot; notify within 28 days</p>
+                </div>
+                <div class="p-4 rounded-xl border-2 border-black bg-white">
+                  <span class="inline-block px-2 py-1 bg-blue-400 border border-black rounded text-xs font-bold mb-3">G99</span>
+                  <div class="text-2xl font-semibold tracking-tighter leading-none mb-1">&gt; 16A</div>
+                  <p class="text-xs text-gray-500 leading-snug">per phase &middot; approval before install</p>
+                </div>
+              </div>
+
+              <div class="space-y-4 text-gray-700 leading-relaxed">
+                <p>Systems up to 16A per phase &mdash; around 3.68kW single phase, 11.04kW three phase &mdash; fall under G98. That's a notification: you install, commission, and tell the network operator within 28 days.</p>
+                <p>Anything above that is G99. That's an application, and you don't install until it's approved. Get the judgement wrong and you either delay a job that didn't need delaying, or commission a system the DNO hasn't agreed to.</p>
+              </div>
+
+              <div class="mt-6 p-4 rounded-xl border-2 border-black bg-white flex items-start gap-3">
+                <iconify-icon icon="solar:battery-charge-linear" class="text-[#84CC16] text-2xl mt-0.5 shrink-0"></iconify-icon>
+                <p class="text-sm text-gray-700 leading-relaxed">Batteries complicate it. A battery counts as generation, so a modest solar array with storage attached often lands in G99 when the panels alone wouldn't.</p>
+              </div>
+
+              <a href="/solar-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mt-auto pt-6">Full G98 vs G99 breakdown <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
             </div>
-            <a href="/solar-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mb-12">Full G98 vs G99 breakdown <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
 
-            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Six operators, six processes</h3>
-            <div class="space-y-4 text-gray-700 leading-relaxed mb-6">
-              <p>National Grid, UK Power Networks, SSEN, SP Energy Networks, Electricity North West and Northern Powergrid each run their own submission route, their own document requirements and their own response patterns. Which one you deal with is set by geography &mdash; the first two digits of the MPAN identify it.</p>
-            </div>
-            <a href="/dno" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mb-12">Turnaround times by operator <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+            <!-- Six operators -->
+            <div class="lg:col-span-5 p-8 rounded-2xl border-2 border-black bg-[#fefce8] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <h3 class="text-2xl font-semibold tracking-tight mb-6">Six operators, six processes</h3>
 
-            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Where applications fall over</h3>
-            <p class="text-gray-700 leading-relaxed mb-6">Most rejections have nothing to do with the quality of the install:</p>
-            <ul class="space-y-3 mb-6">
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">A superseded inverter type test reference</span></li>
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">The wrong form for the phase configuration</span></li>
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Export limitation asserted without the G100 evidence behind it</span></li>
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Existing generation on site not declared</span></li>
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">A missing single-line diagram on a <a href="/g99-application" class="font-semibold text-black underline decoration-2 underline-offset-2">G99</a></span></li>
-              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Queries left unanswered until the application drops out of the queue</span></li>
-            </ul>
-            <p class="text-gray-700 leading-relaxed mb-12">None are difficult. All are easy to make at seven in the evening with nine other things outstanding.</p>
+              <div class="grid grid-cols-3 gap-2 mb-6">
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:transmission-circle-linear" class="text-2xl text-blue-600"></iconify-icon><span class="text-[10px] font-bold mt-1">UKPN</span></div>
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:plug-circle-linear" class="text-2xl text-green-600"></iconify-icon><span class="text-[10px] font-bold mt-1">NGED</span></div>
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:bolt-circle-linear" class="text-2xl text-red-600"></iconify-icon><span class="text-[10px] font-bold mt-1">SSEN</span></div>
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:socket-linear" class="text-2xl text-orange-500"></iconify-icon><span class="text-[10px] font-bold mt-1">SPEN</span></div>
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:settings-minimalistic-linear" class="text-2xl text-teal-600"></iconify-icon><span class="text-[10px] font-bold mt-1">ENWL</span></div>
+                <div class="aspect-square rounded-xl border-2 border-black bg-white flex flex-col items-center justify-center text-center p-1"><iconify-icon icon="solar:lightbulb-bolt-linear" class="text-2xl text-purple-600"></iconify-icon><span class="text-[10px] font-bold mt-1">NPg</span></div>
+              </div>
 
-            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Approval isn't the finish line</h3>
-            <div class="space-y-4 text-gray-700 leading-relaxed">
-              <p>The approval and the export MPAN are separate. Your customer can't register for the Smart Export Guarantee without the export MPAN, and it doesn't always arrive on its own. Until it does, they're exporting for free &mdash; which is when they ring you.</p>
+              <div class="space-y-4 text-gray-700 leading-relaxed">
+                <p>National Grid, UK Power Networks, SSEN, SP Energy Networks, Electricity North West and Northern Powergrid each run their own submission route, their own document requirements and their own response patterns. Which one you deal with is set by geography &mdash; the first two digits of the MPAN identify it.</p>
+              </div>
+
+              <a href="/dno" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mt-auto pt-6">Turnaround times by operator <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
             </div>
 
-            <div class="mt-10 p-6 rounded-2xl border-2 border-black bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <p class="font-semibold mb-4">We handle all of it &mdash; form selection, submission, query handling, approval and export MPAN retrieval.</p>
-              <a href="/dno-application-support" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">See what's included</a>
+            <!-- Where applications fall over -->
+            <div class="lg:col-span-7 p-8 rounded-2xl border-2 border-black bg-[#fefce8] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <h3 class="text-2xl font-semibold tracking-tight mb-4">Where applications fall over</h3>
+              <p class="text-gray-700 leading-relaxed mb-6">Most rejections have nothing to do with the quality of the install:</p>
+              <ul class="grid sm:grid-cols-2 gap-3 mb-6">
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">A superseded inverter type test reference</span></li>
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">The wrong form for the phase configuration</span></li>
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">Export limitation asserted without the G100 evidence behind it</span></li>
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">Existing generation on site not declared</span></li>
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">A missing single-line diagram on a <a href="/g99-application" class="font-semibold text-black underline decoration-2 underline-offset-2">G99</a></span></li>
+                <li class="flex items-start gap-2 p-3 rounded-xl border-2 border-black bg-white"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-lg mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-snug">Queries left unanswered until the application drops out of the queue</span></li>
+              </ul>
+              <p class="text-gray-700 leading-relaxed mt-auto">None are difficult. All are easy to make at seven in the evening with nine other things outstanding.</p>
             </div>
+
+            <!-- Approval isn't the finish line -->
+            <div class="lg:col-span-5 p-8 rounded-2xl border-2 border-black bg-blue-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col">
+              <h3 class="text-2xl font-semibold tracking-tight mb-6">Approval isn't the finish line</h3>
+
+              <div class="space-y-3 mb-6">
+                <div class="p-4 rounded-xl border-2 border-black bg-white flex items-center gap-3">
+                  <div class="w-10 h-10 bg-[#84CC16] rounded-lg border-2 border-black flex items-center justify-center shrink-0"><iconify-icon icon="solar:check-circle-linear" class="text-black text-lg"></iconify-icon></div>
+                  <div><div class="font-semibold text-sm">DNO approval</div><div class="text-xs text-gray-500">The connection is permitted</div></div>
+                </div>
+                <div class="flex justify-center"><span class="px-3 py-1 bg-black text-white rounded-full text-xs font-bold">SEPARATE</span></div>
+                <div class="p-4 rounded-xl border-2 border-black bg-white flex items-center gap-3">
+                  <div class="w-10 h-10 bg-orange-400 rounded-lg border-2 border-black flex items-center justify-center shrink-0"><iconify-icon icon="solar:tag-linear" class="text-black text-lg"></iconify-icon></div>
+                  <div><div class="font-semibold text-sm">Export MPAN</div><div class="text-xs text-gray-500">Needed to get paid for export</div></div>
+                </div>
+              </div>
+
+              <div class="space-y-4 text-gray-700 leading-relaxed mt-auto">
+                <p>The approval and the export MPAN are separate. Your customer can't register for the Smart Export Guarantee without the export MPAN, and it doesn't always arrive on its own. Until it does, they're exporting for free &mdash; which is when they ring you.</p>
+              </div>
+            </div>
+
+            <!-- CTA bar -->
+            <div class="lg:col-span-12 p-8 rounded-2xl border-2 border-black bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <p class="font-semibold text-lg max-w-2xl">We handle all of it &mdash; form selection, submission, query handling, approval and export MPAN retrieval.</p>
+              <a href="/dno-application-support" class="inline-block shrink-0 px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all text-center">See what's included</a>
+            </div>
+
           </div>
         </section>
 
