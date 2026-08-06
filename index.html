@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DNO Application Service for Solar Installers | Grid Submit</title>
-    <meta name="description" content="Specialist DNO application service for solar installers. G98 notifications, G99 applications, solar grid connection, and export MPAN retrieval handled for you.">
+    <meta name="description" content="UK DNO application service for solar installers. We prepare, submit and chase G98 and G99 applications with every network operator, and retrieve your export MPAN. Flat fee per job.">
     <link rel="canonical" href="https://www.gridsubmit.co.uk/">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <!-- Open Graph -->
@@ -55,11 +55,71 @@
             "@type": "OfferCatalog",
             "name": "DNO Application Services",
             "itemListElement": [
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "G98 DNO Notification"}},
-              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "G99 DNO Application"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "G98 DNO Notification", "url": "https://www.gridsubmit.co.uk/g98-notification/"}},
+              {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "G99 DNO Application", "url": "https://www.gridsubmit.co.uk/g99-application/"}},
               {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Export MPAN Retrieval"}}
             ]
-          }
+          },
+          "hasPart": [
+            {"@type": "Service", "name": "DNO Application Support", "url": "https://www.gridsubmit.co.uk/dno-application-support/"},
+            {"@type": "Service", "name": "Solar DNO Application", "url": "https://www.gridsubmit.co.uk/solar-dno-application/"},
+            {"@type": "Service", "name": "G99 Application Service", "url": "https://www.gridsubmit.co.uk/g99-application/"},
+            {"@type": "Service", "name": "G98 Notification Service", "url": "https://www.gridsubmit.co.uk/g98-notification/"}
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.gridsubmit.co.uk/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is a DNO application?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A DNO application is how a solar system gets registered with the local distribution network operator that owns the cables serving the property. Depending on size it is either a G98 notification, which you send after commissioning, or a G99 application, which has to be approved before you install."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does DNO approval take?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "G98 has no waiting period at all — you notify within 28 days of commissioning. G99 gives the network operator a statutory window to respond, commonly up to 45 working days for a standard distributed generation application. Fast-tracked smaller Type A systems often come back sooner, and constrained networks or sites needing reinforcement take longer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need a DNO application for solar panels?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, for any grid-connected system. The route depends on inverter output per phase, not panel capacity. Up to 16A per phase — roughly 3.68kW single phase or 11.04kW three phase — is a G98 notification. Above that is a G99 application. Adding a battery usually pushes a system into G99 because storage counts as generation."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "When should I submit a DNO application?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For G99, at the point the job is won — not the week before the scaffold arrives. The operator's assessment window runs independently of your schedule, and installing ahead of approval risks having to modify a commissioned system if conditions are imposed. For G98 the constraint is the 28 day window after commissioning."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How much does a DNO application cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The network operator does not charge for G98 notifications or straightforward G99 applications. Costs arise only where network reinforcement, a witness test or other admin charges are required. Our own fee is flat per application, priced separately for G98 and G99 because the work involved is materially different."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who is my DNO?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It is set by geography, not by who supplies the electricity. There are six distribution network operator groups across Great Britain, and the first two digits of the MPAN identify which one covers the site."
+              }
+            }
+          ]
         }
       ]
     }
@@ -156,7 +216,7 @@
                 <span class="block text-[#84CC16]">Done for you.</span>
               </h1>
               <p class="text-xl text-gray-700 mb-8 leading-relaxed max-w-lg">
-                We handle DNO solar application submissions for solar installers across the UK. No back-and-forth with your DNO. No delays. Just approvals.
+                We prepare, submit and chase DNO applications for solar installers across the UK &mdash; <a href="/g98-notification" class="font-semibold text-black underline decoration-2 underline-offset-2 hover:text-[#84CC16] transition-colors">G98 notifications</a>, <a href="/g99-application" class="font-semibold text-black underline decoration-2 underline-offset-2 hover:text-[#84CC16] transition-colors">G99 applications</a> and export MPAN retrieval. No portals. No back-and-forth. Just approvals.
               </p>
               <div class="flex gap-4 flex-wrap">
                 <a class="hover:bg-gray-800 transition-all hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] text-base font-semibold text-[#84CC16] bg-black border-black border-2 rounded-xl pt-4 pr-8 pb-4 pl-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" href="/dno-project-submission">Submit a DNO Application</a>
@@ -256,7 +316,7 @@
         <!-- How It Works -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-16 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
           <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">Three Steps to Grid Connection</h2>
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">How the DNO Application Process Works</h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">A seamless process designed to keep your installation teams moving.</p>
           </div>
           <div class="grid md:grid-cols-3 gap-8">
@@ -276,7 +336,7 @@
                 </div>
                 <h3 class="font-semibold tracking-tight text-lg">We Prepare &amp; Submit</h3>
               </div>
-              <p class="text-sm text-gray-700 leading-relaxed">We complete the DNO solar application on your behalf, selecting the correct form for your network operator.</p>
+              <p class="text-sm text-gray-700 leading-relaxed">We complete <a href="/solar-dno-application" class="font-semibold text-black underline decoration-2 underline-offset-2 hover:text-[#84CC16] transition-colors">the DNO application</a> on your behalf, selecting the correct form for your network operator.</p>
             </div>
             <div class="p-6 rounded-xl border-2 border-black bg-purple-50 relative z-10">
               <div class="flex items-center gap-3 mb-4">
@@ -297,13 +357,14 @@
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">Six reasons installers hand their DNO applications to us.</p>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-[#84CC16]/10 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <a href="/dno-application-support" class="block p-8 rounded-2xl border-2 border-black bg-white hover:bg-[#84CC16]/10 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div class="w-14 h-14 bg-[#84CC16] rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
                 <iconify-icon icon="solar:clock-circle-linear" class="text-black text-3xl"></iconify-icon>
               </div>
               <h3 class="text-xl font-semibold tracking-tight mb-3">Save 2&ndash;4 hours per job</h3>
-              <p class="text-gray-600 leading-relaxed text-sm">No more wrestling with DNO portals and technical forms. Get that time back on site.</p>
-            </div>
+              <p class="text-gray-600 leading-relaxed text-sm mb-3">No more wrestling with DNO portals and technical forms. Get that time back on site.</p>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:gap-2 transition-all">What our support covers <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></span>
+            </a>
             <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-blue-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div class="w-14 h-14 bg-blue-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
                 <iconify-icon icon="solar:shield-check-linear" class="text-black text-3xl"></iconify-icon>
@@ -318,26 +379,72 @@
               <h3 class="text-xl font-semibold tracking-tight mb-3">We chase the DNO for you</h3>
               <p class="text-gray-600 leading-relaxed text-sm">No more waiting on hold or chasing for updates. We handle all DNO communication.</p>
             </div>
-            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-orange-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <a href="/g99-application" class="block p-8 rounded-2xl border-2 border-black bg-white hover:bg-orange-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div class="w-14 h-14 bg-orange-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
                 <iconify-icon icon="solar:document-add-linear" class="text-black text-3xl"></iconify-icon>
               </div>
               <h3 class="text-xl font-semibold tracking-tight mb-3">G98 &amp; G99 covered</h3>
-              <p class="text-gray-600 leading-relaxed text-sm">From small domestic notifications to full commercial applications &mdash; we handle both.</p>
-            </div>
-            <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-teal-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <p class="text-gray-600 leading-relaxed text-sm mb-3">From small domestic notifications to full commercial applications &mdash; we handle both.</p>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:gap-2 transition-all">G99 applications explained <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></span>
+            </a>
+            <a href="/dno" class="block p-8 rounded-2xl border-2 border-black bg-white hover:bg-teal-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div class="w-14 h-14 bg-teal-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
                 <iconify-icon icon="solar:map-linear" class="text-black text-3xl"></iconify-icon>
               </div>
               <h3 class="text-xl font-semibold tracking-tight mb-3">All UK DNOs</h3>
-              <p class="text-gray-600 leading-relaxed text-sm">National Grid, UKPN, SSEN, SP Energy, ENW, Northern Powergrid and more.</p>
-            </div>
+              <p class="text-gray-600 leading-relaxed text-sm mb-3">National Grid, UKPN, SSEN, SP Energy, ENW, Northern Powergrid and more.</p>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-black group-hover:gap-2 transition-all">Find your network operator <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></span>
+            </a>
             <div class="p-8 rounded-2xl border-2 border-black bg-white hover:bg-green-50 transition-colors group shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
               <div class="w-14 h-14 bg-green-400 rounded-xl flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border-2 border-black">
                 <iconify-icon icon="solar:tag-linear" class="text-black text-3xl"></iconify-icon>
               </div>
               <h3 class="text-xl font-semibold tracking-tight mb-3">Export number included</h3>
               <p class="text-gray-600 leading-relaxed text-sm">We retrieve your export number as soon as it's issued. Your customer can register for SEG without delay.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- What a DNO Application Involves -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 bg-white rounded-3xl my-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+          <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-6">What a DNO Application Involves</h2>
+            <p class="text-xl text-gray-600 leading-relaxed mb-12">Every solar system that connects to the grid has to be registered with the local distribution network operator. What that means in practice depends on the system.</p>
+
+            <h3 class="text-2xl font-semibold tracking-tight mb-4">G98 or G99</h3>
+            <div class="space-y-4 text-gray-700 leading-relaxed mb-6">
+              <p>Systems up to 16A per phase &mdash; around 3.68kW single phase, 11.04kW three phase &mdash; fall under G98. That's a notification: you install, commission, and tell the network operator within 28 days.</p>
+              <p>Anything above that is G99. That's an application, and you don't install until it's approved. Get the judgement wrong and you either delay a job that didn't need delaying, or commission a system the DNO hasn't agreed to.</p>
+              <p>Batteries complicate it. A battery counts as generation, so a modest solar array with storage attached often lands in G99 when the panels alone wouldn't.</p>
+            </div>
+            <a href="/solar-dno-application" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mb-12">Full G98 vs G99 breakdown <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+
+            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Six operators, six processes</h3>
+            <div class="space-y-4 text-gray-700 leading-relaxed mb-6">
+              <p>National Grid, UK Power Networks, SSEN, SP Energy Networks, Electricity North West and Northern Powergrid each run their own submission route, their own document requirements and their own response patterns. Which one you deal with is set by geography &mdash; the first two digits of the MPAN identify it.</p>
+            </div>
+            <a href="/dno" class="inline-flex items-center gap-2 text-sm font-semibold text-black hover:gap-3 transition-all mb-12">Turnaround times by operator <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon></a>
+
+            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Where applications fall over</h3>
+            <p class="text-gray-700 leading-relaxed mb-6">Most rejections have nothing to do with the quality of the install:</p>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">A superseded inverter type test reference</span></li>
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">The wrong form for the phase configuration</span></li>
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Export limitation asserted without the G100 evidence behind it</span></li>
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Existing generation on site not declared</span></li>
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">A missing single-line diagram on a <a href="/g99-application" class="font-semibold text-black underline decoration-2 underline-offset-2">G99</a></span></li>
+              <li class="flex items-start gap-3 p-4 rounded-xl border-2 border-black bg-[#fefce8]"><iconify-icon icon="solar:close-circle-linear" class="text-red-600 text-xl mt-0.5 shrink-0"></iconify-icon><span class="text-sm text-gray-700 leading-relaxed">Queries left unanswered until the application drops out of the queue</span></li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mb-12">None are difficult. All are easy to make at seven in the evening with nine other things outstanding.</p>
+
+            <h3 class="text-2xl font-semibold tracking-tight mb-4 mt-12">Approval isn't the finish line</h3>
+            <div class="space-y-4 text-gray-700 leading-relaxed">
+              <p>The approval and the export MPAN are separate. Your customer can't register for the Smart Export Guarantee without the export MPAN, and it doesn't always arrive on its own. Until it does, they're exporting for free &mdash; which is when they ring you.</p>
+            </div>
+
+            <div class="mt-10 p-6 rounded-2xl border-2 border-black bg-[#84CC16] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <p class="font-semibold mb-4">We handle all of it &mdash; form selection, submission, query handling, approval and export MPAN retrieval.</p>
+              <a href="/dno-application-support" class="inline-block px-6 py-3 rounded-xl bg-black text-[#84CC16] font-semibold text-sm border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">See what's included</a>
             </div>
           </div>
         </section>
@@ -355,6 +462,47 @@
               </blockquote>
               <cite class="text-gray-600 text-sm font-medium not-italic">&mdash; James R., MCS-certified solar installer, West Midlands</cite>
             </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-semibold tracking-tight mb-4">DNO Application FAQs</h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">The questions installers ask us most.</p>
+          </div>
+          <div class="max-w-3xl mx-auto space-y-6">
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">What is a DNO application?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">A DNO application is how a solar system gets registered with the local distribution network operator that owns the cables serving the property. Depending on size it is either a <a href="/g98-notification" class="font-semibold text-black underline decoration-2 underline-offset-2">G98 notification</a>, which you send after commissioning, or a <a href="/g99-application" class="font-semibold text-black underline decoration-2 underline-offset-2">G99 application</a>, which has to be approved before you install.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">How long does DNO approval take?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">G98 has no waiting period at all &mdash; you notify within 28 days of commissioning. G99 gives the network operator a statutory window to respond, commonly up to 45 working days for a standard distributed generation application. Fast-tracked smaller Type A systems often come back sooner, and constrained networks or sites needing reinforcement take longer.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">Do I need a DNO application for solar panels?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">Yes, for any grid-connected system. The route depends on inverter output per phase, not panel capacity. Up to 16A per phase &mdash; roughly 3.68kW single phase or 11.04kW three phase &mdash; is a G98 notification. Above that is a G99 application. Adding a battery usually pushes a system into G99 because storage counts as generation. <a href="/solar-dno-application" class="font-semibold text-black underline decoration-2 underline-offset-2">Full breakdown here</a>.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">When should I submit a DNO application?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">For G99, at the point the job is won &mdash; not the week before the scaffold arrives. The operator's assessment window runs independently of your schedule, and installing ahead of approval risks having to modify a commissioned system if conditions are imposed. For G98 the constraint is the 28 day window after commissioning. <a href="/blog/when-to-submit-a-dno-application" class="font-semibold text-black underline decoration-2 underline-offset-2">More on timing</a>.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">How much does a DNO application cost?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">The network operator doesn't charge for G98 notifications or straightforward G99 applications. Costs arise only where network reinforcement, a witness test or other admin charges are required. Our own fee is flat per application, priced separately for G98 and G99 because the work involved is materially different. <a href="/pricing" class="font-semibold text-black underline decoration-2 underline-offset-2">See pricing</a>.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <h3 class="font-semibold text-lg tracking-tight mb-3">Who is my DNO?</h3>
+              <p class="text-gray-600 leading-relaxed text-sm">It's set by geography, not by who supplies the electricity. There are six distribution network operator groups across Great Britain, and the first two digits of the MPAN identify which one covers the site. <a href="/dno" class="font-semibold text-black underline decoration-2 underline-offset-2">Find yours</a>.</p>
+            </div>
+
           </div>
         </section>
 
@@ -392,6 +540,10 @@
               <h4 class="font-semibold mb-4 tracking-tight">Services</h4>
               <ul class="space-y-2 text-sm text-gray-600">
                 <li><a class="hover:text-black transition-colors" href="/services">Services</a></li>
+                <li><a class="hover:text-black transition-colors" href="/dno-application-support">DNO Application Support</a></li>
+                <li><a class="hover:text-black transition-colors" href="/solar-dno-application">Solar DNO Applications</a></li>
+                <li><a class="hover:text-black transition-colors" href="/g99-application">G99 Applications</a></li>
+                <li><a class="hover:text-black transition-colors" href="/g98-notification">G98 Notifications</a></li>
                 <li><a class="hover:text-black transition-colors" href="/pricing">Pricing</a></li>
               </ul>
             </div>
