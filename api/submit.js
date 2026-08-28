@@ -136,7 +136,20 @@ export default async function handler(req, res) {
     consentConfirmation,
   } = req.body || {};
 
-  const isProjectSubmission = formType === 'dno-project-submission';
+  const hasProjectSubmissionFields = [
+    installerCompanyName,
+    installerCompanyAddress,
+    projectStreetAddress,
+    projectTown,
+    projectPostcode,
+    mpanNumber,
+    customerFirstName,
+    customerLastName,
+    customerPhone,
+    customerEmail,
+  ].some((value) => String(value || '').trim());
+  const isProjectSubmission = formType === 'dno-project-submission'
+    || (!formType && hasProjectSubmissionFields);
   const isCallbackRequest = formType === 'callback-request';
   const isContactEnquiry = formType === 'contact-enquiry';
   const isInstallerLead = formType === 'installer-lead';
@@ -459,31 +472,33 @@ export default async function handler(req, res) {
   };
 
   try {
-    const emailRequests = [
-      fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
-        body: JSON.stringify(internalEmail),
-      }),
-    ];
-    if (applicantEmail) {
-      emailRequests.push(
-        fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify(confirmationEmail),
-        })
-      );
-    }
-    const [internalRes, confirmRes] = await Promise.all(emailRequests);
-
+    const internalRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify(internalEmail),
+    });
     if (!internalRes.ok) {
       const err = await internalRes.text();
       throw new Error(`Brevo error (internal): ${err}`);
     }
-    if (confirmRes && !confirmRes.ok) {
-      const err = await confirmRes.text();
-      throw new Error(`Brevo error (confirmation): ${err}`);
+
+    let confirmationEmailSent = false;
+    if (applicantEmail) {
+      try {
+        const confirmRes = await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: { 'api-key': BREVO_API_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify(confirmationEmail),
+        });
+        if (confirmRes.ok) {
+          confirmationEmailSent = true;
+        } else {
+          const err = await confirmRes.text();
+          console.error(`Brevo error (confirmation): ${err}`);
+        }
+      } catch (error) {
+        console.error('Confirmation email send error:', error);
+      }
     }
 
     // Fire Facebook Conversions API (non-blocking — a CAPI failure must not break the response)
@@ -498,7 +513,12 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(200).json({ success: true, submissionId, files: blobUploads });
+    return res.status(200).json({
+      success: true,
+      submissionId,
+      files: blobUploads,
+      confirmationEmailSent,
+    });
   } catch (error) {
     console.error('Email send error:', error);
     return res.status(500).json({ error: 'Failed to send. Please try again or email submit@gridsubmit.co.uk directly.' });
