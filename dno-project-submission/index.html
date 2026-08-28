@@ -286,7 +286,7 @@
               <div class="grid sm:grid-cols-3 gap-4">
                 <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-                <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+                <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="number" required inputmode="decimal" min="0" step="0.01" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div>
                   <div class="flex items-center gap-2 mb-2">
@@ -317,7 +317,7 @@
           <div class="grid sm:grid-cols-3 gap-4">
             <div><label class="block text-sm font-semibold mb-2" for="battery-brand">Brand <span class="required-star">*</span></label><input id="battery-brand" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
             <div><label class="block text-sm font-semibold mb-2" for="battery-model">Model <span class="required-star">*</span></label><input id="battery-model" type="text" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-            <div><label class="block text-sm font-semibold mb-2" for="battery-total-capacity-kwh">Total Capacity (kWh) <span class="required-star">*</span></label><input id="battery-total-capacity-kwh" type="text" inputmode="numeric" pattern="[0-9]+" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+            <div><label class="block text-sm font-semibold mb-2" for="battery-total-capacity-kwh">Total Capacity (kWh) <span class="required-star">*</span></label><input id="battery-total-capacity-kwh" type="number" inputmode="decimal" min="0" step="0.01" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
           </div>
         </div>
 
@@ -738,7 +738,7 @@
             <div class="grid sm:grid-cols-3 gap-4">
               <div><label class="block text-sm font-semibold mb-2">Brand <span class="required-star">*</span></label><input type="text" required class="inverter-brand w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Model <span class="required-star">*</span></label><input type="text" required class="inverter-model w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
-              <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
+              <div><label class="block text-sm font-semibold mb-2">Capacity (kW) <span class="required-star">*</span></label><input type="number" required inputmode="decimal" min="0" step="0.01" class="inverter-capacity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
               <div><label class="block text-sm font-semibold mb-2">Quantity <span class="required-star">*</span></label><input type="text" required inputmode="numeric" pattern="[0-9]+" class="inverter-quantity w-full px-4 py-3 border-2 border-black rounded-xl bg-white text-sm"></div>
                 <div>
                   <div class="flex items-center gap-2 mb-2">
@@ -982,7 +982,7 @@
         });
         if (panel.contains(document.getElementById('mpan-number'))) validateMpan();
         if (panel.contains(batterySection) && !batterySection.classList.contains('hidden')) {
-          batteryCapacityInput.setCustomValidity(batteryCapacityInput.value && /^\d+$/.test(batteryCapacityInput.value) ? '' : 'Battery total capacity must contain digits only.');
+          batteryCapacityInput.setCustomValidity(batteryCapacityInput.value && /^\d+(?:\.\d+)?$/.test(batteryCapacityInput.value) ? '' : 'Enter a valid battery capacity, for example 13.5.');
         } else {
           batteryCapacityInput.setCustomValidity('');
         }
@@ -1015,11 +1015,10 @@
       document.getElementById('mpan-number').addEventListener('input', validateMpan);
       document.getElementById('mpan-number').addEventListener('blur', validateMpan);
       invertersContainer.addEventListener('input', (e) => {
-        if (e.target.classList.contains('inverter-capacity') || e.target.classList.contains('inverter-quantity')) {
+        if (e.target.classList.contains('inverter-quantity')) {
           e.target.value = e.target.value.replace(/\D/g, '');
         }
       });
-      batteryCapacityInput.addEventListener('input', () => { batteryCapacityInput.value = batteryCapacityInput.value.replace(/\D/g, ''); });
       form.querySelectorAll('input[name="sld-option"]').forEach((r) => r.addEventListener('change', syncSldFields));
       form.querySelectorAll('input[name="existing-installation"]').forEach((r) => r.addEventListener('change', syncExistingInstallationFields));
       installationTypeInput.addEventListener('change', syncBatterySection);
