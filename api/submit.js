@@ -259,6 +259,19 @@ export default async function handler(req, res) {
         row('Commissioning documents', commissioningDocuments),
         row('Consent confirmation', consentConfirmation ? 'Yes' : 'No'),
       ].join('')
+    : isCallbackRequest
+    ? [
+        row('Name', applicantName),
+        row('Phone', applicantPhone),
+      ].join('')
+    : isContactEnquiry
+    ? [
+        row('Name', applicantName),
+        applicantEmail ? row('Email', `<a href="mailto:${applicantEmail}">${applicantEmail}</a>`) : '',
+        applicantPhone ? row('Phone', applicantPhone) : '',
+        sitePostcode ? row('Installation postcode', sitePostcode) : '',
+        installationType ? row('Installation type', installationType) : '',
+      ].join('')
     : [
         row('Name / Company', applicantName),
         row('Email', applicantEmail ? `<a href="mailto:${applicantEmail}">${applicantEmail}</a>` : ''),
@@ -299,7 +312,9 @@ export default async function handler(req, res) {
       ? 'New Callback Request'
       : isInstallerLead
         ? 'New Installer Lead'
-        : 'New Application';
+        : isContactEnquiry
+          ? 'New Contact Enquiry'
+          : 'New Application';
   const internalRecipients = (isCallbackRequest || isInstallerLead)
     ? [
         { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
@@ -415,6 +430,10 @@ export default async function handler(req, res) {
     to: internalRecipients,
     subject: isInstallerLead
       ? `${subjectPrefix}: ${applicantEmail} - ${installationType || '?'} - ${generationKw || '?'} kW`
+      : isCallbackRequest
+        ? `${subjectPrefix}: ${applicantName} - ${applicantPhone}`
+        : isContactEnquiry
+          ? `${subjectPrefix}: ${applicantName}${sitePostcode ? ` - ${sitePostcode}` : ''}`
       : `${subjectPrefix}: ${applicantName} - ${sitePostcode || 'No postcode'} - ${generationKw || '?'} kW`,
     htmlContent: `
       <div style="font-family:system-ui,sans-serif;max-width:680px;margin:0 auto">
@@ -443,7 +462,24 @@ export default async function handler(req, res) {
     internalEmail.replyTo = { email: applicantEmail, name: displayName };
   }
 
-  const confirmationEmail = {
+  const confirmationEmail = isContactEnquiry ? {
+    sender: { name: 'GridSubmit', email: 'submit@gridsubmit.co.uk' },
+    to: applicantEmail ? [{ email: applicantEmail, name: displayName }] : [],
+    replyTo: { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
+    subject: "We've received your message - GridSubmit",
+    htmlContent: `
+      <div style="font-family:system-ui,sans-serif;max-width:600px;margin:0 auto">
+        <div style="background:#84CC16;padding:24px;border-radius:8px 8px 0 0;border:2px solid #000;border-bottom:none">
+          <h1 style="margin:0;font-size:22px;color:#000;font-weight:700">Message Received</h1>
+        </div>
+        <div style="background:#fff;padding:30px;border:2px solid #000;border-top:none;border-radius:0 0 8px 8px">
+          <p style="font-size:16px;margin-top:0">Hi ${displayName},</p>
+          <p style="color:#374151;line-height:1.6">Thanks for contacting GridSubmit. We have received your enquiry and a member of our team will be in touch.</p>
+          <p style="font-size:14px;color:#6b7280;margin:0">Questions? Reply to this email and our team will help.</p>
+        </div>
+      </div>
+    `,
+  } : {
     sender: { name: 'GridSubmit', email: 'submit@gridsubmit.co.uk' },
     to: applicantEmail ? [{ email: applicantEmail, name: displayName }] : [],
     replyTo: { email: 'submit@gridsubmit.co.uk', name: 'GridSubmit Team' },
