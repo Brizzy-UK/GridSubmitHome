@@ -352,11 +352,15 @@
           <label class="block text-sm font-semibold mb-2" for="sld-create-details">Solar Panel Details <span class="required-star">*</span></label>
           <textarea id="sld-create-details" rows="4" class="w-full px-4 py-3 border-2 border-black rounded-xl bg-[#fefce8] text-sm" placeholder="Brand, model, capacity and quantity."></textarea>
         </div>
-        <fieldset class="space-y-2">
+        <fieldset id="commissioning-docs-fieldset" class="space-y-2">
           <legend class="text-sm font-semibold">Commissioning Documents <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;99 + VAT)" required class="mt-1"><span>Yes (&pound;99 + VAT)</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
+        <div id="g98-notification-message" class="hidden p-4 bg-[#fefce8] border-2 border-black rounded-xl text-sm">
+          <p class="font-semibold">This application qualifies as a G98 notification.</p>
+          <p class="text-gray-600 mt-1">Commissioning documentation is included, so no separate commissioning documents option is required.</p>
+        </div>
         <p id="cost-summary" class="flex items-center justify-between gap-4 text-base" aria-live="polite">
           <span class="font-semibold">Estimated total cost for project</span>
           <span id="estimated-total" class="font-semibold">Complete the capacity details</span>
@@ -485,6 +489,8 @@
       const totalGenerationCapacityInput = document.getElementById('total-generation-capacity');
       const systemPhaseInput = document.getElementById('system-phase');
       const estimatedTotalEl = document.getElementById('estimated-total');
+      const commissioningDocsFieldset = document.getElementById('commissioning-docs-fieldset');
+      const g98NotificationMessage = document.getElementById('g98-notification-message');
       const invertersContainer = document.getElementById('inverters-container');
       const addInverterBtn = document.getElementById('add-inverter-btn');
       const batterySection = document.getElementById('battery-section');
@@ -639,12 +645,28 @@
         updateCostSummary();
       }
 
-      function getApplicationFee() {
+      function getCapacityPerPhase() {
         const totalCapacity = Number(totalGenerationCapacityInput.value);
         const systemPhase = systemPhaseInput.value;
         if (!Number.isFinite(totalCapacity) || totalCapacity <= 0 || !systemPhase) return null;
+        return systemPhase === 'Three Phase' ? totalCapacity / 3 : totalCapacity;
+      }
 
-        const capacityPerPhase = systemPhase === 'Three Phase' ? totalCapacity / 3 : totalCapacity;
+      function isG98Eligible() {
+        const capacityPerPhase = getCapacityPerPhase();
+        return capacityPerPhase !== null && capacityPerPhase <= 3.68;
+      }
+
+      function getCommissioningDocumentsValue() {
+        if (isG98Eligible()) return 'Included with G98 notification';
+        return (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '';
+      }
+
+      function getApplicationFee() {
+        const totalCapacity = Number(totalGenerationCapacityInput.value);
+        const capacityPerPhase = getCapacityPerPhase();
+        if (capacityPerPhase === null) return null;
+
         if (capacityPerPhase <= 3.68) return { fee: 50 };
         if (totalCapacity <= 15) return { fee: 99 };
         if (totalCapacity <= 50) return { fee: 249 };
@@ -657,7 +679,7 @@
         const selectedSld = form.querySelector('input[name="sld-option"]:checked');
         const selectedCommissioning = form.querySelector('input[name="commissioning-docs"]:checked');
         const sldFee = selectedSld && selectedSld.value === 'Create one for me (\u00A350 + VAT)' ? 50 : 0;
-        const commissioningFee = selectedCommissioning && selectedCommissioning.value.startsWith('Yes') ? 99 : 0;
+        const commissioningFee = !isG98Eligible() && selectedCommissioning && selectedCommissioning.value.startsWith('Yes') ? 99 : 0;
 
         if (!application) {
           estimatedTotalEl.textContent = 'Complete the capacity details';
@@ -669,6 +691,17 @@
         }
 
         estimatedTotalEl.textContent = `£${application.fee + sldFee + commissioningFee} + VAT`;
+      }
+
+      function syncCommissioningFields() {
+        const g98Eligible = isG98Eligible();
+        commissioningDocsFieldset.classList.toggle('hidden', g98Eligible);
+        g98NotificationMessage.classList.toggle('hidden', !g98Eligible);
+        form.querySelectorAll('input[name="commissioning-docs"]').forEach((input) => {
+          input.required = !g98Eligible;
+          if (g98Eligible) input.checked = false;
+        });
+        updateCostSummary();
       }
 
       function setStepLoading(isLoading) {
@@ -884,7 +917,7 @@
           sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
           existingInstallation: (form.querySelector('input[name="existing-installation"]:checked') || {}).value || '',
           existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
-          commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
+          commissioningDocuments: getCommissioningDocumentsValue(),
           consentConfirmation: document.getElementById('consent-confirmation').checked
         };
       }
@@ -951,6 +984,7 @@
         syncBatterySection();
         syncExistingInstallationFields();
         syncSldFields();
+        syncCommissioningFields();
         validateMpan();
         updateStep(step);
       }
@@ -1050,6 +1084,7 @@
         syncExistingInstallationFields();
         syncSldFields();
         syncBatterySection();
+        syncCommissioningFields();
         return scopedValid(panel);
       }
 
@@ -1079,8 +1114,8 @@
       form.querySelectorAll('input[name="commissioning-docs"]').forEach((r) => r.addEventListener('change', updateCostSummary));
       form.querySelectorAll('input[name="existing-installation"]').forEach((r) => r.addEventListener('change', syncExistingInstallationFields));
       installationTypeInput.addEventListener('change', syncBatterySection);
-      totalGenerationCapacityInput.addEventListener('input', updateCostSummary);
-      systemPhaseInput.addEventListener('change', updateCostSummary);
+      totalGenerationCapacityInput.addEventListener('input', syncCommissioningFields);
+      systemPhaseInput.addEventListener('change', syncCommissioningFields);
 
       addInverterBtn.addEventListener('click', () => {
         invertersContainer.insertAdjacentHTML('beforeend', inverterTemplate(nextInverterId));
@@ -1208,7 +1243,7 @@
             sldCreateDetails: document.getElementById('sld-create-details').value.trim(),
             existingInstallation: (form.querySelector('input[name="existing-installation"]:checked') || {}).value || '',
             existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
-            commissioningDocuments: (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '',
+            commissioningDocuments: getCommissioningDocumentsValue(),
             consentConfirmation: document.getElementById('consent-confirmation').checked,
             partialCompletionId: partialId,
             attachments,
@@ -1246,7 +1281,7 @@
       syncSldFields();
       syncBatterySection();
       syncExistingInstallationFields();
-      updateCostSummary();
+      syncCommissioningFields();
       loadDraftFromServer();
     })();
   </script>
