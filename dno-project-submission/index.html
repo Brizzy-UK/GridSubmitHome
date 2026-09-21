@@ -342,7 +342,7 @@
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;99 + VAT)" required class="mt-1"><span>Create one for me (&pound;99 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;50 + VAT)" required class="mt-1"><span>Create one for me (&pound;50 + VAT)</span></label>
         </fieldset>
         <div id="sld-upload-wrap" class="hidden">
           <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD <span class="required-star">*</span></label>
@@ -357,6 +357,10 @@
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;99 + VAT)" required class="mt-1"><span>Yes (&pound;99 + VAT)</span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
+        <p id="cost-summary" class="flex items-center justify-between gap-4 text-base" aria-live="polite">
+          <span class="font-semibold">Estimated total cost for project</span>
+          <span id="estimated-total" class="font-semibold">Complete the capacity details</span>
+        </p>
         <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
           <input id="consent-confirmation" type="checkbox" required class="mt-1">
           <span>I confirm that I have obtained the necessary consent from the end customer to share their personal details (name, phone, email, and site address) with GridSubmit for the purpose of processing this DNO application. I have read and agree to the <a href="/privacy/" class="underline font-semibold">Privacy Policy</a>. <span class="required-star">*</span></span>
@@ -369,7 +373,10 @@
           <button id="save-draft-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-white border-2 border-black">Save and Return Later</button>
         </div>
         <div class="flex gap-3">
-          <button id="next-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Next</button>
+          <button id="next-btn" type="button" class="px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black disabled:opacity-50 disabled:cursor-not-allowed">
+            <span id="next-btn-label">Next</span>
+            <span id="next-btn-loading" class="hidden"><svg class="inline-block animate-spin" style="width:1rem;height:1rem" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="3" opacity="0.3"></circle><path d="M21 12a9 9 0 0 0-9-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path></svg> Saving...</span>
+          </button>
           <button id="submit-btn" type="submit" class="hidden px-5 py-3 rounded-xl text-sm bg-black text-[#84CC16] border-2 border-black">Submit my application</button>
         </div>
       </div>
@@ -464,6 +471,8 @@
       const saveDraftEmailError = document.getElementById('save-draft-email-error');
       const sendSaveDraftBtn = document.getElementById('send-save-draft-btn');
       const nextBtn = document.getElementById('next-btn');
+      const nextBtnLabel = document.getElementById('next-btn-label');
+      const nextBtnLoading = document.getElementById('next-btn-loading');
       const submitBtn = document.getElementById('submit-btn');
       const stepLabel = document.getElementById('step-label');
       const sldUploadWrap = document.getElementById('sld-upload-wrap');
@@ -473,6 +482,9 @@
       const existingInstallationDetailsWrap = document.getElementById('existing-installation-details-wrap');
       const existingInstallationDetailsInput = document.getElementById('existing-installation-details');
       const installationTypeInput = document.getElementById('installation-type');
+      const totalGenerationCapacityInput = document.getElementById('total-generation-capacity');
+      const systemPhaseInput = document.getElementById('system-phase');
+      const estimatedTotalEl = document.getElementById('estimated-total');
       const invertersContainer = document.getElementById('inverters-container');
       const addInverterBtn = document.getElementById('add-inverter-btn');
       const batterySection = document.getElementById('battery-section');
@@ -619,11 +631,52 @@
       function syncSldFields() {
         const selected = form.querySelector('input[name="sld-option"]:checked');
         const upload = selected && selected.value === 'Upload SLD';
-        const create = selected && selected.value === 'Create one for me (\u00A399 + VAT)';
+        const create = selected && selected.value === 'Create one for me (\u00A350 + VAT)';
         sldUploadWrap.classList.toggle('hidden', !upload);
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
         sldCreateDetails.required = Boolean(create);
+        updateCostSummary();
+      }
+
+      function getApplicationFee() {
+        const totalCapacity = Number(totalGenerationCapacityInput.value);
+        const systemPhase = systemPhaseInput.value;
+        if (!Number.isFinite(totalCapacity) || totalCapacity <= 0 || !systemPhase) return null;
+
+        const capacityPerPhase = systemPhase === 'Three Phase' ? totalCapacity / 3 : totalCapacity;
+        if (capacityPerPhase <= 3.68) return { fee: 50 };
+        if (totalCapacity <= 15) return { fee: 99 };
+        if (totalCapacity <= 50) return { fee: 249 };
+        if (totalCapacity <= 500) return { fee: 449 };
+        return { fee: null };
+      }
+
+      function updateCostSummary() {
+        const application = getApplicationFee();
+        const selectedSld = form.querySelector('input[name="sld-option"]:checked');
+        const selectedCommissioning = form.querySelector('input[name="commissioning-docs"]:checked');
+        const sldFee = selectedSld && selectedSld.value === 'Create one for me (\u00A350 + VAT)' ? 50 : 0;
+        const commissioningFee = selectedCommissioning && selectedCommissioning.value.startsWith('Yes') ? 99 : 0;
+
+        if (!application) {
+          estimatedTotalEl.textContent = 'Complete the capacity details';
+          return;
+        }
+        if (application.fee === null) {
+          estimatedTotalEl.textContent = 'Contact us for a quote';
+          return;
+        }
+
+        estimatedTotalEl.textContent = `£${application.fee + sldFee + commissioningFee} + VAT`;
+      }
+
+      function setStepLoading(isLoading) {
+        nextBtn.setAttribute('aria-busy', String(isLoading));
+        nextBtnLabel.classList.toggle('hidden', isLoading);
+        nextBtnLoading.classList.toggle('hidden', !isLoading);
+        nextBtn.disabled = isLoading || currentStep === 4;
+        backBtn.disabled = isLoading || currentStep === 1;
       }
 
       function syncExistingInstallationFields() {
@@ -887,7 +940,10 @@
         batteryCapacityInput.value = payload.batteryTotalCapacityKwh || '';
         document.getElementById('sld-create-details').value = payload.sldCreateDetails || '';
         document.getElementById('consent-confirmation').checked = Boolean(payload.consentConfirmation);
-        setRadio('sld-option', payload.sldOption || '');
+        const restoredSldOption = payload.sldOption === 'Create one for me (\u00A399 + VAT)'
+          ? 'Create one for me (\u00A350 + VAT)'
+          : payload.sldOption || '';
+        setRadio('sld-option', restoredSldOption);
         setRadio('commissioning-docs', payload.commissioningDocuments || '');
         setRadio('existing-installation', payload.existingInstallation || '');
         existingInstallationDetailsInput.value = payload.existingInstallationDetails || '';
@@ -1020,8 +1076,11 @@
         }
       });
       form.querySelectorAll('input[name="sld-option"]').forEach((r) => r.addEventListener('change', syncSldFields));
+      form.querySelectorAll('input[name="commissioning-docs"]').forEach((r) => r.addEventListener('change', updateCostSummary));
       form.querySelectorAll('input[name="existing-installation"]').forEach((r) => r.addEventListener('change', syncExistingInstallationFields));
       installationTypeInput.addEventListener('change', syncBatterySection);
+      totalGenerationCapacityInput.addEventListener('input', updateCostSummary);
+      systemPhaseInput.addEventListener('change', updateCostSummary);
 
       addInverterBtn.addEventListener('click', () => {
         invertersContainer.insertAdjacentHTML('beforeend', inverterTemplate(nextInverterId));
@@ -1051,9 +1110,14 @@
       backBtn.addEventListener('click', () => { if (currentStep > 1) updateStep(currentStep - 1); });
       nextBtn.addEventListener('click', async () => {
         if (validateCurrentStep() && currentStep < 4) {
-          await savePartialToServer('step_change', { force: true });
-          plausible('Completed Step ' + currentStep);
-          updateStep(currentStep + 1);
+          setStepLoading(true);
+          try {
+            await savePartialToServer('step_change', { force: true });
+            plausible('Completed Step ' + currentStep);
+            updateStep(currentStep + 1);
+          } finally {
+            setStepLoading(false);
+          }
         }
       });
       document.addEventListener('visibilitychange', () => {
@@ -1182,6 +1246,7 @@
       syncSldFields();
       syncBatterySection();
       syncExistingInstallationFields();
+      updateCostSummary();
       loadDraftFromServer();
     })();
   </script>
