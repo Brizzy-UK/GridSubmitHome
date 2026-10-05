@@ -1,6 +1,6 @@
 import { put } from '@vercel/blob';
 import { randomUUID, createHash } from 'node:crypto';
-import { ensureCallbackRequestTable, ensureSubmissionTable, sql } from './_db.js';
+import { ensureCallbackRequestTable, ensurePartialCompletionTable, ensureSubmissionTable, sql } from './_db.js';
 
 function sha256(val) {
   return createHash('sha256').update(String(val || '').trim().toLowerCase()).digest('hex');
@@ -423,6 +423,38 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error('Submission DB save error:', error);
     return res.status(500).json({ error: 'Failed to save your submission. Please try again.' });
+  }
+
+  const isProduction = String(process.env.VERCEL_ENV || process.env.NODE_ENV || '').toLowerCase() === 'production';
+  if (isProjectSubmission && isProduction) {
+    // The Slack digest reads this row; it must never block or fail the submission.
+    try {
+      const rawPartialId = String(req.body?.partialCompletionId || '').trim().slice(0, 100);
+      await ensurePartialCompletionTable();
+      await sql`
+        INSERT INTO dno_form_partial_completions (
+          id, current_step, event_type, contact_name, contact_email, contact_phone,
+          payload, submitted_at, submission_id
+        )
+        VALUES (
+          ${rawPartialId || submissionId}, 4, 'submitted', ${applicantName || null},
+          ${applicantEmail ? applicantEmail.toLowerCase() : null}, ${applicantPhone || null},
+          ${JSON.stringify(submissionPayload)}::jsonb, NOW(), ${submissionId}
+        )
+        ON CONFLICT (id) DO UPDATE
+        SET current_step = 4,
+            event_type = 'submitted',
+            contact_name = COALESCE(EXCLUDED.contact_name, dno_form_partial_completions.contact_name),
+            contact_email = COALESCE(EXCLUDED.contact_email, dno_form_partial_completions.contact_email),
+            contact_phone = COALESCE(EXCLUDED.contact_phone, dno_form_partial_completions.contact_phone),
+            payload = EXCLUDED.payload,
+            submitted_at = NOW(),
+            submission_id = EXCLUDED.submission_id,
+            updated_at = NOW()
+      `;
+    } catch (error) {
+      console.error('Partial completion mark-submitted error:', error);
+    }
   }
 
   const internalEmail = {

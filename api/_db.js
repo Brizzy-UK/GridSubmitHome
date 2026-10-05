@@ -126,5 +126,13 @@ export async function ensurePartialCompletionTable() {
     ON dno_form_partial_completions (contact_phone)
   `;
 
+  await sql`
+    ALTER TABLE dno_form_partial_completions
+      ADD COLUMN IF NOT EXISTS submitted_at TIMESTAMPTZ,
+      ADD COLUMN IF NOT EXISTS submission_id TEXT,
+      ADD COLUMN IF NOT EXISTS slack_status TEXT,
+      ADD COLUMN IF NOT EXISTS slack_notified_at TIMESTAMPTZ
+  `;
+
   ensuredPartialCompletions = true;
 }
