@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
-      - name: Trigger /api/slack-digest
+      - name: Trigger /api/slack-digest/
         env:
           CRON_SECRET: ${{ secrets.CRON_SECRET }}
         run: |
           curl --fail-with-body -sS -X POST \
             -H "Authorization: Bearer $CRON_SECRET" \
-            https://www.gridsubmit.co.uk/api/slack-digest
+            https://www.gridsubmit.co.uk/api/slack-digest/

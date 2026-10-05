@@ -281,7 +281,7 @@
             name: document.getElementById('cb-name').value.trim(),
             phone: document.getElementById('cb-phone').value.trim(),
           };
-          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const res = await fetch('/api/submit/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Something went wrong.');
           callbackForm.classList.add('hidden');
@@ -313,7 +313,7 @@
             postcode: document.getElementById('ct-postcode').value.trim(),
             installationType: document.getElementById('ct-installation').value,
           };
-          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const res = await fetch('/api/submit/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Something went wrong.');
           contactForm.classList.add('hidden');

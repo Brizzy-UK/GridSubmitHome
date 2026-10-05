@@ -585,11 +585,11 @@
 
         if (useBeacon && navigator.sendBeacon) {
           const blob = new Blob([JSON.stringify(requestBody)], { type: 'application/json' });
-          return navigator.sendBeacon('/api/partial', blob);
+          return navigator.sendBeacon('/api/partial/', blob);
         }
 
         try {
-          const response = await fetch('/api/partial', {
+          const response = await fetch('/api/partial/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestBody),
@@ -993,7 +993,7 @@
         const payload = collectDraftPayload();
         const email = String(destinationEmail || '').trim();
         if (!email) throw new Error('Please enter an email address.');
-        const response = await fetch('/api/draft', {
+        const response = await fetch('/api/draft/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1017,7 +1017,7 @@
       async function loadDraftFromServer() {
         if (!currentDraftId) return;
         try {
-          const response = await fetch(`/api/draft?id=${encodeURIComponent(currentDraftId)}`);
+          const response = await fetch(`/api/draft/?id=${encodeURIComponent(currentDraftId)}`);
           const data = await response.json();
           if (!response.ok) throw new Error(data.error || 'Could not load saved draft.');
           const step = Number(data.currentStep);
@@ -1033,7 +1033,7 @@
       async function deleteDraftFromServer() {
         if (!currentDraftId) return;
         try {
-          await fetch(`/api/draft?id=${encodeURIComponent(currentDraftId)}`, { method: 'DELETE' });
+          await fetch(`/api/draft/?id=${encodeURIComponent(currentDraftId)}`, { method: 'DELETE' });
         } catch (err) {
           console.error('Failed to delete draft after submission', err);
         }
@@ -1255,7 +1255,7 @@
             enaReference: firstInverter.enaReference || ''
           };
 
-          const res = await fetch('/api/submit', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          const res = await fetch('/api/submit/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
           const data = await res.json();
           if (!res.ok) throw new Error(data.error || 'Unable to submit right now.');
           await deleteDraftFromServer();
