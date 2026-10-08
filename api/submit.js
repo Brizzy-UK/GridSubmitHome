@@ -2,6 +2,15 @@ import { put } from '@vercel/blob';
 import { randomUUID, createHash } from 'node:crypto';
 import { ensureCallbackRequestTable, ensurePartialCompletionTable, ensureSubmissionTable, sql } from './_db.js';
 
+const MEMBER_PROGRAMS = {
+  'solar-sales-accelerator': { name: 'Solar Sales Accelerator', discount: '15%', path: '/solar-sales-accelerator' },
+};
+
+function escapeHtml(value) {
+  return String(value || '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 function sha256(val) {
   return createHash('sha256').update(String(val || '').trim().toLowerCase()).digest('hex');
 }
@@ -134,6 +143,9 @@ export default async function handler(req, res) {
     sldCreateDetails,
     commissioningDocuments,
     consentConfirmation,
+    memberProgram,
+    estimatedPrice,
+    memberPrice,
   } = req.body || {};
 
   const hasProjectSubmissionFields = [
@@ -150,6 +162,7 @@ export default async function handler(req, res) {
   ].some((value) => String(value || '').trim());
   const isProjectSubmission = formType === 'dno-project-submission'
     || (!formType && hasProjectSubmissionFields);
+  const member = isProjectSubmission ? MEMBER_PROGRAMS[memberProgram] || null : null;
   const isCallbackRequest = formType === 'callback-request';
   const isContactEnquiry = formType === 'contact-enquiry';
   const isInstallerLead = formType === 'installer-lead';
@@ -215,6 +228,13 @@ export default async function handler(req, res) {
       <td style="padding:10px 14px;border:1px solid #e5e7eb;font-size:14px">${value || '<span style="color:#9ca3af">Not provided</span>'}</td>
     </tr>`;
 
+  const priceRows = isProjectSubmission && estimatedPrice
+    ? [
+        row(member ? 'Standard price' : 'Estimated price', escapeHtml(estimatedPrice)),
+        member && memberPrice ? row(`Members price (${member.discount} off)`, `<strong>${escapeHtml(memberPrice)}</strong>`) : '',
+      ].join('')
+    : '';
+
   const internalRows = isInstallerLead
     ? [
         row('Form type', 'Installer Lead'),
@@ -229,7 +249,9 @@ export default async function handler(req, res) {
       ].join('')
     : isProjectSubmission
     ? [
-        row('Form type', 'DNO Project Submission'),
+        row('Form type', member ? `${member.name} Submission` : 'DNO Project Submission'),
+        member ? row('Member programme', `<strong>${member.name}: ${member.discount} discount</strong>`) : '',
+        priceRows,
         row('Installation type', installationType),
         row('Total generation capacity (kW)', generationKw),
         row('Planned installation date', plannedInstallationDate),
@@ -288,6 +310,7 @@ export default async function handler(req, res) {
 
   const summaryRows = isProjectSubmission
     ? [
+        member ? priceRows : '',
         row('Installation type', installationType),
         row('Total generation capacity (kW)', generationKw),
         row('Project postcode', projectPostcode),
@@ -305,8 +328,10 @@ export default async function handler(req, res) {
         row('Export type', exportType),
       ].join('');
 
-  const sourcePath = isProjectSubmission ? '/dno-project-submission' : isInstallerLead ? '/installer-lead' : '/contact';
-  const subjectPrefix = isProjectSubmission
+  const sourcePath = member ? member.path : isProjectSubmission ? '/dno-project-submission' : isInstallerLead ? '/installer-lead' : '/contact';
+  const subjectPrefix = member
+    ? `New ${member.name} Submission`
+    : isProjectSubmission
     ? 'New DNO Project Submission'
     : isCallbackRequest
       ? 'New Callback Request'
@@ -374,6 +399,9 @@ export default async function handler(req, res) {
     sldCreateDetails: sldCreateDetails || '',
     commissioningDocuments: commissioningDocuments || '',
     consentConfirmation: Boolean(consentConfirmation),
+    memberProgram: member ? memberProgram : '',
+    estimatedPrice: String(estimatedPrice || ''),
+    memberPrice: member ? String(memberPrice || '') : '',
   };
 
   const submissionId = randomUUID();
@@ -523,7 +551,8 @@ export default async function handler(req, res) {
         </div>
         <div style="background:#fff;padding:30px;border:2px solid #000;border-top:none;border-radius:0 0 8px 8px">
           <p style="font-size:16px;margin-top:0">Hi ${displayName},</p>
-          <p style="color:#374151;line-height:1.6">Thanks for submitting your application details to GridSubmit. We have received your request and our team will start review shortly.</p>
+          <p style="color:#374151;line-height:1.6">Thanks for submitting your ${member ? `${member.name} ` : ''}application details to GridSubmit. We have received your request and our team will start review shortly.</p>${member ? `
+          <p style="color:#374151;line-height:1.6">As a ${member.name} member, your ${member.discount} discount will be applied to your final bill.</p>` : ''}
           <h3 style="font-size:15px;margin-bottom:12px">Your submission summary</h3>
           <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${summaryRows}</table>
           <h3 style="font-size:15px;margin-bottom:12px">What happens next?</h3>

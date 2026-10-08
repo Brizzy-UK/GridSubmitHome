@@ -1,7 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": true,
+  "rewrites": [
+    {
+      "source": "/solar-sales-accelerator/",
+      "destination": "/dno-project-submission/index.html"
+    }
+  ],
   "headers": [
+    {
+      "source": "/solar-sales-accelerator/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
     {
       "source": "/assets/(.*)",
       "headers": [

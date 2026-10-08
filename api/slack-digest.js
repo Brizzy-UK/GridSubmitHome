@@ -12,7 +12,15 @@ const STEP_NAMES = {
   4: 'Equipment Details',
 };
 
+const MEMBER_PROGRAM_NAMES = {
+  'solar-sales-accelerator': 'Solar Sales Accelerator (15% off)',
+};
+
 const FIELD_GROUPS = [
+  ['Pricing', [
+    ['estimatedPrice', 'Standard price'],
+    ['memberPrice', 'Members price'],
+  ]],
   ['Installer', [
     ['installerCompanyName', 'Company'],
     ['installerFirstName', 'First name'],
@@ -88,9 +96,10 @@ function buildMessage(row, kind) {
   const payload = row.payload || {};
   const name = row.contact_name || 'Unknown name';
   const step = Number(row.current_step) || 1;
+  const formName = payload.memberProgram === 'solar-sales-accelerator' ? 'Solar Sales Accelerator form' : 'DNO form';
   const headline = kind === 'completed'
-    ? `✅ DNO form completed: ${name}`
-    : `⚠️ DNO form abandoned at step ${step}: ${name}`;
+    ? `✅ ${formName} completed: ${name}`
+    : `⚠️ ${formName} abandoned at step ${step}: ${name}`;
 
   const contactBits = [
     row.contact_email && `<mailto:${row.contact_email}|${esc(row.contact_email)}>`,
@@ -100,6 +109,10 @@ function buildMessage(row, kind) {
   const blocks = [
     { type: 'header', text: { type: 'plain_text', text: headline.slice(0, 150), emoji: true } },
   ];
+
+  if (MEMBER_PROGRAM_NAMES[payload.memberProgram]) {
+    blocks.push({ type: 'section', text: { type: 'mrkdwn', text: `*Member programme:* ${MEMBER_PROGRAM_NAMES[payload.memberProgram]}` } });
+  }
 
   if (contactBits) {
     blocks.push({ type: 'section', text: { type: 'mrkdwn', text: `*Contact:* ${contactBits}` } });

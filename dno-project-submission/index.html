@@ -15,7 +15,7 @@
   <meta name="application-name" content="Grid Submit">
   <meta name="apple-mobile-web-app-title" content="Grid Submit">
   <meta name="robots" content="index, follow">
-    <link rel="stylesheet" href="/assets/site.css?v=7c478bf5">
+    <link rel="stylesheet" href="/assets/site.css?v=3156bdb1">
   <script async src="https://analytics.brizzy.uk/js/pa-67iBs1OEYR4R1jVZWUz8l.js"></script>
   <script>
     window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)};
@@ -135,8 +135,18 @@
     </header>
 
   <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-10 sm:py-14">
-    <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight mb-3">DNO Project Submission</h1>
-    <p class="text-gray-700 mb-8">Installers and homeowners can submit project details so we can prepare and submit G98/G99 paperwork to the DNO on your behalf.</p>
+    <div id="member-banner" class="hidden">
+      <div class="mb-8 flex flex-col sm:flex-row items-center gap-6 bg-white border-2 border-black rounded-2xl p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+        <img src="/assets/solar-sales-accelerator-logo-320.webp" srcset="/assets/solar-sales-accelerator-logo-320.webp 320w, /assets/solar-sales-accelerator-logo-640.webp 640w" sizes="240px" width="320" height="255" alt="Solar Sales Accelerator" class="w-60 h-auto shrink-0" loading="lazy" decoding="async">
+        <div class="text-center sm:text-left">
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-2">Members area</p>
+          <p class="text-2xl font-semibold tracking-tight mb-2">15% off every application</p>
+          <p class="text-sm text-gray-700 leading-relaxed">Solar Sales Accelerator members receive a 15% discount on their final bill. You'll see the standard price and your members price before you submit.</p>
+        </div>
+      </div>
+    </div>
+    <h1 id="page-title" class="text-4xl sm:text-5xl font-semibold tracking-tight mb-3">DNO Project Submission</h1>
+    <p id="page-intro" class="text-gray-700 mb-8">Installers and homeowners can submit project details so we can prepare and submit G98/G99 paperwork to the DNO on your behalf.</p>
 
     <div id="form-success" class="hidden mb-6 border-2 border-black rounded-xl bg-white p-6">
       <h2 class="text-xl font-semibold mb-2">Application received</h2>
@@ -342,7 +352,7 @@
         <fieldset class="space-y-2">
           <legend class="text-sm font-semibold">SLD / Schematic <span class="required-star">*</span></legend>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Upload SLD" required class="mt-1"><span>Upload SLD</span></label>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me (&pound;50 + VAT)" required class="mt-1"><span>Create one for me (&pound;50 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="sld-option" value="Create one for me" required class="mt-1"><span>Create one for me<span data-addon-price="sld"></span></span></label>
         </fieldset>
         <div id="sld-upload-wrap" class="hidden">
           <label class="block text-sm font-semibold mb-2" for="sld-upload-file">Upload SLD <span class="required-star">*</span></label>
@@ -354,7 +364,7 @@
         </div>
         <fieldset id="commissioning-docs-fieldset" class="space-y-2">
           <legend class="text-sm font-semibold">Commissioning Documents <span class="required-star">*</span></legend>
-          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes (&pound;99 + VAT)" required class="mt-1"><span>Yes (&pound;99 + VAT)</span></label>
+          <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="Yes" required class="mt-1"><span>Yes<span data-addon-price="commissioning"></span></span></label>
           <label class="flex items-start gap-2 text-sm"><input type="radio" name="commissioning-docs" value="No" required class="mt-1"><span>No</span></label>
         </fieldset>
         <div id="g98-notification-message" class="hidden p-4 bg-[#fefce8] border-2 border-black rounded-xl text-sm">
@@ -362,9 +372,15 @@
           <p class="text-gray-600 mt-1">Commissioning documentation is included, so no separate commissioning documents option is required.</p>
         </div>
         <p id="cost-summary" class="flex items-center justify-between gap-4 text-base" aria-live="polite">
-          <span class="font-semibold">Estimated total cost for project</span>
+          <span id="cost-summary-label" class="font-semibold">Estimated total cost for project</span>
           <span id="estimated-total" class="font-semibold">Complete the capacity details</span>
         </p>
+        <div id="member-cost-wrap" class="hidden">
+          <p class="flex items-center justify-between gap-4 text-base p-4 bg-[#fefce8] border-2 border-black rounded-xl" aria-live="polite">
+            <span class="font-semibold">Your members price (15% off)</span>
+            <span id="member-total" class="font-semibold text-lg">Complete the capacity details</span>
+          </p>
+        </div>
         <label class="flex items-start gap-2 text-sm p-4 bg-[#fefce8] border-2 border-black rounded-xl">
           <input id="consent-confirmation" type="checkbox" required class="mt-1">
           <span>I confirm that I have obtained the necessary consent from the end customer to share their personal details (name, phone, email, and site address) with GridSubmit for the purpose of processing this DNO application. I have read and agree to the <a href="/privacy/" class="underline font-semibold">Privacy Policy</a>. <span class="required-star">*</span></span>
@@ -489,6 +505,11 @@
       const totalGenerationCapacityInput = document.getElementById('total-generation-capacity');
       const systemPhaseInput = document.getElementById('system-phase');
       const estimatedTotalEl = document.getElementById('estimated-total');
+      const memberTotalEl = document.getElementById('member-total');
+      // Reached only via a vercel.json rewrite of /solar-sales-accelerator/ onto this page.
+      const MEMBER_PROGRAM = window.location.pathname.startsWith('/solar-sales-accelerator')
+        ? { id: 'solar-sales-accelerator', name: 'Solar Sales Accelerator', discount: 0.15 }
+        : null;
       const commissioningDocsFieldset = document.getElementById('commissioning-docs-fieldset');
       const g98NotificationMessage = document.getElementById('g98-notification-message');
       const invertersContainer = document.getElementById('inverters-container');
@@ -637,7 +658,7 @@
       function syncSldFields() {
         const selected = form.querySelector('input[name="sld-option"]:checked');
         const upload = selected && selected.value === 'Upload SLD';
-        const create = selected && selected.value === 'Create one for me (\u00A350 + VAT)';
+        const create = selected && selected.value === 'Create one for me';
         sldUploadWrap.classList.toggle('hidden', !upload);
         sldCreateWrap.classList.toggle('hidden', !create);
         sldUploadFile.required = Boolean(upload);
@@ -662,35 +683,75 @@
         return (form.querySelector('input[name="commissioning-docs"]:checked') || {}).value || '';
       }
 
-      function getApplicationFee() {
+      const DESIGN_HOURLY_RATE = 99;
+
+      // Add-on values: a number is a fixed fee, 'included' is free, 'hourly' is billed at DESIGN_HOURLY_RATE.
+      function getPricingTier() {
         const totalCapacity = Number(totalGenerationCapacityInput.value);
         const capacityPerPhase = getCapacityPerPhase();
         if (capacityPerPhase === null) return null;
 
-        if (capacityPerPhase <= 3.68) return { fee: 50 };
-        if (totalCapacity <= 15) return { fee: 99 };
-        if (totalCapacity <= 50) return { fee: 249 };
-        if (totalCapacity <= 500) return { fee: 449 };
+        if (capacityPerPhase <= 3.68) return { fee: 50, sld: 70, commissioning: 'included' };
+        if (totalCapacity <= 15) return { fee: 99, sld: 70, commissioning: 50 };
+        if (totalCapacity <= 50) return { fee: 249, sld: 'included', commissioning: 'included' };
+        if (totalCapacity <= 500) return { fee: 399, sld: 'hourly', commissioning: 'hourly' };
         return { fee: null };
       }
 
+      function describeAddonPrice(price) {
+        if (typeof price === 'number') return ` (£${price} + VAT)`;
+        if (price === 'included') return ' (included)';
+        if (price === 'hourly') return ` (£${DESIGN_HOURLY_RATE}/hour + VAT)`;
+        return '';
+      }
+
       function updateCostSummary() {
-        const application = getApplicationFee();
+        const tier = getPricingTier();
+        form.querySelectorAll('[data-addon-price]').forEach((el) => {
+          el.textContent = tier ? describeAddonPrice(tier[el.dataset.addonPrice]) : '';
+        });
+
+        if (!tier) {
+          setTotals(() => 'Complete the capacity details');
+          return;
+        }
+        if (tier.fee === null) {
+          setTotals(() => 'Contact us for a quote');
+          return;
+        }
+
         const selectedSld = form.querySelector('input[name="sld-option"]:checked');
         const selectedCommissioning = form.querySelector('input[name="commissioning-docs"]:checked');
-        const sldFee = selectedSld && selectedSld.value === 'Create one for me (\u00A350 + VAT)' ? 50 : 0;
-        const commissioningFee = !isG98Eligible() && selectedCommissioning && selectedCommissioning.value.startsWith('Yes') ? 99 : 0;
+        const chosenAddons = [
+          selectedSld && selectedSld.value === 'Create one for me' ? tier.sld : null,
+          !isG98Eligible() && selectedCommissioning && selectedCommissioning.value === 'Yes' ? tier.commissioning : null,
+        ];
+        const total = chosenAddons.reduce((sum, price) => sum + (typeof price === 'number' ? price : 0), tier.fee);
+        const hourlyChosen = chosenAddons.includes('hourly');
 
-        if (!application) {
-          estimatedTotalEl.textContent = 'Complete the capacity details';
-          return;
-        }
-        if (application.fee === null) {
-          estimatedTotalEl.textContent = 'Contact us for a quote';
-          return;
-        }
+        setTotals((factor) => `${formatPrice(total * factor)} + VAT${hourlyChosen ? ` + design hours at ${formatPrice(DESIGN_HOURLY_RATE * factor)}/hour` : ''}`);
+      }
 
-        estimatedTotalEl.textContent = `£${application.fee + sldFee + commissioningFee} + VAT`;
+      function formatPrice(amount) {
+        const rounded = Math.round(amount * 100) / 100;
+        return `\u00A3${Number.isInteger(rounded) ? rounded : rounded.toFixed(2)}`;
+      }
+
+      function setTotals(describe) {
+        estimatedTotalEl.textContent = describe(1);
+        if (MEMBER_PROGRAM) memberTotalEl.textContent = describe(1 - MEMBER_PROGRAM.discount);
+      }
+
+      function applyMemberMode() {
+        if (!MEMBER_PROGRAM) return;
+        const title = `${MEMBER_PROGRAM.name} Project Submission`;
+        document.title = `${title} | Grid Submit`;
+        document.getElementById('page-title').textContent = title;
+        document.getElementById('page-intro').textContent =
+          'Submit your project details and we will prepare and submit the G98/G99 paperwork to the DNO on your behalf, with your members discount applied.';
+        document.getElementById('cost-summary-label').textContent = 'Standard price';
+        document.getElementById('member-banner').classList.remove('hidden');
+        document.getElementById('member-cost-wrap').classList.remove('hidden');
       }
 
       function syncCommissioningFields() {
@@ -918,7 +979,8 @@
           existingInstallation: (form.querySelector('input[name="existing-installation"]:checked') || {}).value || '',
           existingInstallationDetails: existingInstallationDetailsInput.value.trim(),
           commissioningDocuments: getCommissioningDocumentsValue(),
-          consentConfirmation: document.getElementById('consent-confirmation').checked
+          consentConfirmation: document.getElementById('consent-confirmation').checked,
+          memberProgram: MEMBER_PROGRAM ? MEMBER_PROGRAM.id : ''
         };
       }
 
@@ -973,11 +1035,15 @@
         batteryCapacityInput.value = payload.batteryTotalCapacityKwh || '';
         document.getElementById('sld-create-details').value = payload.sldCreateDetails || '';
         document.getElementById('consent-confirmation').checked = Boolean(payload.consentConfirmation);
-        const restoredSldOption = payload.sldOption === 'Create one for me (\u00A399 + VAT)'
-          ? 'Create one for me (\u00A350 + VAT)'
+        // Drafts saved before prices moved out of the option values still hold e.g. 'Create one for me (\u00A350 + VAT)'.
+        const restoredSldOption = String(payload.sldOption || '').startsWith('Create one for me')
+          ? 'Create one for me'
           : payload.sldOption || '';
+        const restoredCommissioning = String(payload.commissioningDocuments || '').startsWith('Yes')
+          ? 'Yes'
+          : payload.commissioningDocuments || '';
         setRadio('sld-option', restoredSldOption);
-        setRadio('commissioning-docs', payload.commissioningDocuments || '');
+        setRadio('commissioning-docs', restoredCommissioning);
         setRadio('existing-installation', payload.existingInstallation || '');
         existingInstallationDetailsInput.value = payload.existingInstallationDetails || '';
         renderInverters(payload.inverters);
@@ -1002,7 +1068,8 @@
             currentStep,
             payload,
             sendEmail: true,
-            resumeBaseUrl: window.location.origin
+            resumeBaseUrl: window.location.origin,
+            resumePath: window.location.pathname
           })
         });
         const data = await response.json();
@@ -1246,6 +1313,9 @@
             commissioningDocuments: getCommissioningDocumentsValue(),
             consentConfirmation: document.getElementById('consent-confirmation').checked,
             partialCompletionId: partialId,
+            memberProgram: MEMBER_PROGRAM ? MEMBER_PROGRAM.id : '',
+            estimatedPrice: estimatedTotalEl.textContent,
+            memberPrice: MEMBER_PROGRAM ? memberTotalEl.textContent : '',
             attachments,
             name: `${document.getElementById('installer-first-name').value} ${document.getElementById('installer-last-name').value}`.trim(),
             email: document.getElementById('installer-email').value.trim(),
@@ -1276,6 +1346,7 @@
         }
       });
 
+      applyMemberMode();
       updateStep(1);
       setupInfoToggles();
       syncSldFields();

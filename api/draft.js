@@ -1,6 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { ensureDraftTable, sql } from './_db.js';
 
+const RESUMABLE_FORM_PATHS = ['/dno-project-submission/', '/solar-sales-accelerator/'];
+
 function normalizeStep(value) {
   const parsed = Number(value);
   if (!Number.isInteger(parsed) || parsed < 1 || parsed > 4) return 1;
@@ -79,7 +81,7 @@ export default async function handler(req, res) {
     await ensureDraftTable();
 
     if (req.method === 'POST') {
-      const { draftId, contactEmail, currentStep, payload, sendEmail, resumeBaseUrl } = req.body || {};
+      const { draftId, contactEmail, currentStep, payload, sendEmail, resumeBaseUrl, resumePath } = req.body || {};
       if (!payload || typeof payload !== 'object') {
         return res.status(400).json({ error: 'Draft payload is required.' });
       }
@@ -101,7 +103,8 @@ export default async function handler(req, res) {
       `;
 
       const origin = resolveOrigin(req, resumeBaseUrl);
-      const resumeUrl = `${origin}/dno-project-submission/?draft=${encodeURIComponent(rows[0].id)}`;
+      const formPath = RESUMABLE_FORM_PATHS.includes(resumePath) ? resumePath : '/dno-project-submission/';
+      const resumeUrl = `${origin}${formPath}?draft=${encodeURIComponent(rows[0].id)}`;
 
       if (sendEmail) {
         if (!email || !isLikelyEmail(email)) {
